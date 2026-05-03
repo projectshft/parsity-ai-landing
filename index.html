@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AI Engineering Sprint | Parsity</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--accent: #6366f1;
+				--accent-hover: #818cf8;
+				--accent-dim: rgba(99, 102, 241, 0.12);
+				--accent-mid: rgba(99, 102, 241, 0.3);
+				--accent-glow: rgba(99, 102, 241, 0.5);
+				--secondary: #14b8a6;
+				--bg: #0a0a0f;
+				--bg2: #12121a;
+				--bg3: #1a1a27;
+				--surface: rgba(255, 255, 255, 0.03);
+				--surface-hover: rgba(255, 255, 255, 0.06);
+				--text: #f8fafc;
+				--text2: #cbd5e1;
+				--muted: #64748b;
+				--border: rgba(99, 102, 241, 0.2);
+				--border-subtle: rgba(255, 255, 255, 0.08);
+				--gradient-start: #6366f1;
+				--gradient-end: #a855f7;
+				--mono: 'Space Mono', monospace;
+				--sans: 'DM Sans', sans-serif;
+				--warning: #f59e0b;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				background: var(--bg);
+				background-image:
+					radial-gradient(
+						ellipse 80% 50% at 50% -20%,
+						rgba(99, 102, 241, 0.15) 0%,
+						transparent 50%
+					),
+					radial-gradient(
+						ellipse 60% 40% at 80% 60%,
+						rgba(168, 85, 247, 0.08) 0%,
+						transparent 50%
+					);
+				background-attachment: fixed;
+				color: var(--text);
+				font-family: var(--sans);
+				line-height: 1.7;
+				min-height: 100vh;
+			}
+
+			/* ── ANNOUNCE BAR ── */
+			.announce-bar {
+				background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+				padding: 12px 24px;
+				text-align: center;
+				font-family: var(--mono);
+				font-size: 13px;
+				font-weight: 700;
+				color: white;
+			}
+
+			.container {
+				max-width: 840px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.container-wide {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			/* ── HERO ── */
+			.hero {
+				min-height: 90vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 80px 0;
+				text-align: center;
+			}
+
+			.hero-headline {
+				font-family: var(--mono);
+				font-size: clamp(26px, 5vw, 46px);
+				font-weight: 700;
+				line-height: 1.15;
+				color: var(--text);
+				margin-bottom: 28px;
+				max-width: 900px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.hero-headline .gradient {
+				background: linear-gradient(
+					135deg,
+					var(--gradient-start) 0%,
+					var(--gradient-end) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.hero-sub {
+				font-size: clamp(17px, 2.2vw, 20px);
+				color: var(--text2);
+				max-width: 680px;
+				margin: 0 auto 20px;
+				line-height: 1.7;
+			}
+			.hero-sub strong {
+				color: var(--text);
+			}
+
+			.hero-reassurance {
+				font-size: 16px;
+				color: var(--accent);
+				margin-bottom: 40px;
+				font-style: italic;
+			}
+
+			/* ── STATS BAR ── */
+			.stats-bar {
+				display: flex;
+				justify-content: center;
+				gap: 48px;
+				margin-bottom: 48px;
+				flex-wrap: wrap;
+			}
+			.stat {
+				text-align: center;
+			}
+			.stat-value {
+				font-family: var(--mono);
+				font-size: 28px;
+				font-weight: 700;
+				color: var(--accent);
+				margin-bottom: 4px;
+			}
+			.stat-label {
+				font-size: 13px;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+
+			/* ── CTA BUTTONS ── */
+			.cta-group {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 16px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+			@keyframes pulse {
+				0%,
+				100% {
+					box-shadow: 0 4px 24px var(--accent-glow);
+				}
+				50% {
+					box-shadow: 0 4px 44px rgba(99, 102, 241, 0.7);
+				}
+			}
+
+			.cta-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 18px 28px;
+				background: linear-gradient(
+					135deg,
+					var(--gradient-start) 0%,
+					var(--gradient-end) 100%
+				);
+				color: white;
+				font-family: var(--mono);
+				font-size: 15px;
+				font-weight: 700;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.25s;
+				animation: pulse 2.2s ease-in-out infinite;
+			}
+			.cta-btn:hover {
+				transform: translateY(-2px);
+				animation: none;
+				box-shadow: 0 12px 40px var(--accent-glow);
+			}
+
+			.cta-btn-secondary {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 16px 28px;
+				background: transparent;
+				color: var(--text);
+				font-family: var(--mono);
+				font-size: 14px;
+				font-weight: 700;
+				border: 1px solid var(--border);
+				border-radius: 10px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.25s;
+			}
+			.cta-btn-secondary:hover {
+				background: var(--surface);
+				border-color: var(--accent);
+			}
+
+			.cta-note {
+				font-size: 13px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 8px;
+			}
+
+			/* ── SECTIONS ── */
+			.section {
+				padding: 80px 0;
+				border-top: 1px solid var(--border-subtle);
+			}
+
+			.section-title {
+				font-family: var(--mono);
+				font-size: clamp(24px, 4vw, 34px);
+				font-weight: 700;
+				line-height: 1.25;
+				margin-bottom: 20px;
+				color: var(--text);
+			}
+			.section-title .gradient {
+				background: linear-gradient(
+					135deg,
+					var(--gradient-start) 0%,
+					var(--gradient-end) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.section-text {
+				font-size: 18px;
+				color: var(--text2);
+				margin-bottom: 20px;
+				line-height: 1.7;
+			}
+			.section-text strong {
+				color: var(--text);
+			}
+
+			/* ── FEAR BLOCK ── */
+			.fear-block {
+				background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(239, 68, 68, 0.08) 100%);
+				border: 1px solid rgba(245, 158, 11, 0.3);
+				border-radius: 20px;
+				padding: 40px;
+				margin: 40px 0;
+			}
+
+			.fear-block h3 {
+				font-family: var(--mono);
+				font-size: 20px;
+				font-weight: 700;
+				color: var(--warning);
+				margin-bottom: 20px;
+			}
+
+			.fear-block p {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 16px;
+			}
+			.fear-block p:last-child {
+				margin-bottom: 0;
+			}
+			.fear-block strong {
+				color: var(--text);
+			}
+
+			/* ── SKILLS GRID ── */
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.skill-card {
+				background: var(--surface);
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				padding: 28px;
+				transition: all 0.3s;
+			}
+			.skill-card:hover {
+				background: var(--surface-hover);
+				border-color: var(--border);
+				transform: translateY(-4px);
+			}
+
+			.skill-card h4 {
+				font-family: var(--mono);
+				font-size: 16px;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 12px;
+			}
+
+			.skill-card p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.6;
+			}
+			.skill-card p strong {
+				color: var(--text);
+			}
+
+			/* ── PROBLEM SECTION ── */
+			.problem-text {
+				font-size: 18px;
+				color: var(--text2);
+				line-height: 1.8;
+				margin-bottom: 20px;
+			}
+			.problem-text strong {
+				color: var(--text);
+			}
+
+			.problem-highlight {
+				background: var(--accent-dim);
+				border-left: 4px solid var(--accent);
+				padding: 24px 28px;
+				margin: 32px 0;
+				border-radius: 0 12px 12px 0;
+			}
+			.problem-highlight p {
+				font-size: 17px;
+				color: var(--text);
+				font-weight: 500;
+				margin: 0;
+			}
+
+			/* ── TESTIMONIALS ── */
+			.testimonials-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.testimonials-featured {
+				display: flex;
+				justify-content: center;
+				gap: 24px;
+				margin-top: 24px;
+				flex-wrap: wrap;
+			}
+
+			.testimonial-large {
+				max-width: 450px;
+			}
+
+			.testimonial-card {
+				background: var(--surface);
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				overflow: hidden;
+				transition: all 0.3s;
+			}
+			.testimonial-card:hover {
+				border-color: var(--border);
+				transform: translateY(-4px);
+			}
+
+			.testimonial-image {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			/* ── FOR YOU / NOT FOR YOU ── */
+			.fit-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.fit-card {
+				background: var(--surface);
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				padding: 32px;
+			}
+			.fit-card.yes {
+				border-color: rgba(20, 184, 166, 0.3);
+			}
+			.fit-card.no {
+				border-color: rgba(239, 68, 68, 0.2);
+			}
+
+			.fit-card h4 {
+				font-family: var(--mono);
+				font-size: 16px;
+				font-weight: 700;
+				margin-bottom: 20px;
+			}
+			.fit-card.yes h4 {
+				color: var(--secondary);
+			}
+			.fit-card.no h4 {
+				color: #ef4444;
+			}
+
+			.fit-list {
+				list-style: none;
+			}
+			.fit-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 14px;
+				line-height: 1.5;
+			}
+			.fit-list li::before {
+				flex-shrink: 0;
+				font-weight: 700;
+			}
+			.fit-card.yes .fit-list li::before {
+				content: '✓';
+				color: var(--secondary);
+			}
+			.fit-card.no .fit-list li::before {
+				content: '✗';
+				color: #ef4444;
+			}
+
+			/* ── VALUE STACK ── */
+			.value-stack {
+				margin: 40px 0;
+			}
+
+			.value-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				padding: 20px 0;
+				border-bottom: 1px solid var(--border-subtle);
+				gap: 20px;
+			}
+			.value-item:last-child {
+				border-bottom: none;
+			}
+
+			.value-item h4 {
+				font-family: var(--mono);
+				font-size: 15px;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 6px;
+			}
+			.value-item p {
+				font-size: 14px;
+				color: var(--text2);
+				line-height: 1.5;
+			}
+
+			.value-price {
+				font-family: var(--mono);
+				font-size: 14px;
+				font-weight: 700;
+				color: var(--muted);
+				white-space: nowrap;
+			}
+
+			.value-total {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 24px;
+				background: var(--accent-dim);
+				border-radius: 12px;
+				margin-top: 20px;
+			}
+			.value-total h4 {
+				font-family: var(--mono);
+				font-size: 18px;
+				font-weight: 700;
+				color: var(--text);
+			}
+			.value-total .value-price {
+				font-size: 24px;
+				color: var(--accent);
+			}
+
+			/* ── FAQ ── */
+			.faq-list {
+				margin: 40px 0;
+			}
+
+			.faq-item {
+				border-bottom: 1px solid var(--border-subtle);
+				padding: 24px 0;
+			}
+			.faq-item:last-child {
+				border-bottom: none;
+			}
+
+			.faq-item h4 {
+				font-family: var(--mono);
+				font-size: 15px;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 12px;
+			}
+
+			.faq-item p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+
+			/* ── BOTTOM CTA ── */
+			.bottom-cta {
+				padding: 100px 0;
+				text-align: center;
+				border-top: 1px solid var(--border-subtle);
+			}
+
+			.final-card {
+				background: linear-gradient(
+					135deg,
+					var(--gradient-start) 0%,
+					var(--gradient-end) 100%
+				);
+				border-radius: 24px;
+				padding: 56px 40px;
+				max-width: 700px;
+				margin: 0 auto;
+				box-shadow: 0 24px 80px rgba(99, 102, 241, 0.4);
+			}
+
+			.final-card h3 {
+				font-family: var(--mono);
+				font-size: clamp(20px, 4vw, 26px);
+				font-weight: 700;
+				color: white;
+				margin-bottom: 20px;
+				line-height: 1.3;
+			}
+
+			.final-card p {
+				color: rgba(255, 255, 255, 0.85);
+				font-size: 17px;
+				margin-bottom: 32px;
+				line-height: 1.6;
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.final-btn-group {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+				max-width: 360px;
+				margin: 0 auto;
+			}
+
+			.final-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 18px 32px;
+				background: white;
+				color: var(--accent);
+				font-family: var(--mono);
+				font-size: 15px;
+				font-weight: 700;
+				border: none;
+				border-radius: 12px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.25s;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+			}
+			.final-btn:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+			}
+
+			.final-btn-alt {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 16px 32px;
+				background: rgba(255, 255, 255, 0.15);
+				color: white;
+				font-family: var(--mono);
+				font-size: 14px;
+				font-weight: 700;
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				border-radius: 12px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.25s;
+			}
+			.final-btn-alt:hover {
+				background: rgba(255, 255, 255, 0.25);
+			}
+
+			.final-note {
+				font-size: 13px;
+				color: rgba(255, 255, 255, 0.6);
+				margin-top: 24px;
+			}
+
+			/* ── FOOTER ── */
+			footer {
+				padding: 40px 0;
+				text-align: center;
+				border-top: 1px solid var(--border-subtle);
+			}
+			footer p {
+				font-size: 13px;
+				color: var(--muted);
+			}
+
+			/* ── RESPONSIVE ── */
+			@media (max-width: 768px) {
+				.hero {
+					padding: 60px 0;
+				}
+				.stats-bar {
+					gap: 32px;
+				}
+				.section {
+					padding: 60px 0;
+				}
+				.skills-grid {
+					grid-template-columns: 1fr;
+				}
+				.fear-block {
+					padding: 28px;
+				}
+				.final-card {
+					padding: 40px 24px;
+				}
+				.fit-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero-headline {
+					font-size: 24px;
+				}
+				.hero-sub {
+					font-size: 16px;
+				}
+				.stats-bar {
+					flex-direction: column;
+					gap: 20px;
+				}
+				.announce-bar {
+					font-size: 12px;
+					padding: 10px 16px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ─────────── ANNOUNCE BAR ─────────── -->
+		<div class="announce-bar">
+			Next cohort: 6 seats left. If you're seeing this, one of them could still be yours.
+		</div>
+
+		<!-- ─────────── HERO ─────────── -->
+		<section class="hero">
+			<div class="container-wide">
+				<h1 class="hero-headline">
+					How working developers are learning to build complex AI systems and <span class="gradient">becoming AI lead on their team in 45 days</span>
+				</h1>
+
+				<p class="hero-sub">
+					AI engineering isn't a separate career path. It's the next layer of what you already do. The developers getting promoted and handed budget right now aren't the smartest in the room. <strong>They're the ones who learned one specific skill stack before their company needed to hire someone for it.</strong>
+				</p>
+
+				<p class="hero-reassurance">
+					You're not behind because you're not good enough. You're behind because no one showed you the right path yet.
+				</p>
+
+				<div class="stats-bar">
+					<div class="stat">
+						<div class="stat-value">45</div>
+						<div class="stat-label">Days</div>
+					</div>
+					<div class="stat">
+						<div class="stat-value">#1</div>
+						<div class="stat-label">LinkedIn Tech Skill</div>
+					</div>
+					<div class="stat">
+						<div class="stat-value">RAG</div>
+						<div class="stat-label">Production Architecture</div>
+					</div>
+				</div>
+
+				<div class="cta-group">
+					<a href="/resource_redirect/landing_pages/2151351071" class="cta-btn">
+						APPLY FOR YOUR SPOT
+					</a>
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+						Or Book a Free Strategy Call
+					</a>
+					<p class="cta-note">No pitch. No pressure. If it's not the right fit, we'll tell you.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FEAR BLOCK ─────────── -->
+		<section class="section">
+			<div class="container">
+				<div class="fear-block">
+					<h3>Here's something nobody talks about:</h3>
+					<p>
+						When leadership decides they need an AI lead, they don't post a job. They look around the room, find someone they already trust, and say <strong>"we need you to run this."</strong>
+					</p>
+					<p>
+						That conversation is happening right now at companies exactly like yours. The developer who gets it isn't always the most senior. It's the one who understood what was coming and got ready before anyone asked.
+					</p>
+					<p>
+						<strong>If that's not you yet... it can be.</strong> But the window between "early mover" and "catching up" closes faster than most people expect.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE REAL PROBLEM ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">
+					The <span class="gradient">Real Problem</span>
+				</h2>
+				<p class="problem-text">
+					Leadership is being pressured to move on AI. They're looking at their teams asking: <strong>"who can build this?"</strong>
+				</p>
+				<p class="problem-text">
+					Most engineers don't have a clear answer. They've watched YouTube. Used ChatGPT. Called an API.
+				</p>
+				<p class="problem-text">
+					But there's a massive gap between "I've used AI tools" and <strong>"I can architect a system, explain the tradeoffs to a CTO, and own this in production."</strong>
+				</p>
+
+				<div class="problem-highlight">
+					<p>That gap is your opportunity. The developers stuck in it aren't lacking talent... they're lacking a clear path and real projects.</p>
+				</div>
+
+				<p class="problem-text">
+					<strong>The fix:</strong> 45 focused days on the exact stack that closes the gap.
+				</p>
+
+				<div class="cta-group" style="margin-top: 40px;">
+					<a href="/resource_redirect/landing_pages/2151351071" class="cta-btn">
+						APPLY FOR YOUR SPOT
+					</a>
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+						Or Book a Free Strategy Call
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHAT YOU LEARN ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">
+					What You <span class="gradient">Learn</span>
+				</h2>
+				<p class="section-text">
+					This is not a course. It's a 45-day sprint that ends with you able to build what companies are desperate for... <strong>and explain it to the people writing the checks.</strong>
+				</p>
+
+				<div class="skills-grid">
+					<div class="skill-card">
+						<h4>RAG Architecture</h4>
+						<p>
+							Build it from scratch. Embeddings, chunking strategies, vector storage, semantic search, retrieval, generation. Understand the math and the tradeoffs. This alone puts you ahead of 90% of developers claiming AI experience.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Vector Databases</h4>
+						<p>
+							Hands-on with Pinecone — one of the most popular choices for production RAG systems. Learn similarity search, indexing strategies, and how to optimize retrieval quality.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Fine-Tuning</h4>
+						<p>
+							Data preparation, training pipelines, cost optimization. Know when to fine-tune vs. when RAG is enough. Build a model trained on your own data.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Agent Architecture</h4>
+						<p>
+							Design multi-agent systems with specialized agents, routing logic, and structured outputs. Build agents that actually work in production, not just demos.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>LLM Observability</h4>
+						<p>
+							Performance monitoring, usage tracking, cost management with Helicone. Know what's happening inside your AI systems and catch problems before users do.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Communicating to Leadership</h4>
+						<p>
+							Every week you record yourself explaining what you built — as if presenting to a non-technical CTO. The engineers who land AI lead roles can walk leadership through decisions without making them feel stupid. <strong>Nobody else trains this. We do.</strong>
+						</p>
+					</div>
+				</div>
+
+				<div class="cta-group" style="margin-top: 40px;">
+					<a href="/resource_redirect/landing_pages/2151351071" class="cta-btn">
+						APPLY FOR YOUR SPOT
+					</a>
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+						Or Book a Free Strategy Call
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── TESTIMONIALS ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title" style="text-align: center">
+					What Developers Are <span class="gradient">Saying</span>
+				</h2>
+				<p class="section-text" style="text-align: center; max-width: 580px; margin: 0 auto 40px;">
+					Real results from developers who went through the program.
+				</p>
+
+				<div class="testimonials-grid">
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2164183145/settings_images/5abfcbd-087a-b2f3-4dd2-0dc04bd72e_91f73125-d91f-4c73-956a-6a44f6acea5d.png" alt="Chris Lopez testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8534d6fe-39e9-4fb8-8d8b-8ccb4dc51821.png" alt="Sean Currlin testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/faf2d85f-a7bc-4d9a-9626-0d6fe2659948.png" alt="Sydney Thomas testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/430fd4ad-7bbe-46bc-82ed-18854ee24620.png" alt="Johnathon Bowers testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/a656482d-9aa5-485f-a459-f9876dcb4366.png" alt="A.F. testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8e013db6-ac6e-4d63-a248-d92693b93a77.png" alt="Joe Letner testimonial" />
+					</div>
+					<div class="testimonial-card">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/2e1f3d31-bc5e-4ec6-b902-1b6714e0df00.png" alt="Student testimonial" />
+					</div>
+				</div>
+
+				<!-- Large testimonials centered below -->
+				<div class="testimonials-featured">
+					<div class="testimonial-card testimonial-large">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/1c93705a-5876-454c-aab0-a98101fbd5be.png" alt="Student testimonial" />
+					</div>
+					<div class="testimonial-card testimonial-large">
+						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/3dde2a04-0ac2-4cae-a011-f921d6abb9e9.png" alt="Student testimonial" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THIS IS FOR YOU / NOT FOR YOU ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title" style="text-align: center">
+					Is This <span class="gradient">Right For You?</span>
+				</h2>
+				<p class="section-text" style="text-align: center; max-width: 580px; margin: 0 auto 40px;">
+					This is a pure results sprint. Which means it's not for everyone.
+				</p>
+
+				<div class="fit-grid">
+					<div class="fit-card yes">
+						<h4>This is for you if:</h4>
+						<ul class="fit-list">
+							<li>You're a working developer who can already build and deploy apps</li>
+							<li>You want to be the person your company turns to... not the person they hire around</li>
+							<li>You're willing to commit 45 days of real work, not passive watching</li>
+							<li>You want a portfolio that proves what you can do</li>
+						</ul>
+					</div>
+					<div class="fit-card no">
+						<h4>This is not for you if:</h4>
+						<ul class="fit-list">
+							<li>You haven't built a full-stack app before</li>
+							<li>You want a certificate without doing real projects</li>
+							<li>You're not willing to record yourself explaining your work out loud</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHAT'S INCLUDED ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">
+					What's <span class="gradient">Included</span>
+				</h2>
+				<p class="section-text">
+					Everything you need to go from "I've used ChatGPT" to "I can lead AI initiatives."
+				</p>
+
+				<div class="value-stack">
+					<div class="value-item">
+						<div>
+							<h4>Weekly Office Hours</h4>
+							<p>Every week you're on a live call working through real blockers, reviewing code, and debugging together. Structured around what you're actually building that week.</p>
+						</div>
+					</div>
+					<div class="value-item">
+						<div>
+							<h4>Weekly Feedback on Your Work</h4>
+							<p>Direct feedback on your code, your projects, and your communication. Not generic advice — specific notes on what you built and how to make it better.</p>
+						</div>
+					</div>
+					<div class="value-item">
+						<div>
+							<h4>Interview Prep + Career Positioning</h4>
+							<p>Exactly how to position your new skills for promotions, AI lead roles, and job offers. Includes the specific questions interviewers ask about RAG, LLM architecture, and production AI.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FAQ ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">
+					Frequently Asked <span class="gradient">Questions</span>
+				</h2>
+
+				<div class="faq-list">
+					<div class="faq-item">
+						<h4>What level do I need to be?</h4>
+						<p>
+							Any level — junior to senior. You need to be able to build and deploy apps. You don't need AI experience. You'll have it when you're done.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>How is this different from other programs?</h4>
+						<p>
+							Most teach you to call OpenAI's API and call it AI engineering. We teach the architecture — RAG from scratch, LLM internals, vector databases, production patterns. The full thing. I've seen what else is out there. I built this because I could do it better.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>How much time does this take?</h4>
+						<p>
+							Real time. The people who get the most out of it treat it like a serious commitment for 45 days. They come out with skills and a portfolio that compound for years.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>Why the communication module?</h4>
+						<p>
+							Engineers who can build AND communicate are 3x more valuable than those who can only build. Every developer who's landed an AI lead role says the same thing — being able to explain their work to leadership was the difference. Nobody else trains this. We do.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>Can my employer pay for this?</h4>
+						<p>
+							Yes. We provide invoices and training budget request templates. Many companies have L&D budgets specifically for upskilling engineers.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>What if I don't find it valuable?</h4>
+						<p>
+							We offer a money-back guarantee. If you put in the work and don't feel you got real value, reach out. I don't take people's money and not deliver. Contact <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a> for details.
+						</p>
+					</div>
+					<div class="faq-item">
+						<h4>I'm outside the US — is pricing adjusted?</h4>
+						<p>
+							Yes. We offer Purchasing Power Parity (PPP) pricing for international students. If you're in a country with different economic conditions, reach out to <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a> and we'll work with you.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── BOTTOM CTA ─────────── -->
+		<section class="bottom-cta" id="apply">
+			<div class="container">
+				<div class="final-card">
+					<h3>The developers who win the next five years aren't the ones who knew the most about AI in theory.</h3>
+					<p>
+						They're the ones who built real things, understood how they worked, and could explain that value to the people deciding who gets the budget and the title.
+					</p>
+					<p>
+						<strong>You already know how to code. You already have the foundation. This is the next 45 days. And then it's yours.</strong>
+					</p>
+					<div class="final-btn-group">
+						<a href="/resource_redirect/landing_pages/2151351071" class="final-btn">
+							START YOUR APPLICATION
+						</a>
+						<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="final-btn-alt">
+							Book a Free Strategy Call
+						</a>
+					</div>
+					<p class="final-note">
+						Money-back guarantee: If you put in the work and don't feel you got real value, you get your money back. Questions? <a href="mailto:assistant@parsity.io" style="color: rgba(255,255,255,0.8);">assistant@parsity.io</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="container">
+				<p>© 2026 Parsity. All rights reserved.</p>
+			</div>
+		</footer>
+
+		<!-- Webinar Popup -->
+		<div class="webinar-popup" id="webinarPopup">
+			<div class="webinar-popup-content">
+				<button class="webinar-close" id="webinarClose">&times;</button>
+				<div class="webinar-badge">Free Weekly Webinar</div>
+				<h3 class="webinar-title">0 to AI Engineer in 45 Minutes</h3>
+				<p class="webinar-desc">Live walkthrough + Q&A. See what it actually takes to build production AI systems.</p>
+				<a href="https://us06web.zoom.us/meeting/register/d5GGcYEGQ6uKYAyKsFO18A" target="_blank" rel="noopener" class="webinar-btn">
+					Register Now
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<path d="M5 12h14M12 5l7 7-7 7"/>
+					</svg>
+				</a>
+				<p class="webinar-note">No commitment. Just value.</p>
+			</div>
+		</div>
+
+		<style>
+			.webinar-popup {
+				position: fixed;
+				bottom: 24px;
+				right: 24px;
+				z-index: 9999;
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(20px);
+				transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.webinar-popup.show {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+			.webinar-popup-content {
+				background: var(--bg2);
+				border: 1px solid var(--border);
+				border-radius: 20px;
+				padding: 28px 32px;
+				max-width: 340px;
+				box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+				position: relative;
+			}
+			.webinar-close {
+				position: absolute;
+				top: 12px;
+				right: 14px;
+				background: none;
+				border: none;
+				color: var(--muted);
+				font-size: 24px;
+				cursor: pointer;
+				line-height: 1;
+				padding: 4px;
+				transition: color 0.2s;
+			}
+			.webinar-close:hover {
+				color: var(--text);
+			}
+			.webinar-badge {
+				display: inline-block;
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--secondary);
+				background: rgba(20, 184, 166, 0.15);
+				padding: 6px 12px;
+				border-radius: 20px;
+				margin-bottom: 16px;
+			}
+			.webinar-title {
+				font-family: var(--mono);
+				font-size: 20px;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 10px;
+				line-height: 1.3;
+			}
+			.webinar-desc {
+				font-size: 14px;
+				color: var(--text2);
+				line-height: 1.5;
+				margin-bottom: 20px;
+			}
+			.webinar-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 24px;
+				background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+				color: white;
+				font-family: var(--mono);
+				font-size: 14px;
+				font-weight: 700;
+				border: none;
+				border-radius: 10px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.25s;
+			}
+			.webinar-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px var(--accent-glow);
+			}
+			.webinar-note {
+				font-size: 12px;
+				color: var(--muted);
+				margin-top: 14px;
+			}
+			@media (max-width: 480px) {
+				.webinar-popup {
+					bottom: 16px;
+					right: 16px;
+					left: 16px;
+				}
+				.webinar-popup-content {
+					max-width: none;
+					padding: 24px;
+				}
+			}
+		</style>
+
+		<script>
+			(function() {
+				var popup = document.getElementById('webinarPopup');
+				var closeBtn = document.getElementById('webinarClose');
+				var dismissed = sessionStorage.getItem('webinarDismissed');
+
+				if (!dismissed) {
+					setTimeout(function() {
+						popup.classList.add('show');
+					}, 3000);
+				}
+
+				closeBtn.addEventListener('click', function() {
+					popup.classList.remove('show');
+					sessionStorage.setItem('webinarDismissed', 'true');
+				});
+			})();
+		</script>
+	</body>
+</html>
