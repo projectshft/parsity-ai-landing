@@ -75,6 +75,195 @@
 				color: white;
 			}
 
+			/* ── COHORT BANNER ── */
+			.cohort-banner {
+				padding: 28px 0 8px;
+			}
+			.cohort-banner-card {
+				background: linear-gradient(
+					135deg,
+					rgba(99, 102, 241, 0.14) 0%,
+					rgba(168, 85, 247, 0.08) 100%
+				);
+				border: 1px solid var(--border);
+				border-radius: 20px;
+				padding: 36px;
+				position: relative;
+				overflow: hidden;
+			}
+			.cohort-banner-card::before {
+				content: '';
+				position: absolute;
+				top: -40%;
+				right: -10%;
+				width: 420px;
+				height: 420px;
+				background: radial-gradient(
+					circle,
+					rgba(99, 102, 241, 0.18) 0%,
+					transparent 60%
+				);
+				pointer-events: none;
+			}
+			.cohort-banner-grid {
+				display: grid;
+				grid-template-columns: 1.35fr 1fr;
+				gap: 36px;
+				align-items: stretch;
+				position: relative;
+			}
+			.cohort-tag {
+				display: inline-block;
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				font-weight: 700;
+				color: var(--secondary);
+				background: rgba(20, 184, 166, 0.15);
+				padding: 6px 14px;
+				border-radius: 20px;
+				margin-bottom: 14px;
+			}
+			.cohort-date {
+				font-family: var(--mono);
+				font-size: clamp(22px, 3.5vw, 30px);
+				font-weight: 700;
+				color: var(--text);
+				line-height: 1.2;
+				margin-bottom: 6px;
+			}
+			.cohort-date .gradient {
+				background: linear-gradient(
+					135deg,
+					var(--gradient-start) 0%,
+					var(--gradient-end) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.cohort-subdetail {
+				font-family: var(--mono);
+				font-size: 14px;
+				color: var(--text2);
+				margin-bottom: 24px;
+			}
+			.cohort-subdetail .spots {
+				color: var(--warning);
+				font-weight: 700;
+			}
+			.cohort-formats {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 14px;
+			}
+			.cohort-format {
+				background: var(--surface);
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 18px;
+			}
+			.cohort-format.live {
+				border-color: rgba(99, 102, 241, 0.4);
+			}
+			.cohort-format h4 {
+				font-family: var(--mono);
+				font-size: 13px;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 8px;
+				letter-spacing: 0.5px;
+			}
+			.cohort-format p {
+				font-size: 13px;
+				color: var(--text2);
+				line-height: 1.55;
+				margin-bottom: 10px;
+			}
+			.cohort-format ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.cohort-format ul li {
+				font-size: 12.5px;
+				color: var(--text2);
+				line-height: 1.5;
+				padding-left: 16px;
+				position: relative;
+				margin-bottom: 4px;
+			}
+			.cohort-format ul li::before {
+				content: '→';
+				position: absolute;
+				left: 0;
+				color: var(--accent);
+				font-weight: 700;
+			}
+			.cohort-price-card {
+				background: var(--bg2);
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 28px 24px;
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+			.cohort-price-tag {
+				display: inline-block;
+				align-self: center;
+				font-family: var(--mono);
+				font-size: 11px;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				font-weight: 700;
+				color: var(--warning);
+				background: rgba(245, 158, 11, 0.14);
+				padding: 6px 12px;
+				border-radius: 20px;
+				margin-bottom: 14px;
+			}
+			.cohort-price {
+				display: flex;
+				align-items: baseline;
+				justify-content: center;
+				gap: 12px;
+				margin-bottom: 6px;
+			}
+			.cohort-price-old {
+				font-family: var(--mono);
+				font-size: 18px;
+				color: var(--muted);
+				text-decoration: line-through;
+			}
+			.cohort-price-new {
+				font-family: var(--mono);
+				font-size: 38px;
+				font-weight: 700;
+				color: var(--text);
+			}
+			.cohort-price-deadline {
+				font-size: 13px;
+				color: var(--text2);
+				margin-bottom: 20px;
+				line-height: 1.5;
+			}
+			.cohort-price-deadline strong {
+				color: var(--text);
+			}
+			.cohort-price-card .cta-btn {
+				margin-bottom: 10px;
+				animation: none;
+				padding: 16px 24px;
+				font-size: 14px;
+			}
+			.cohort-price-card .cta-btn-secondary {
+				padding: 14px 24px;
+				font-size: 13px;
+			}
+
 			.container {
 				max-width: 840px;
 				margin: 0 auto;
@@ -681,6 +870,16 @@
 				.fit-grid {
 					grid-template-columns: 1fr;
 				}
+				.cohort-banner-grid {
+					grid-template-columns: 1fr;
+					gap: 24px;
+				}
+				.cohort-banner-card {
+					padding: 28px 22px;
+				}
+				.cohort-formats {
+					grid-template-columns: 1fr;
+				}
 			}
 
 			@media (max-width: 480px) {
@@ -704,8 +903,63 @@
 	<body>
 		<!-- ─────────── ANNOUNCE BAR ─────────── -->
 		<div class="announce-bar">
-			Next cohort: 6 seats left. If you're seeing this, one of them could still be yours.
+			Next live cohort starts Saturday, July 11 — 8 seats · Save 40% when you enroll by June 15
 		</div>
+
+		<!-- ─────────── COHORT BANNER ─────────── -->
+		<section class="cohort-banner">
+			<div class="container-wide">
+				<div class="cohort-banner-card">
+					<div class="cohort-banner-grid">
+						<div class="cohort-banner-left">
+							<span class="cohort-tag">Next Live Cohort</span>
+							<h2 class="cohort-date">
+								Starts <span class="gradient">Saturday, July 11</span>
+							</h2>
+							<p class="cohort-subdetail">
+								Live every Saturday @ 11AM · <span class="spots">Only 8 spots open</span>
+							</p>
+
+							<div class="cohort-formats">
+								<div class="cohort-format live">
+									<h4>🔴 LIVE COHORT</h4>
+									<p>We build together every Saturday. Same application, same curriculum — plus:</p>
+									<ul>
+										<li>Direct mentorship from Brian</li>
+										<li>Personalized weekly feedback</li>
+										<li>Career & interview-prep modules</li>
+										<li>One personal capstone + one project the class builds together</li>
+									</ul>
+								</div>
+								<div class="cohort-format">
+									<h4>⚡ SELF-PACED</h4>
+									<p>Same curriculum and projects, on your own schedule. Start any time, move as fast or slow as your week allows.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="cohort-banner-right">
+							<div class="cohort-price-card">
+								<span class="cohort-price-tag">Early-bird · 40% off</span>
+								<div class="cohort-price">
+									<span class="cohort-price-old">$1,997</span>
+									<span class="cohort-price-new">$1,197</span>
+								</div>
+								<p class="cohort-price-deadline">
+									Lock in this price by <strong>June 15</strong>.<br />Same application either way.
+								</p>
+								<a href="/resource_redirect/landing_pages/2151351071" class="cta-btn">
+									APPLY FOR THE COHORT
+								</a>
+								<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+									Book a Call · Ask Questions
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 		<!-- ─────────── HERO ─────────── -->
 		<section class="hero">
