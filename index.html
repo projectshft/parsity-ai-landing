@@ -368,42 +368,141 @@
 				margin: 0;
 			}
 
-			/* ── TESTIMONIALS ── */
-			.testimonials-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-				gap: 24px;
+			/* ── TESTIMONIALS CAROUSEL ── */
+			.testimonials-carousel-wrapper {
+				position: relative;
 				margin: 40px 0;
+				padding: 0 60px;
 			}
 
-			.testimonials-featured {
+			.testimonials-carousel {
+				overflow: hidden;
+				border-radius: 20px;
+			}
+
+			.testimonials-track {
 				display: flex;
-				justify-content: center;
-				gap: 24px;
-				margin-top: 24px;
-				flex-wrap: wrap;
+				transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 			}
 
-			.testimonial-large {
-				max-width: 450px;
+			.testimonial-slide {
+				flex: 0 0 100%;
+				padding: 0 10px;
+				box-sizing: border-box;
+			}
+
+			@media (min-width: 768px) {
+				.testimonial-slide {
+					flex: 0 0 50%;
+				}
+			}
+
+			@media (min-width: 1024px) {
+				.testimonial-slide {
+					flex: 0 0 33.333%;
+				}
 			}
 
 			.testimonial-card {
 				background: var(--surface);
 				border: 1px solid var(--border-subtle);
-				border-radius: 16px;
+				border-radius: 20px;
 				overflow: hidden;
 				transition: all 0.3s;
+				height: 100%;
 			}
 			.testimonial-card:hover {
 				border-color: var(--border);
 				transform: translateY(-4px);
+				box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
 			}
 
 			.testimonial-image {
 				width: 100%;
 				height: auto;
 				display: block;
+			}
+
+			.carousel-btn {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 48px;
+				height: 48px;
+				background: var(--bg2);
+				border: 1px solid var(--border);
+				border-radius: 50%;
+				color: var(--text);
+				font-size: 20px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.25s;
+				z-index: 10;
+			}
+			.carousel-btn:hover {
+				background: var(--accent);
+				border-color: var(--accent);
+			}
+			.carousel-btn.prev {
+				left: 0;
+			}
+			.carousel-btn.next {
+				right: 0;
+			}
+
+			.carousel-dots {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				margin-top: 28px;
+			}
+			.carousel-dot {
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background: var(--border);
+				border: none;
+				cursor: pointer;
+				transition: all 0.25s;
+			}
+			.carousel-dot.active {
+				background: var(--accent);
+				transform: scale(1.2);
+			}
+			.carousel-dot:hover {
+				background: var(--accent-mid);
+			}
+
+			/* Featured testimonials stacked */
+			.testimonials-featured {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 24px;
+				margin-top: 48px;
+				max-width: 600px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.testimonial-large {
+				width: 100%;
+			}
+			.testimonial-large .testimonial-card {
+				border-radius: 24px;
+			}
+
+			@media (max-width: 480px) {
+				.testimonials-carousel-wrapper {
+					padding: 0 50px;
+				}
+				.carousel-btn {
+					width: 40px;
+					height: 40px;
+					font-size: 16px;
+				}
 			}
 
 			/* ── FOR YOU / NOT FOR YOU ── */
@@ -872,37 +971,66 @@
 					Real results from developers who went through the program.
 				</p>
 
-				<div class="testimonials-grid">
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2164183145/settings_images/5abfcbd-087a-b2f3-4dd2-0dc04bd72e_91f73125-d91f-4c73-956a-6a44f6acea5d.png" alt="Chris Lopez testimonial" />
+				<!-- Testimonials Carousel -->
+				<div class="testimonials-carousel-wrapper">
+					<button class="carousel-btn prev" id="carouselPrev">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M15 18l-6-6 6-6"/>
+						</svg>
+					</button>
+					<div class="testimonials-carousel">
+						<div class="testimonials-track" id="testimonialsTrack">
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2164183145/settings_images/5abfcbd-087a-b2f3-4dd2-0dc04bd72e_91f73125-d91f-4c73-956a-6a44f6acea5d.png" alt="Chris Lopez testimonial" />
+								</div>
+							</div>
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8534d6fe-39e9-4fb8-8d8b-8ccb4dc51821.png" alt="Sean Currlin testimonial" />
+								</div>
+							</div>
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/faf2d85f-a7bc-4d9a-9626-0d6fe2659948.png" alt="Sydney Thomas testimonial" />
+								</div>
+							</div>
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/430fd4ad-7bbe-46bc-82ed-18854ee24620.png" alt="Johnathon Bowers testimonial" />
+								</div>
+							</div>
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/a656482d-9aa5-485f-a459-f9876dcb4366.png" alt="A.F. testimonial" />
+								</div>
+							</div>
+							<div class="testimonial-slide">
+								<div class="testimonial-card">
+									<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8e013db6-ac6e-4d63-a248-d92693b93a77.png" alt="Joe Letner testimonial" />
+								</div>
+							</div>
+						</div>
 					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8534d6fe-39e9-4fb8-8d8b-8ccb4dc51821.png" alt="Sean Currlin testimonial" />
-					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/faf2d85f-a7bc-4d9a-9626-0d6fe2659948.png" alt="Sydney Thomas testimonial" />
-					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/430fd4ad-7bbe-46bc-82ed-18854ee24620.png" alt="Johnathon Bowers testimonial" />
-					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/a656482d-9aa5-485f-a459-f9876dcb4366.png" alt="A.F. testimonial" />
-					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/8e013db6-ac6e-4d63-a248-d92693b93a77.png" alt="Joe Letner testimonial" />
-					</div>
-					<div class="testimonial-card">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/2e1f3d31-bc5e-4ec6-b902-1b6714e0df00.png" alt="Student testimonial" />
-					</div>
+					<button class="carousel-btn next" id="carouselNext">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M9 18l6-6-6-6"/>
+						</svg>
+					</button>
+					<div class="carousel-dots" id="carouselDots"></div>
 				</div>
 
-				<!-- Large testimonials centered below -->
+				<!-- Featured testimonials stacked vertically -->
 				<div class="testimonials-featured">
-					<div class="testimonial-card testimonial-large">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/1c93705a-5876-454c-aab0-a98101fbd5be.png" alt="Student testimonial" />
+					<div class="testimonial-large">
+						<div class="testimonial-card">
+							<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/1c93705a-5876-454c-aab0-a98101fbd5be.png" alt="Student testimonial" />
+						</div>
 					</div>
-					<div class="testimonial-card testimonial-large">
-						<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/3dde2a04-0ac2-4cae-a011-f921d6abb9e9.png" alt="Student testimonial" />
+					<div class="testimonial-large">
+						<div class="testimonial-card">
+							<img class="testimonial-image" src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/3dde2a04-0ac2-4cae-a011-f921d6abb9e9.png" alt="Student testimonial" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1077,6 +1205,11 @@
 		</div>
 
 		<style>
+			/* Reset for Kajabi popup elements */
+			.p1 {
+				color: var(--text) !important;
+			}
+
 			.webinar-popup {
 				position: fixed;
 				bottom: 24px;
@@ -1182,6 +1315,7 @@
 		</style>
 
 		<script>
+			// Webinar popup
 			(function() {
 				var popup = document.getElementById('webinarPopup');
 				var closeBtn = document.getElementById('webinarClose');
@@ -1197,6 +1331,112 @@
 					popup.classList.remove('show');
 					sessionStorage.setItem('webinarDismissed', 'true');
 				});
+			})();
+
+			// Testimonials carousel
+			(function() {
+				var track = document.getElementById('testimonialsTrack');
+				var prevBtn = document.getElementById('carouselPrev');
+				var nextBtn = document.getElementById('carouselNext');
+				var dotsContainer = document.getElementById('carouselDots');
+				var slides = track.querySelectorAll('.testimonial-slide');
+				var currentIndex = 0;
+				var slidesPerView = 1;
+				var autoplayInterval;
+
+				function getSlidesPerView() {
+					if (window.innerWidth >= 1024) return 3;
+					if (window.innerWidth >= 768) return 2;
+					return 1;
+				}
+
+				function getTotalPages() {
+					return Math.ceil(slides.length / slidesPerView);
+				}
+
+				function updateCarousel() {
+					var slideWidth = 100 / slidesPerView;
+					var offset = currentIndex * slideWidth;
+					track.style.transform = 'translateX(-' + offset + '%)';
+					updateDots();
+				}
+
+				function createDots() {
+					dotsContainer.innerHTML = '';
+					var totalPages = getTotalPages();
+					for (var i = 0; i < totalPages; i++) {
+						var dot = document.createElement('button');
+						dot.className = 'carousel-dot' + (i === Math.floor(currentIndex / slidesPerView) ? ' active' : '');
+						dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+						(function(index) {
+							dot.addEventListener('click', function() {
+								currentIndex = index * slidesPerView;
+								updateCarousel();
+								resetAutoplay();
+							});
+						})(i);
+						dotsContainer.appendChild(dot);
+					}
+				}
+
+				function updateDots() {
+					var dots = dotsContainer.querySelectorAll('.carousel-dot');
+					var activePage = Math.floor(currentIndex / slidesPerView);
+					dots.forEach(function(dot, i) {
+						dot.classList.toggle('active', i === activePage);
+					});
+				}
+
+				function nextSlide() {
+					var maxIndex = slides.length - slidesPerView;
+					currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+					updateCarousel();
+				}
+
+				function prevSlide() {
+					var maxIndex = slides.length - slidesPerView;
+					currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+					updateCarousel();
+				}
+
+				function startAutoplay() {
+					autoplayInterval = setInterval(nextSlide, 4000);
+				}
+
+				function resetAutoplay() {
+					clearInterval(autoplayInterval);
+					startAutoplay();
+				}
+
+				function init() {
+					slidesPerView = getSlidesPerView();
+					currentIndex = 0;
+					createDots();
+					updateCarousel();
+				}
+
+				prevBtn.addEventListener('click', function() {
+					prevSlide();
+					resetAutoplay();
+				});
+
+				nextBtn.addEventListener('click', function() {
+					nextSlide();
+					resetAutoplay();
+				});
+
+				window.addEventListener('resize', function() {
+					var newSlidesPerView = getSlidesPerView();
+					if (newSlidesPerView !== slidesPerView) {
+						slidesPerView = newSlidesPerView;
+						currentIndex = Math.min(currentIndex, slides.length - slidesPerView);
+						createDots();
+						updateCarousel();
+					}
+				});
+
+				init();
+				startAutoplay();
 			})();
 		</script>
 	</body>
