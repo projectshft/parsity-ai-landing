@@ -1054,7 +1054,7 @@
 					</a>
 					<p class="cta-note">No pitch. No pressure. If it's not the right fit, we'll tell you.</p>
 					<p class="cta-note">
-						Not sure yet? <a href="#quiz" style="color: var(--accent); font-weight: 600;">Take the 60-second AI Career Score quiz &rarr;</a>
+						Not sure yet? <a href="#quiz" style="color: var(--accent); font-weight: 600;">Take the 60-second AI Leverage quiz &rarr;</a>
 					</p>
 				</div>
 			</div>
@@ -1082,10 +1082,10 @@
 		<section class="section quiz-section" id="quiz">
 			<div class="container">
 				<h2 class="section-title">
-					What's Your <span class="gradient">AI Career Score?</span>
+					What's Your <span class="gradient">AI Leverage Score?</span>
 				</h2>
 				<p class="section-text" style="max-width: 580px; margin-left: auto; margin-right: auto;">
-					Answer 6 quick questions and find out how close you are to the $145k–$206k+ AI engineering range — and exactly what's standing between you and it. Takes 60 seconds.
+					You may be sitting on more career leverage than you realize. Answer 6 quick questions about your company, your role, and your market — and find out how big your AI opportunity actually is, and how fast you need to move on it. Takes 60 seconds.
 				</p>
 
 				<div class="quiz-card" id="quizCard">
@@ -1104,10 +1104,10 @@
 
 					<!-- Step 2: Phone gate -->
 					<div class="quiz-gate" id="quizGate" style="display: none;">
-						<div class="quiz-gate-badge">Your Score Is Ready</div>
-						<h3 id="quizGateHeadline">You scored higher than most developers who take this quiz.</h3>
+						<div class="quiz-gate-badge">Your Leverage Score Is Ready</div>
+						<h3 id="quizGateHeadline">You have more leverage than most developers realize.</h3>
 						<p>
-							Drop your number and we'll text you your score plus a personalized breakdown of the fastest path to the AI engineering pay range — including the one skill gap holding you back most.
+							Drop your number and we'll text you your leverage score plus a personalized breakdown of your situation — how much upside you're sitting on, and the exact move to capture it before someone else at your company does.
 						</p>
 
 						<!--
@@ -1636,57 +1636,57 @@
 
 				var QUESTIONS = [
 					{
-						q: 'What best describes where you are right now?',
+						q: 'Has your company started hiring AI engineers?',
 						opts: [
-							{ t: "I'm a working developer (mid or senior)", p: 3 },
-							{ t: "I'm a junior developer or new grad", p: 2 },
-							{ t: "I'm switching careers into tech", p: 1 },
-							{ t: "I'm not writing code yet", p: 0 }
+							{ t: 'Yes — actively hiring for AI roles', p: 3 },
+							{ t: "A role or two, or they're interviewing", p: 2 },
+							{ t: "They're talking about it, nothing posted yet", p: 1 },
+							{ t: 'No, not at all', p: 0 }
 						]
 					},
 					{
-						q: 'Have you built and deployed a full-stack app?',
+						q: 'What level are you at your company?',
 						opts: [
-							{ t: 'Yes — multiple, in production', p: 3 },
-							{ t: 'Yes — at least one', p: 2 },
-							{ t: 'Side projects, nothing deployed', p: 1 },
-							{ t: 'Not yet', p: 0 }
+							{ t: 'Staff / lead / management', p: 3 },
+							{ t: 'Senior engineer', p: 3 },
+							{ t: 'Mid-level engineer', p: 2 },
+							{ t: 'Junior, or not an engineer (yet)', p: 1 }
 						]
 					},
 					{
-						q: 'How far have you gone with AI so far?',
+						q: 'Are you using AI tools at work — Claude, Cursor, Copilot?',
 						opts: [
-							{ t: "I've built RAG pipelines or agents", p: 3 },
-							{ t: "I've called LLM APIs in my own code", p: 2 },
-							{ t: 'I use ChatGPT / Copilot as tools', p: 1 },
-							{ t: "I've mostly been watching from the sidelines", p: 0 }
+							{ t: 'Daily — Claude, Cursor, or both are core to my workflow', p: 3 },
+							{ t: 'I use one of them regularly', p: 2 },
+							{ t: 'Occasionally, or only outside work', p: 1 },
+							{ t: "Not really / they're not allowed", p: 0 }
 						]
 					},
 					{
-						q: 'Where is your compensation vs. the $145k–$206k AI range?',
+						q: 'Does your company have an AI strategy?',
 						opts: [
-							{ t: "I'm already in or above that range", p: 3 },
-							{ t: 'Within striking distance (~20% below)', p: 2 },
-							{ t: 'Well below it', p: 1 },
-							{ t: "I'd rather not say", p: 1 }
+							{ t: "We've already shipped AI features to customers", p: 3 },
+							{ t: 'There\'s an official strategy or dedicated team', p: 2 },
+							{ t: 'Scattered experiments, no real plan', p: 1 },
+							{ t: 'Nothing — AI isn\'t on the radar', p: 0 }
 						]
 					},
 					{
-						q: 'How much time could you commit weekly for 45 days?',
+						q: 'How big is your company?',
 						opts: [
-							{ t: '5+ hours — I want this', p: 3 },
-							{ t: '3–5 hours', p: 2 },
-							{ t: '1–3 hours', p: 1 },
-							{ t: 'Almost none right now', p: 0 }
+							{ t: '1,000+ people', p: 3 },
+							{ t: '200–1,000 people', p: 2 },
+							{ t: '20–200 people', p: 1 },
+							{ t: 'Under 20 people', p: 1 }
 						]
 					},
 					{
-						q: 'When do you want to make your move?',
+						q: 'What market are you (or your company) in?',
 						opts: [
-							{ t: 'In the next 3 months', p: 3 },
-							{ t: 'Within 6 months', p: 2 },
-							{ t: 'Sometime this year', p: 1 },
-							{ t: 'Someday, eventually', p: 0 }
+							{ t: 'San Francisco / Bay Area', p: 3 },
+							{ t: 'New York', p: 3 },
+							{ t: 'Austin, Seattle, or another tech hub', p: 2 },
+							{ t: 'Somewhere else / fully remote', p: 1 }
 						]
 					}
 				];
@@ -1694,20 +1694,43 @@
 				var TIERS = [
 					{
 						min: 14,
-						title: 'AI Advantaged',
-						text: 'You have the foundation companies are desperate for — you\'re one focused sprint away from the top of the AI engineering pay range. Your gap isn\'t ability, it\'s production AI experience: RAG, agents, and orchestration you can point to. Close that gap and you\'re interviewing for $200k+ roles.'
+						title: 'sitting on serious leverage',
+						text: 'Your situation is rare: seniority, an employer that\'s already moving on AI, and a market that pays a premium for it. People in your exact position are converting this into $200k+ AI engineering roles — internally or by jumping. The only thing that caps your upside is how fast you build production AI skills.'
 					},
 					{
 						min: 8,
-						title: 'AI Ready',
-						text: 'You\'re exactly who this market is looking for: solid fundamentals, real motivation, but a visible gap between using AI tools and building AI systems. That gap is the difference between $120k roles and $200k+ roles — and it\'s closeable in 45 days of focused work.'
+						title: 'holding real leverage',
+						text: 'You have genuine raw material here — the pieces are in place for a serious move into AI engineering, and the compensation premium that comes with it. What turns this from potential into leverage is demonstrable production AI skills: RAG, agents, orchestration. That gap is closeable in 45 focused days.'
 					},
 					{
 						min: 0,
-						title: 'AI Curious',
-						text: 'You\'re earlier in the journey, which means the biggest upside of anyone taking this quiz. Focus on shipping a full-stack app first, then layer AI skills on top. A free strategy call can help you map the fastest realistic route.'
+						title: 'building your leverage',
+						text: 'Your leverage today is modest — but that cuts both ways: nobody around you has claimed the AI ground yet either. The developers who build AI skills before their company gets serious are the ones who end up defining the strategy instead of executing someone else\'s.'
 					}
 				];
+
+				// Situational insights keyed off specific answers (question index → answer index)
+				function getInsights() {
+					var lines = [];
+					var hiring = answers[0] ? answers[0].index : -1;
+					var market = answers[5] ? answers[5].points : 0;
+
+					if (hiring === 0 || hiring === 1) {
+						lines.push('Your company is already hiring AI engineers — that\'s a closing window. Every hire they make is someone who could outrank you on AI work. You need these skills right away, while you still have the insider advantage.');
+					} else if (hiring === 2) {
+						lines.push('Your company is circling AI but hasn\'t committed. That\'s the perfect moment: show up with real AI skills before the first hire is made, and you become the obvious person to lead it.');
+					} else if (hiring === 3) {
+						lines.push('Nobody at your company has claimed AI yet. First-mover advantage inside a company is enormous — the first person who can actually build AI systems tends to end up owning the roadmap.');
+					}
+
+					if (market === 3) {
+						lines.push('And your market multiplies everything: SF and New York are where AI compensation is most aggressive, which boosts your ceiling tremendously.');
+					} else if (market === 2) {
+						lines.push('Being in a tech hub boosts your ceiling too — AI hiring there is well ahead of the national curve.');
+					}
+
+					return lines.join(' ');
+				}
 
 				var questionsEl = document.getElementById('quizQuestions');
 				var gateEl = document.getElementById('quizGate');
@@ -1743,7 +1766,7 @@
 						btn.appendChild(key);
 						btn.appendChild(document.createTextNode(opt.t));
 						btn.addEventListener('click', function() {
-							answers[current] = { text: opt.t, points: opt.p };
+							answers[current] = { text: opt.t, points: opt.p, index: i };
 							if (current < QUESTIONS.length - 1) {
 								current++;
 								renderQuestion();
@@ -1838,7 +1861,8 @@
 					resultEl.style.display = 'block';
 					document.getElementById('quizScoreValue').textContent = score;
 					document.getElementById('quizResultTitle').textContent = 'You’re ' + tier.title;
-					document.getElementById('quizResultText').textContent = tier.text;
+					var insights = getInsights();
+					document.getElementById('quizResultText').textContent = tier.text + (insights ? ' ' + insights : '');
 					resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
 				}
 
