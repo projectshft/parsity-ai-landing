@@ -80,18 +80,14 @@
 
 			/* ── HERO ── */
 			.hero {
-				padding: 80px 0;
+				padding: 88px 0;
+				text-align: center;
 				background: linear-gradient(180deg, #f2f6fd 0%, #ffffff 100%);
 				border-bottom: 1px solid var(--border-subtle);
 			}
-			.hero-grid {
-				display: grid;
-				grid-template-columns: 1.05fr 0.95fr;
-				gap: 56px;
-				align-items: start;
-			}
 			.hero-media {
-				margin: 8px 0 0;
+				max-width: 760px;
+				margin: 56px auto 0;
 			}
 			.hero-media img {
 				display: block;
@@ -106,15 +102,6 @@
 				font-size: 13px;
 				color: var(--muted);
 			}
-			@media (max-width: 900px) {
-				.hero-grid {
-					grid-template-columns: 1fr;
-					gap: 40px;
-				}
-				.hero-media {
-					order: -1;
-				}
-			}
 
 			.hero-headline {
 				font-family: var(--serif);
@@ -123,17 +110,21 @@
 				line-height: 1.18;
 				letter-spacing: -0.01em;
 				color: var(--navy);
-				margin-bottom: 24px;
+				margin-bottom: 28px;
+				max-width: 900px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			.hero-headline .gradient {
 				color: var(--accent);
 			}
 
 			.hero-sub {
-				font-size: clamp(16px, 2.2vw, 18px);
+				font-size: clamp(17px, 2.2vw, 19px);
 				color: var(--text2);
-				margin: 0 0 18px;
-				line-height: 1.7;
+				max-width: 680px;
+				margin: 0 auto 20px;
+				line-height: 1.75;
 			}
 			.hero-sub strong {
 				color: var(--text);
@@ -150,9 +141,10 @@
 			.cta-group {
 				display: flex;
 				flex-direction: column;
-				align-items: stretch;
+				align-items: center;
 				gap: 14px;
 				max-width: 400px;
+				margin: 0 auto;
 			}
 
 			.partner-badge {
@@ -238,13 +230,8 @@
 			.cta-note {
 				font-size: 13px;
 				color: var(--muted);
+				text-align: center;
 				margin-top: 8px;
-			}
-
-			.section .cta-group {
-				margin-left: auto;
-				margin-right: auto;
-				align-items: center;
 			}
 
 			/* ── SECTIONS ── */
@@ -931,8 +918,7 @@
 
 		<!-- ─────────── HERO ─────────── -->
 		<section class="hero">
-			<div class="container-wide hero-grid">
-				<div class="hero-copy">
+			<div class="container-wide">
 				<h1 class="hero-headline">
 					You can build software. <span class="gradient">Shipping AI is a different job.</span>
 				</h1>
@@ -957,7 +943,6 @@
 						Send me the syllabus
 					</a>
 					<p class="cta-note">No pitch. If it is not the right fit, I will tell you.</p>
-					</div>
 				</div>
 
 				<figure class="hero-media">
