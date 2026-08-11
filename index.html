@@ -618,6 +618,28 @@
 				color: var(--navy);
 			}
 
+			.proof-shots {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 24px;
+				max-width: 620px;
+				margin: 48px auto 0;
+			}
+			.proof-shot {
+				width: 100%;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.proof-shot img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
 			/* ── FOR YOU / NOT FOR YOU ── */
 			.fit-grid {
 				display: grid;
@@ -907,19 +929,17 @@
 				</p>
 
 				<p class="hero-price">
-					Self-paced is $2,700. The live cohort is $6,000 and starts October 15. Both hold with a $97 deposit.
+					Six live sessions, Saturdays 11am to 1pm PST. The next cohort starts October 15.
 				</p>
 
 				<div class="cta-group">
-					<a href="#pricing" class="cta-btn">
-						Enroll now
-					</a>
-					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn">
 						Book a call with Brian
 					</a>
-					<p class="cta-note">
-						Not sure yet? <a href="#syllabus" style="color: var(--accent); font-weight: 600;">Get the full syllabus and see exactly what you build, week by week.</a>
-					</p>
+					<a href="#syllabus" class="cta-btn-secondary">
+						Send me the syllabus
+					</a>
+					<p class="cta-note">No pitch. If it is not the right fit, I will tell you.</p>
 				</div>
 			</div>
 		</section>
@@ -942,7 +962,11 @@
 			</div>
 		</section>
 
-		<!-- ─────────── PRICING ─────────── -->
+		<!-- PRICING HIDDEN pending new pricing. Restore by uncommenting.
+		     Contains: Two ways in ($2,700 / $6,000), $97 deposit CTAs,
+		     guarantee/employer/PPP notes, and the price comparison table.
+
+		
 		<section class="section" id="pricing">
 			<div class="container-wide">
 				<h2 class="section-title" style="text-align: center">
@@ -992,7 +1016,7 @@
 			</div>
 		</section>
 
-		<!-- ─────────── PRICE COMPARISON ─────────── -->
+		
 		<section class="section">
 			<div class="container">
 				<h2 class="section-title">
@@ -1038,6 +1062,8 @@
 				</p>
 			</div>
 		</section>
+
+		-->
 
 		<!-- ─────────── SYLLABUS DOWNLOAD ─────────── -->
 		<section class="section" id="syllabus" style="background: var(--bg3);">
@@ -1087,11 +1113,11 @@
 				</p>
 
 				<div class="cta-group" style="margin-top: 40px;">
-					<a href="#pricing" class="cta-btn">
-						Enroll now
-					</a>
-					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn-secondary">
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn">
 						Book a call with Brian
+					</a>
+					<a href="#syllabus" class="cta-btn-secondary">
+						Send me the syllabus
 					</a>
 				</div>
 			</div>
@@ -1135,8 +1161,8 @@
 				</div>
 
 				<div class="cta-group" style="margin-top: 40px;">
-					<a href="#pricing" class="cta-btn">
-						Enroll now
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn">
+						Book a call with Brian
 					</a>
 				</div>
 			</div>
@@ -1156,9 +1182,6 @@
 					<div class="quote-card wide">
 						<blockquote>
 							"This course has <strong>taken me from wondering</strong> how working with RAG, agents, and LLMs work, <strong>to now building these things myself, with the understanding of exactly what's happening.</strong> It has empowered me to learn by building."
-						</blockquote>
-						<blockquote>
-							"Thanks to your training and the capstone project we built, I was able to have a meeting with the VP over our company's AI initiative. That meeting lead to me being assigned the task of building an MVP for one of our side projects. We work mostly with convenience stores and have been building analytics around credit card interchange fees. <strong>I have built an app that allows our Cost of Acceptance team to manage master data.</strong>"
 						</blockquote>
 						<div class="quote-attr">
 							<img class="quote-avatar" src="data:image/jpeg;base64,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" alt="" width="48" height="48" />
@@ -1213,6 +1236,15 @@
 						<div class="quote-attr">
 							<div><b>A.F.</b>10 year veteran developer, now shipping agentic RAG</div>
 						</div>
+					</div>
+				</div>
+
+				<div class="proof-shots">
+					<div class="proof-shot">
+						<img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/1c93705a-5876-454c-aab0-a98101fbd5be.png" loading="lazy" alt="LinkedIn post by Johnathon Bowers, AI Integrations Specialist: over the past few weeks he has been participating in an AI Developer bootcamp through Parsity led by Brian Jenney, and shares a video he recorded explaining semantic search re-ranking and why it improves RAG pipeline responses." />
+					</div>
+					<div class="proof-shot">
+						<img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production//sites/2148415899/images/3dde2a04-0ac2-4cae-a011-f921d6abb9e9.png" loading="lazy" alt="Slack message from Joseph Letner: thanks to the training and the capstone project, he got a meeting with the VP over his company's AI initiative and was assigned to build an MVP. He has since shipped an app that lets their Cost of Acceptance team manage master data." />
 					</div>
 				</div>
 			</div>
@@ -1312,18 +1344,22 @@
 							If you have historically needed a deadline to finish things, take the cohort. Attendance and completion in the live sessions are near 100 percent and most of our success stories come from cohort students. If you are self-directed and would rather not give up six Saturdays, self-paced is the same curriculum with the same mentors reviewing your work.
 						</p>
 					</div>
-					<div class="faq-item">
-						<h4>Why is the deposit only $97?</h4>
+					<!-- HIDDEN with pricing:
+<div class="faq-item">
+						<h4>Why is the deposit only &#36;97?</h4>
 						<p>
-							Because the cohort caps at ten and I need to know who is actually coming. It is refundable until the cohort starts and it comes off your tuition. It is not a test of your commitment, it is a seat. The same $97 holds a self-paced spot, and I will email you your balance and payment plan options either way.
+							Because the cohort caps at ten and I need to know who is actually coming. It is refundable until the cohort starts and it comes off your tuition. It is not a test of your commitment, it is a seat. The same &#36;97 holds a self-paced spot, and I will email you your balance and payment plan options either way.
 						</p>
 					</div>
-					<div class="faq-item">
+					-->
+					<!-- HIDDEN with pricing:
+<div class="faq-item">
 						<h4>Do I have to get on a call to sign up?</h4>
 						<p>
 							No. The price is on this page, the button works, and you can enroll right now. If you want to talk to me first, book a call. Most people who join do talk to me first, but that is because they want to, not because I make them.
 						</p>
 					</div>
+					-->
 					<div class="faq-item">
 						<h4>What level do I need to be?</h4>
 						<p>
@@ -1391,14 +1427,11 @@
 						<strong>The October cohort has ten seats. Self-paced starts whenever you want.</strong>
 					</p>
 					<div class="final-btn-group">
-						<a href="https://buy.stripe.com/dRmfZhgrv7aIchba1N4wM0r" class="final-btn">
-							Hold my seat for $97
-						</a>
-						<a href="https://buy.stripe.com/8x228ra37fHe6WRc9V4wM0j" class="final-btn-alt">
-							Enroll in self-paced
-						</a>
-						<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="final-btn-alt">
+						<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="final-btn">
 							Book a call with Brian
+						</a>
+						<a href="#syllabus" class="final-btn-alt">
+							Send me the syllabus
 						</a>
 					</div>
 					<p class="final-note">
