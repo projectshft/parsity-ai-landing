@@ -234,6 +234,187 @@
 				margin-top: 8px;
 			}
 
+			/* ── SCREEN READER ── */
+			.sr-only {
+				position: absolute;
+				width: 1px;
+				height: 1px;
+				padding: 0;
+				margin: -1px;
+				overflow: hidden;
+				clip: rect(0, 0, 0, 0);
+				white-space: nowrap;
+				border: 0;
+			}
+
+			/* ── ROLE ROTATOR ── */
+			.role-rotator {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				margin: -8px auto 30px;
+			}
+			.role-rotator-label {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.role-rotator-window {
+				display: block;
+				height: 1.4em;
+				overflow: hidden;
+				font-family: var(--serif);
+				font-size: clamp(22px, 3.6vw, 34px);
+				font-weight: 600;
+				line-height: 1.4;
+				color: var(--accent);
+			}
+			.role-rotator-track {
+				display: block;
+				animation: role-cycle 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+			}
+			.role-rotator-item {
+				display: block;
+				height: 1.4em;
+				line-height: 1.4;
+				white-space: nowrap;
+			}
+			@keyframes role-cycle {
+				0%, 18% { transform: translateY(0); }
+				25%, 43% { transform: translateY(-20%); }
+				50%, 68% { transform: translateY(-40%); }
+				75%, 93% { transform: translateY(-60%); }
+				100% { transform: translateY(-80%); }
+			}
+			.role-rotator-note {
+				font-size: 15px;
+				color: var(--muted);
+				max-width: 600px;
+				text-align: center;
+				text-wrap: balance;
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.role-rotator-track {
+					animation: none;
+				}
+				.role-rotator-window {
+					height: auto;
+					overflow: visible;
+					font-size: clamp(19px, 2.6vw, 24px);
+					text-align: center;
+				}
+				.role-rotator-item:last-child {
+					display: none;
+				}
+			}
+
+			/* ── ROLES ── */
+			.roles-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 24px;
+				margin: 40px 0 32px;
+			}
+			.role-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 28px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+				transition: all 0.25s;
+			}
+			.role-card:hover {
+				border-color: var(--accent-mid);
+				transform: translateY(-3px);
+				box-shadow: 0 12px 32px rgba(15, 37, 87, 0.1);
+			}
+			.role-card h3 {
+				font-family: var(--serif);
+				font-size: 19px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 4px;
+			}
+			.role-pay {
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 700;
+				letter-spacing: 0.3px;
+				color: var(--accent);
+				margin-bottom: 14px;
+			}
+			.role-card p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.role-who {
+				margin-top: 12px;
+				font-size: 13px;
+				color: var(--muted);
+			}
+			.role-overlap {
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 12px;
+				padding: 24px 28px;
+			}
+			.role-overlap p {
+				font-size: 16px;
+				color: var(--navy);
+				line-height: 1.75;
+				margin: 0;
+			}
+			.roles-fineprint {
+				font-size: 13px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 18px;
+			}
+
+			/* ── WRONG WAY ── */
+			.wrong-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 24px;
+				margin: 40px 0 32px;
+			}
+			.wrong-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-left: 3px solid var(--warning);
+				border-radius: 12px;
+				padding: 26px 28px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.wrong-num {
+				font-family: var(--sans);
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.4px;
+				text-transform: uppercase;
+				color: var(--warning);
+			}
+			.wrong-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--navy);
+				margin: 6px 0 10px;
+			}
+			.wrong-card p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.wrong-card p strong {
+				color: var(--text);
+			}
+
 			/* ── SECTIONS ── */
 			.section {
 				padding: 88px 0;
@@ -923,6 +1104,21 @@
 					Become an <span class="gradient">AI engineer</span> in 45 days
 				</h1>
 
+				<div class="role-rotator">
+					<span class="role-rotator-label">The roles companies are hiring for</span>
+					<span class="role-rotator-window" aria-hidden="true">
+						<span class="role-rotator-track">
+							<span class="role-rotator-item">Forward Deployed Engineer</span>
+							<span class="role-rotator-item">Applied AI Engineer</span>
+							<span class="role-rotator-item">Full-Stack AI Engineer</span>
+							<span class="role-rotator-item">AI Product Engineer</span>
+							<span class="role-rotator-item">Forward Deployed Engineer</span>
+						</span>
+					</span>
+					<span class="sr-only">Forward Deployed Engineer. Applied AI Engineer. Full-Stack AI Engineer. AI Product Engineer.</span>
+					<p class="role-rotator-note">Different titles. Same job. The same handful of skills show up in every one of them.</p>
+				</div>
+
 				<p class="hero-sub">
 					Most developers have called an OpenAI API and built a demo. Very few can build a RAG pipeline that works on messy production data, design an agent that does not fall apart under load, or explain to their CTO why they chose one over the other. <strong>This program teaches the second thing.</strong>
 				</p>
@@ -949,6 +1145,133 @@
 					<img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2164183145/settings_images/316b55e-c5d6-4315-3d73-1b582aa4a_78acea11-25bf-4e23-9289-3bd7f173428b.png" width="910" height="502" alt="Brian teaching a live session: a Qdrant vector database dashboard showing a cluster of 512-dimension embeddings from transcript data, with his webcam feed in the corner." />
 					<figcaption>Week 1 live session.</figcaption>
 				</figure>
+			</div>
+		</section>
+
+		<!-- ─────────── THE THREE ROLES ─────────── -->
+		<section class="section" id="roles">
+			<div class="container-wide">
+				<h2 class="section-title" style="text-align: center">
+					Three titles. <span class="gradient">One job.</span>
+				</h2>
+				<p class="section-text" style="text-align: center; max-width: 620px; margin: 0 auto;">
+					These are the three roles we see over and over. Put the job postings side by side and you are looking at the same job with three different names on it.
+				</p>
+
+				<div class="roles-grid">
+					<div class="role-card">
+						<h3>Forward Deployed Engineer</h3>
+						<p class="role-pay">$160k to $250k+</p>
+						<p>
+							You sit with the customer, work out what they actually need, and build it in front of them. Half engineering, half translation. The code is rarely the hard part.
+						</p>
+						<p class="role-who">Seen at: AI-native startups and any company selling AI into a large customer.</p>
+					</div>
+					<div class="role-card">
+						<h3>Applied AI Engineer</h3>
+						<p class="role-pay">$150k to $220k+</p>
+						<p>
+							You take models someone else trained and turn them into something a business can rely on. Retrieval, agents, evals, cost, latency, the failure cases nobody thought about.
+						</p>
+						<p class="role-who">Seen at: product teams putting AI features in front of real users.</p>
+					</div>
+					<div class="role-card">
+						<h3>Full-Stack AI Engineer</h3>
+						<p class="role-pay">$145k to $206k+</p>
+						<p>
+							The full-stack job you already have, plus the AI layer. You own the feature end to end, from the retrieval pipeline to the thing the user clicks.
+						</p>
+						<p class="role-who">Seen at: existing engineering orgs adding AI to a product that already exists.</p>
+					</div>
+				</div>
+
+				<div class="role-overlap">
+					<p>
+						<strong>The same few things come up every time.</strong> Retrieval that holds up on messy data. Agents that do not fall apart when the input is weird. Tests and evals so you find out when something breaks. Observability so you know what it costs and where it is slow. And the ability to explain all of it to someone who does not write code. That list is the program.
+					</p>
+				</div>
+
+				<p class="roles-fineprint">
+					Titles drift. You will also see LLM Engineer, AI Product Engineer, AI Systems Engineer. The job description underneath does not change much. Compensation figures are typical US base ranges before equity.
+				</p>
+			</div>
+		</section>
+
+		<!-- ─────────── THE PROBLEM ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container">
+				<h2 class="section-title">
+					The problem is <span class="gradient">your current job</span>
+				</h2>
+				<p class="problem-text">
+					Most developers who cannot break into these roles are not short on talent. They are short on exposure. Your week is CRUD endpoints, a React app somebody else started, and a bug queue. Nothing in it forces you to build a retrieval pipeline, or an agent that survives contact with a real user, or an eval suite for output that is different every time you run it.
+				</p>
+				<p class="problem-text">
+					Meanwhile there is a real shift happening. Budget, headcount, and internal political capital are moving toward the people who can build these systems. Those are the projects getting funded right now.
+				</p>
+				<p class="problem-text">
+					<strong>Here is the trap.</strong> At almost the same moment companies started hiring for this, they cut the budgets that would have trained you into it. Learning stipends gone, conference travel gone, internal upskilling gone. They will pay a premium to hire the skill. They will not pay to build it in you.
+				</p>
+
+				<div class="problem-highlight">
+					<p>That gap, between what companies are hiring for and what your job is teaching you, is the only reason this program exists.</p>
+				</div>
+
+				<p class="problem-text">
+					Our goal is simple: make you the AI engineer inside your company, or give you the foundation to go get one of these roles somewhere else.
+				</p>
+				<p class="problem-text">
+					And the distance is shorter than you think. If you can already build and ship a full-stack app, you are much closer to applied AI than the internet has led you to believe. Most people just walk it in the wrong direction.
+				</p>
+
+				<div class="cta-group" style="margin-top: 40px;">
+					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn">
+						Book a call with Brian
+					</a>
+					<a href="#syllabus" class="cta-btn-secondary">
+						Send me the syllabus
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE WRONG DIRECTION ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title" style="text-align: center">
+					How most people do it <span class="gradient">wrong</span>
+				</h2>
+				<p class="section-text" style="text-align: center; max-width: 620px; margin: 0 auto;">
+					Three dead ends we watch developers spend months in. All three feel like progress. None of them get you hired.
+				</p>
+
+				<div class="wrong-grid">
+					<div class="wrong-card">
+						<span class="wrong-num">Dead end 01</span>
+						<h4>The chatbot</h4>
+						<p>
+							Wire up a call to OpenAI, pipe the text back into a chat window, deploy it. It is a fun weekend. It is also the single most common project on the internet, and <strong>every developer applying for the same job has built one.</strong> It says nothing about whether you can ship a system.
+						</p>
+					</div>
+					<div class="wrong-card">
+						<span class="wrong-num">Dead end 02</span>
+						<h4>Naive RAG</h4>
+						<p>
+							Dump the documents into a vector database, embed everything, run a similarity search, hope for the best. It looks great on ten clean PDFs and falls over the moment the data is real. <strong>Chunking, retrieval quality, reranking, and knowing when retrieval failed is the actual job</strong>, and it is the part that gets skipped.
+						</p>
+					</div>
+					<div class="wrong-card">
+						<span class="wrong-num">Dead end 03</span>
+						<h4>Going deep on the math</h4>
+						<p>
+							Months on gradient descent, backprop, training from scratch. That is a different career with a different hiring pipeline, and it is already full of people with a PhD and ten years of Python. <strong>You will not out-credential them, and nobody is hiring you for it.</strong>
+						</p>
+					</div>
+				</div>
+
+				<p class="section-text" style="text-align: center; max-width: 660px; margin: 0 auto;">
+					What actually gets hired is the layer above the model. Retrieval, agents, tool calling, evals, observability, and being able to explain the tradeoffs out loud. That is a much shorter walk from where you already are.
+				</p>
 			</div>
 		</section>
 
@@ -1092,74 +1415,57 @@
 			</div>
 		</section>
 
-		<!-- ─────────── THE SKILLS GAP ─────────── -->
-		<section class="section">
-			<div class="container">
-				<h2 class="section-title">
-					The <span class="gradient">Skills Gap</span>
-				</h2>
-				<p class="problem-text">
-					There's a massive difference between <strong>using AI tools</strong> and <strong>building AI systems</strong>. Most developers are stuck on the wrong side of that line.
-				</p>
-				<p class="problem-text">
-					They've experimented with ChatGPT. Called an API. Maybe built a demo. But companies increasingly need developers who can implement production AI systems: RAG pipelines, agent architectures, LLM orchestration, and observability.
-				</p>
-				<p class="problem-text">
-					RAG and AI agents are becoming foundational engineering skills. The engineers who can build these systems are the ones companies cannot find.
-				</p>
-
-				<div class="problem-highlight">
-					<p>AI Engineer compensation commonly ranges from $145k to $206k+ before equity. That is the one number on this page, and it is the reason the roles stay open.</p>
-				</div>
-
-				<p class="problem-text">
-					<strong>The fix:</strong> six focused weeks on the exact stack companies are trying to hire for.
-				</p>
-
-				<div class="cta-group" style="margin-top: 40px;">
-					<a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="cta-btn">
-						Book a call with Brian
-					</a>
-					<a href="#syllabus" class="cta-btn-secondary">
-						Send me the syllabus
-					</a>
-				</div>
-			</div>
-		</section>
-
 		<!-- ─────────── WHAT YOU LEARN ─────────── -->
 		<section class="section">
-			<div class="container">
+			<div class="container-wide">
 				<h2 class="section-title">
 					What You <span class="gradient">Learn</span>
 				</h2>
 				<p class="section-text">
-					RAG, agents, orchestration, and production LLM systems. Companies are hiring for AI Engineer, Applied AI Engineer, LLM Engineer, AI Product Engineer, and AI Systems Engineer roles. <strong>This is the stack they're looking for.</strong>
+					We cut the curriculum down to the things that keep showing up in these job postings and in the work itself. No survey course, no history of transformers. <strong>Seven topics, six weeks, all of it hands on.</strong>
 				</p>
 
 				<div class="skills-grid">
 					<div class="skill-card">
-						<h4>RAG Architecture</h4>
+						<h4>Retrieval that survives real data</h4>
 						<p>
-							Build it from scratch: embeddings, chunking strategies, vector storage, semantic search, retrieval, generation. Understand the math and the tradeoffs that separate production systems from demos.
+							RAG built from scratch: embeddings, chunking strategies, hybrid search, reranking, and how to tell when retrieval quietly returned the wrong thing. The difference between a demo and a system users trust.
 						</p>
 					</div>
 					<div class="skill-card">
-						<h4>Vector Databases</h4>
+						<h4>Vectors and vector databases</h4>
 						<p>
-							Hands-on with Pinecone, one of the most popular choices for production RAG systems. Learn similarity search, indexing strategies, and how to optimize retrieval quality.
+							What an embedding actually is and why similarity search behaves the way it does. Hands on with production vector stores: indexing strategies, filtering, and tuning retrieval quality instead of hoping for it.
 						</p>
 					</div>
 					<div class="skill-card">
-						<h4>Agent Architecture</h4>
+						<h4>Production-grade agents</h4>
 						<p>
-							Design multi-agent systems with specialized agents, routing logic, and structured outputs. Build agents that actually work in production, not agents that work once in a notebook.
+							Agents that hold up outside a notebook. Structured outputs, retries, guardrails, bounded loops, and handling the case where the model returns something nobody planned for.
 						</p>
 					</div>
 					<div class="skill-card">
-						<h4>LLM Observability</h4>
+						<h4>Agentic workflows and tool calling</h4>
 						<p>
-							Performance monitoring, usage tracking, cost management with Helicone. Know what's happening inside your AI systems and catch problems before users do.
+							Tool definitions, routing between steps, multi-step orchestration, and the judgment call most people get wrong: when an agent is the right shape for the problem and when a plain workflow beats it.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Testing and evals</h4>
+						<p>
+							How you test a system whose output changes every run. Eval sets, regression checks, scoring, and catching the quality drop before your users report it. <strong>This is the skill most self-taught AI developers are missing.</strong>
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Observability and cost</h4>
+						<p>
+							Tracing, monitoring, token spend, and latency with tools like Helicone. Know what is happening inside your system, what it costs per request, and where it is slow, before someone in finance asks.
+						</p>
+					</div>
+					<div class="skill-card">
+						<h4>Explaining it to people who are not engineers</h4>
+						<p>
+							The forward deployed skill. Every week you record yourself walking through what you built and why, then you get notes on it. <strong>Nobody else trains this, and it is the one that closes offers.</strong>
 						</p>
 					</div>
 				</div>
@@ -1261,7 +1567,7 @@
 					Is This <span class="gradient">Right For You?</span>
 				</h2>
 				<p class="section-text" style="text-align: center; max-width: 580px; margin: 0 auto 40px;">
-					This program positions you for roles like AI Engineer, Applied AI Engineer, LLM Engineer, and AI Product Engineer. But it requires serious commitment.
+					This program points you at the three roles above: forward deployed, applied AI, and full-stack AI. But it requires serious commitment.
 				</p>
 
 				<div class="fit-grid">
@@ -1300,7 +1606,7 @@
 					<div class="tier-card">
 						<h4>Both tiers get:</h4>
 						<ul>
-							<li>Full curriculum. RAG from scratch, vector databases, agent architecture, LLM observability</li>
+							<li>Full curriculum. RAG from scratch, vector databases, production agents, tool calling, evals, and observability</li>
 							<li>Weekly feedback on your code from a mentor who has shipped AI systems</li>
 							<li>Capstone project with written feedback</li>
 							<li>Interview prep and career positioning</li>
