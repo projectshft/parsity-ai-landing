@@ -1,0 +1,1732 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tell Us Your Worst Process. Get a Free Video. | Parsity</title>
+		<meta name="description" content="Submit the manual, repetitive process nobody on your team wants to own. We send back a free custom video showing exactly how we would automate it." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--accent: #1d4ed8;
+				--accent-hover: #1e40af;
+				--accent-dim: #eff6ff;
+				--accent-mid: #bfdbfe;
+				--accent-glow: rgba(29, 78, 216, 0.18);
+				--secondary: #0f766e;
+				--navy: #0f2557;
+				--navy-2: #1e3a8a;
+				--bg: #ffffff;
+				--bg2: #ffffff;
+				--bg3: #f1f5f9;
+				--surface: #f8fafc;
+				--surface-hover: #eff6ff;
+				--text: #0f172a;
+				--text2: #475569;
+				--muted: #64748b;
+				--border: #c7d5ec;
+				--border-subtle: #e2e8f0;
+				--gradient-start: #1d4ed8;
+				--gradient-end: #1e3a8a;
+				--serif: 'Lora', Georgia, 'Times New Roman', serif;
+				--sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				--mono: var(--sans);
+				--warning: #b45309;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family: var(--sans);
+				line-height: 1.7;
+				min-height: 100vh;
+			}
+
+			/* ── ANNOUNCE BAR ── */
+			.announce-bar {
+				background: var(--navy);
+				padding: 12px 24px;
+				text-align: center;
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				color: #ffffff;
+			}
+
+			.container {
+				max-width: 840px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.container-wide {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			/* ── HERO ── */
+			.hero {
+				padding: 88px 0;
+				text-align: center;
+				background: linear-gradient(180deg, #f2f6fd 0%, #ffffff 100%);
+				border-bottom: 1px solid var(--border-subtle);
+			}
+			.hero-media {
+				max-width: 760px;
+				margin: 56px auto 0;
+			}
+			.hero-media img {
+				display: block;
+				width: 100%;
+				height: auto;
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				box-shadow: 0 18px 48px rgba(15, 37, 87, 0.16);
+			}
+			.hero-media figcaption {
+				margin-top: 12px;
+				font-size: 13px;
+				color: var(--muted);
+			}
+
+			.hero-headline {
+				font-family: var(--serif);
+				font-size: clamp(30px, 5vw, 52px);
+				font-weight: 600;
+				line-height: 1.18;
+				letter-spacing: -0.01em;
+				color: var(--navy);
+				margin-bottom: 28px;
+				max-width: 900px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.hero-headline .gradient {
+				color: var(--accent);
+			}
+
+			.hero-sub {
+				font-size: clamp(17px, 2.2vw, 19px);
+				color: var(--text2);
+				max-width: 680px;
+				margin: 0 auto 20px;
+				line-height: 1.75;
+			}
+			.hero-sub strong {
+				color: var(--text);
+			}
+
+			.hero-price {
+				font-family: var(--serif);
+				font-size: 17px;
+				color: var(--accent);
+				margin-bottom: 32px;
+			}
+
+			/* ── CTA BUTTONS ── */
+			.cta-group {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 14px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+			.partner-badge {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				margin-top: 44px;
+			}
+			.partner-badge-label {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.partner-badge-embed {
+				transform-origin: top center;
+				animation: badge-jingle 5s ease-in-out infinite;
+			}
+			@keyframes badge-jingle {
+				0%, 88%, 100% { transform: rotate(0deg); }
+				90% { transform: rotate(-6deg); }
+				93% { transform: rotate(5deg); }
+				96% { transform: rotate(-3deg); }
+				98% { transform: rotate(1.5deg); }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.partner-badge-embed { animation: none; }
+			}
+
+			.cta-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 17px 28px;
+				background: var(--accent);
+				color: white;
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.8px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+				box-shadow: 0 2px 8px var(--accent-glow);
+			}
+			.cta-btn:hover {
+				background: var(--accent-hover);
+				transform: translateY(-1px);
+				box-shadow: 0 8px 24px var(--accent-glow);
+			}
+
+			.cta-btn-secondary {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 15px 28px;
+				background: #ffffff;
+				color: var(--accent);
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.cta-btn-secondary:hover {
+				background: var(--accent-dim);
+				border-color: var(--accent);
+			}
+
+			.cta-note {
+				font-size: 13px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 8px;
+			}
+
+			/* ── SECTIONS ── */
+			.section {
+				padding: 88px 0;
+				border-top: 1px solid var(--border-subtle);
+			}
+
+			.section-title {
+				font-family: var(--serif);
+				font-size: clamp(26px, 4vw, 38px);
+				font-weight: 600;
+				line-height: 1.25;
+				letter-spacing: -0.01em;
+				margin-bottom: 20px;
+				color: var(--navy);
+			}
+			.section-title .gradient {
+				color: var(--accent);
+			}
+
+			.section-text {
+				font-size: 17px;
+				color: var(--text2);
+				margin-bottom: 20px;
+				line-height: 1.75;
+			}
+			.section-text strong {
+				color: var(--text);
+			}
+
+			/* ── PRICING ── */
+			.pricing-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 24px;
+				margin: 44px 0 32px;
+				align-items: start;
+			}
+
+			.price-card {
+				position: relative;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 36px 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.price-card.featured {
+				border: 2px solid var(--accent);
+				box-shadow: 0 16px 44px rgba(15, 37, 87, 0.12);
+			}
+
+			.price-tag {
+				position: absolute;
+				top: -12px;
+				left: 32px;
+				background: var(--accent);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				padding: 5px 12px;
+				border-radius: 20px;
+			}
+
+			.price-card h3 {
+				font-family: var(--serif);
+				font-size: 21px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 6px;
+			}
+			.price-amount {
+				font-family: var(--serif);
+				font-size: 42px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1.2;
+			}
+			.price-terms {
+				font-size: 13px;
+				color: var(--muted);
+				margin-bottom: 22px;
+			}
+			.price-lead {
+				font-size: 15px;
+				font-weight: 600;
+				color: var(--text);
+				margin-bottom: 12px;
+			}
+
+			.price-list {
+				list-style: none;
+				margin-bottom: 28px;
+			}
+			.price-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 12px;
+				line-height: 1.55;
+			}
+			.price-list li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+
+			.price-fineprint {
+				font-size: 12px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 10px;
+			}
+			.price-alt-link {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 44px;
+				text-align: center;
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--accent);
+				text-decoration: none;
+				margin-top: 4px;
+			}
+			.price-alt-link:hover {
+				text-decoration: underline;
+			}
+
+			.pricing-notes {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 20px;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 14px;
+				padding: 32px;
+			}
+			.pricing-notes p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+				margin: 0;
+			}
+			.pricing-notes strong {
+				color: var(--navy);
+			}
+
+			/* ── PRICE COMPARISON TABLE ── */
+			.price-table-wrap {
+				overflow-x: auto;
+				margin: 36px 0 24px;
+			}
+			.price-table {
+				width: 100%;
+				min-width: 560px;
+				border-collapse: collapse;
+				font-size: 15px;
+			}
+			.price-table th,
+			.price-table td {
+				text-align: left;
+				padding: 16px 18px;
+				border-bottom: 1px solid var(--border-subtle);
+				color: var(--text2);
+			}
+			.price-table th {
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.price-table tr.ours td {
+				background: var(--accent-dim);
+				color: var(--text);
+			}
+			.price-table tr.ours td:first-child {
+				font-weight: 700;
+				color: var(--navy);
+			}
+
+			/* ── SKILLS GRID ── */
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.skill-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 28px;
+				transition: all 0.25s;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.skill-card:hover {
+				border-color: var(--accent-mid);
+				transform: translateY(-3px);
+				box-shadow: 0 12px 32px rgba(15, 37, 87, 0.1);
+			}
+
+			.skill-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+
+			.skill-card p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.skill-card p strong {
+				color: var(--text);
+			}
+
+			/* ── SYLLABUS DOWNLOAD ── */
+			.syllabus-box {
+				background: #ffffff;
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 44px 40px;
+				max-width: 640px;
+				margin: 0 auto;
+				text-align: center;
+				box-shadow: 0 12px 40px rgba(15, 37, 87, 0.08);
+			}
+			.syllabus-box h3 {
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+			.syllabus-box > p {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				max-width: 480px;
+				margin: 0 auto 28px;
+			}
+			.syllabus-form {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+			.syllabus-form input[type='text'],
+			.syllabus-form input[type='email'] {
+				padding: 15px 16px;
+				font-size: 16px;
+				font-family: var(--sans);
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				background: #fff;
+				color: var(--text);
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+			.syllabus-form input:focus {
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px var(--accent-glow);
+			}
+			.syllabus-form input::placeholder {
+				color: var(--muted);
+			}
+			.syllabus-note {
+				font-size: 13px;
+				color: var(--muted);
+				margin-top: 14px;
+			}
+
+			/* ── FOUNDER NOTE ── */
+			.founder-note {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 44px 48px;
+				max-width: 680px;
+				margin: 0 auto;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.founder-note p {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.75;
+				margin-bottom: 16px;
+			}
+			.founder-note p strong {
+				color: var(--text);
+			}
+			.founder-note-q {
+				font-family: var(--serif);
+				font-size: 21px;
+				font-weight: 600;
+				color: var(--navy);
+				padding-top: 8px;
+			}
+			.founder-note-sig {
+				font-family: var(--serif);
+				font-style: italic;
+				color: var(--accent);
+				margin-bottom: 0 !important;
+				padding-top: 8px;
+			}
+			@media (max-width: 600px) {
+				.founder-note {
+					padding: 32px 24px;
+				}
+			}
+
+			/* ── PROBLEM SECTION ── */
+			.problem-text {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.8;
+				margin-bottom: 20px;
+			}
+			.problem-text strong {
+				color: var(--text);
+			}
+
+			.problem-highlight {
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				padding: 24px 28px;
+				margin: 32px 0;
+				border-radius: 12px;
+			}
+			.problem-highlight p {
+				font-family: var(--serif);
+				font-size: 17px;
+				color: var(--navy);
+				font-weight: 500;
+				margin: 0;
+			}
+
+			/* ── TESTIMONIALS ── */
+			.quote-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin-top: 40px;
+			}
+
+			.quote-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 28px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.quote-card.wide {
+				grid-column: 1 / -1;
+			}
+			.quote-card blockquote {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 18px;
+			}
+			.quote-card blockquote strong {
+				color: var(--text);
+			}
+			.quote-attr {
+				display: flex;
+				align-items: center;
+				gap: 14px;
+				font-size: 14px;
+				color: var(--muted);
+				line-height: 1.45;
+			}
+			.quote-avatar {
+				flex-shrink: 0;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				object-fit: cover;
+				background: var(--bg3);
+			}
+			.quote-attr b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 16px;
+				font-weight: 600;
+				color: var(--navy);
+			}
+
+			.proof-shots {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 24px;
+				max-width: 620px;
+				margin: 48px auto 0;
+			}
+			.proof-shot {
+				width: 100%;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.proof-shot img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
+			/* ── FOR YOU / NOT FOR YOU ── */
+			.fit-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.fit-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+
+			.fit-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				margin-bottom: 20px;
+			}
+			.fit-card.yes h4 {
+				color: var(--secondary);
+			}
+			.fit-card.no h4 {
+				color: #dc2626;
+			}
+
+			.fit-list {
+				list-style: none;
+			}
+			.fit-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 14px;
+				line-height: 1.55;
+			}
+			.fit-list li::before {
+				flex-shrink: 0;
+				font-weight: 700;
+			}
+			.fit-card.yes .fit-list li::before {
+				content: '✓';
+				color: var(--secondary);
+			}
+			.fit-card.no .fit-list li::before {
+				content: '✗';
+				color: #dc2626;
+			}
+
+			/* ── INCLUDED (TIER SPLIT) ── */
+			.tier-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+			.tier-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.tier-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 20px;
+			}
+			.tier-card ul {
+				list-style: none;
+			}
+			.tier-card li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 14px;
+				line-height: 1.55;
+			}
+			.tier-card li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+
+			/* ── FAQ ── */
+			.faq-list {
+				margin: 40px 0;
+			}
+
+			.faq-item {
+				border-bottom: 1px solid var(--border-subtle);
+				padding: 24px 0;
+			}
+			.faq-item:last-child {
+				border-bottom: none;
+			}
+
+			.faq-item h4 {
+				font-family: var(--serif);
+				font-size: 17px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+
+			.faq-item p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.7;
+			}
+
+			/* ── BOTTOM CTA ── */
+			.bottom-cta {
+				padding: 100px 0;
+				text-align: center;
+				border-top: 1px solid var(--border-subtle);
+				background: #f6f9fd;
+			}
+
+			.final-card {
+				background: var(--navy);
+				border-radius: 16px;
+				padding: 56px 40px;
+				max-width: 700px;
+				margin: 0 auto;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.25);
+			}
+
+			.final-card h3 {
+				font-family: var(--serif);
+				font-size: clamp(22px, 4vw, 28px);
+				font-weight: 600;
+				color: white;
+				margin-bottom: 20px;
+				line-height: 1.35;
+			}
+
+			.final-card p {
+				color: rgba(255, 255, 255, 0.85);
+				font-size: 16px;
+				margin-bottom: 32px;
+				line-height: 1.7;
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.final-btn-group {
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+				max-width: 360px;
+				margin: 0 auto;
+			}
+
+			.final-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 17px 32px;
+				background: white;
+				color: var(--navy);
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.8px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+			}
+			.final-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+			}
+
+			.final-btn-alt {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 15px 32px;
+				background: transparent;
+				color: white;
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				border: 1px solid rgba(255, 255, 255, 0.45);
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.final-btn-alt:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			.final-note {
+				font-size: 13px;
+				color: rgba(255, 255, 255, 0.65);
+				margin-top: 24px;
+			}
+
+			/* ── RESPONSIVE ── */
+			@media (max-width: 768px) {
+				.hero {
+					padding: 64px 0;
+				}
+				.section {
+					padding: 64px 0;
+				}
+				.skills-grid {
+					grid-template-columns: 1fr;
+				}
+				.final-card {
+					padding: 40px 24px;
+				}
+				.fit-grid {
+					grid-template-columns: 1fr;
+				}
+				.pricing-notes {
+					padding: 24px;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero-headline {
+					font-size: 28px;
+				}
+				.hero-sub {
+					font-size: 16px;
+				}
+				.price-card {
+					padding: 32px 22px;
+				}
+				.announce-bar {
+					font-size: 12px;
+					padding: 10px 16px;
+				}
+			}
+
+			/* ═══════════════════════════════════════════
+			   B2B LANDING ADDITIONS
+			   ═══════════════════════════════════════════ */
+
+			/* ── LANE SWITCH (top of both pages) ── */
+			.lane-bar {
+				background: #ffffff;
+				border-bottom: 1px solid var(--border-subtle);
+				padding: 14px 24px;
+			}
+			.lane-inner {
+				max-width: 1000px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.lane-label {
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				color: var(--muted);
+				margin-right: 6px;
+			}
+			.lane-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 9px 16px;
+				border-radius: 999px;
+				border: 1px solid var(--border);
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--text2);
+				text-decoration: none;
+				transition: all 0.2s;
+				background: #fff;
+			}
+			.lane-link:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+				background: var(--accent-dim);
+			}
+			.lane-link[aria-current='page'] {
+				background: var(--navy);
+				border-color: var(--navy);
+				color: #ffffff;
+			}
+			@media (max-width: 560px) {
+				.lane-label { width: 100%; text-align: center; margin: 0 0 4px; }
+				.lane-link { flex: 1 1 auto; justify-content: center; }
+			}
+
+			/* ── PROOF STAT BAND ── */
+			.stat-band {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+				gap: 1px;
+				background: var(--border-subtle);
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				overflow: hidden;
+				margin: 0 auto;
+				max-width: 1000px;
+			}
+			.stat {
+				background: #ffffff;
+				padding: 26px 22px;
+				text-align: center;
+			}
+			.stat b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1.25;
+				margin-bottom: 6px;
+			}
+			.stat span {
+				display: block;
+				font-size: 13.5px;
+				color: var(--text2);
+				line-height: 1.5;
+			}
+			.stat small {
+				display: block;
+				font-size: 12px;
+				color: var(--muted);
+				margin-top: 4px;
+			}
+
+			/* ── THE OFFER BOX (the star of each page) ── */
+			.offer-box {
+				position: relative;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				padding: 44px 44px 40px;
+				max-width: 720px;
+				margin: 0 auto;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
+			}
+			.offer-flag {
+				position: absolute;
+				top: -14px;
+				left: 44px;
+				background: var(--accent);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.4px;
+				text-transform: uppercase;
+				padding: 6px 14px;
+				border-radius: 20px;
+			}
+			.offer-box h3 {
+				font-family: var(--serif);
+				font-size: clamp(22px, 3.4vw, 30px);
+				font-weight: 600;
+				color: var(--navy);
+				line-height: 1.3;
+				margin-bottom: 14px;
+			}
+			.offer-box > p {
+				font-size: 16.5px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 28px;
+			}
+			.offer-box > p strong { color: var(--text); }
+
+			.offer-steps {
+				list-style: none;
+				counter-reset: offerstep;
+				margin: 0 0 30px;
+			}
+			.offer-steps li {
+				counter-increment: offerstep;
+				position: relative;
+				padding-left: 46px;
+				margin-bottom: 20px;
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.offer-steps li:last-child { margin-bottom: 0; }
+			.offer-steps li::before {
+				content: counter(offerstep);
+				position: absolute;
+				left: 0;
+				top: -1px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				color: var(--accent);
+				font-family: var(--serif);
+				font-size: 15px;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.offer-steps li b {
+				display: block;
+				font-family: var(--sans);
+				font-size: 16px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 2px;
+			}
+			.offer-value {
+				margin-top: 18px;
+				padding-top: 18px;
+				border-top: 1px solid var(--border-subtle);
+				font-size: 14px;
+				color: var(--muted);
+				text-align: center;
+				line-height: 1.6;
+			}
+			.offer-value strong { color: var(--navy); }
+			@media (max-width: 600px) {
+				.offer-box { padding: 36px 22px 30px; }
+				.offer-flag { left: 22px; }
+			}
+
+			/* ── ANIMATED FLOW GRAPHICS ── */
+			.graphic {
+				max-width: 860px;
+				margin: 0 auto;
+			}
+			.graphic svg {
+				display: block;
+				width: 100%;
+				height: auto;
+				overflow: visible;
+			}
+			.g-node { fill: #ffffff; stroke: var(--border); stroke-width: 1.5; }
+			.g-node-accent { fill: var(--accent-dim); stroke: var(--accent-mid); stroke-width: 1.5; }
+			.g-label {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 600;
+				fill: var(--navy);
+			}
+			.g-sub {
+				font-family: var(--sans);
+				font-size: 11.5px;
+				fill: var(--muted);
+			}
+			.g-num {
+				font-family: var(--serif);
+				font-size: 15px;
+				font-weight: 700;
+				fill: var(--accent);
+			}
+			.g-track { fill: none; stroke: var(--border); stroke-width: 2; }
+			.g-dash {
+				fill: none;
+				stroke: var(--accent-mid);
+				stroke-width: 2;
+				stroke-dasharray: 6 8;
+				stroke-linecap: round;
+				animation: g-march 1.6s linear infinite;
+			}
+			@keyframes g-march { to { stroke-dashoffset: -28; } }
+
+			.g-pulse {
+				fill: var(--accent);
+				animation: g-travel 4.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+			}
+			.g-scatter { fill: var(--muted); opacity: 0.5; animation: g-drift 5s ease-in-out infinite; }
+			@keyframes g-drift {
+				0%, 100% { transform: translate(0, 0); }
+				50% { transform: translate(3px, -5px); }
+			}
+			.g-cell {
+				fill: var(--accent);
+				opacity: 0.16;
+				animation: g-lightup 3.6s ease-in-out infinite;
+			}
+			@keyframes g-lightup {
+				0%, 70%, 100% { opacity: 0.16; }
+				35% { opacity: 0.85; }
+			}
+			.g-tangle {
+				fill: none;
+				stroke: #dc2626;
+				stroke-width: 2;
+				stroke-linecap: round;
+				opacity: 0.55;
+				stroke-dasharray: 4 6;
+				animation: g-march 2.4s linear infinite;
+			}
+			.g-clean {
+				fill: none;
+				stroke: var(--secondary);
+				stroke-width: 2.5;
+				stroke-linecap: round;
+				stroke-dasharray: 300;
+				stroke-dashoffset: 300;
+				animation: g-draw 4s ease-in-out infinite;
+			}
+			@keyframes g-draw {
+				0% { stroke-dashoffset: 300; }
+				45%, 80% { stroke-dashoffset: 0; }
+				100% { stroke-dashoffset: 300; }
+			}
+			.g-caption {
+				text-align: center;
+				font-size: 13px;
+				color: var(--muted);
+				margin-top: 18px;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.g-dash, .g-pulse, .g-scatter, .g-cell, .g-tangle, .g-clean {
+					animation: none;
+				}
+				.g-clean { stroke-dashoffset: 0; }
+			}
+
+			/* ── WHO TEACHES IT ── */
+			.who-box {
+				display: flex;
+				gap: 28px;
+				align-items: flex-start;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 36px 40px;
+				max-width: 720px;
+				margin: 0 auto;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.who-photo {
+				flex-shrink: 0;
+				width: 92px;
+				height: 92px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 1px solid var(--border);
+				background: var(--bg3);
+			}
+			.who-box h4 {
+				font-family: var(--serif);
+				font-size: 20px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 4px;
+			}
+			.who-role {
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 0.4px;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 14px;
+			}
+			.who-box p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 12px;
+			}
+			.who-box p:last-child { margin-bottom: 0; }
+			.who-box p strong { color: var(--text); }
+			@media (max-width: 600px) {
+				.who-box { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
+			}
+
+			/* ── TYPEFORM EMBED ── */
+			.tf-wrap {
+				max-width: 720px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				overflow: hidden;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
+			}
+			.tf-head {
+				padding: 32px 36px 24px;
+				border-bottom: 1px solid var(--border-subtle);
+				text-align: center;
+			}
+			.tf-head h3 {
+				font-family: var(--serif);
+				font-size: clamp(21px, 3.2vw, 27px);
+				font-weight: 600;
+				color: var(--navy);
+				line-height: 1.3;
+				margin-bottom: 10px;
+			}
+			.tf-head p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.65;
+				max-width: 520px;
+				margin: 0 auto;
+			}
+			.tf-embed {
+				width: 100%;
+				height: 560px;
+				border: 0;
+				display: block;
+			}
+			@media (max-width: 600px) {
+				.tf-head { padding: 26px 20px 20px; }
+				.tf-embed { height: 620px; }
+			}
+
+			/* ── CROSS-LINK STRIP ── */
+			.crosslink {
+				max-width: 720px;
+				margin: 0 auto;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 14px;
+				padding: 28px 32px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 20px;
+				flex-wrap: wrap;
+			}
+			.crosslink p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.6;
+				margin: 0;
+				flex: 1 1 300px;
+			}
+			.crosslink p strong { color: var(--navy); }
+			.crosslink a {
+				flex-shrink: 0;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 13px 22px;
+				background: #ffffff;
+				border: 1px solid var(--accent);
+				border-radius: 8px;
+				color: var(--accent);
+				font-size: 14px;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.crosslink a:hover { background: var(--accent); color: #ffffff; }
+
+			/* ── FOOTER ── */
+			.site-footer {
+				background: #ffffff;
+				border-top: 1px solid var(--border-subtle);
+				padding: 40px 24px;
+				text-align: center;
+			}
+			.site-footer p {
+				font-size: 13.5px;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+			.site-footer a { color: var(--accent); text-decoration: none; }
+			.site-footer a:hover { text-decoration: underline; }
+			.footer-links {
+				display: flex;
+				justify-content: center;
+				gap: 22px;
+				flex-wrap: wrap;
+				margin-bottom: 14px;
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			/* ── MISC ── */
+			.section-lead {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.75;
+				max-width: 620px;
+				margin: 0 auto 8px;
+				text-align: center;
+			}
+			.center { text-align: center; }
+			.tight { padding-top: 56px; }
+
+			@keyframes g-travel {
+				0%   { transform: translateX(0);     opacity: 0; }
+				8%   { opacity: 1; }
+				92%  { opacity: 1; }
+				100% { transform: translateX(572px); opacity: 0; }
+			}
+
+			/* 4-card grids read better as a 2x2 than as 3 + orphan */
+			.skills-grid.grid-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				max-width: 840px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			@media (max-width: 768px) {
+				.skills-grid.grid-2 { grid-template-columns: 1fr; }
+			}
+
+			/* Outcome cards. These are summaries, not verbatim quotes,
+			   so they are paragraphs rather than blockquotes. */
+			.quote-body {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 18px;
+			}
+			.quote-body strong { color: var(--text); }
+		</style>
+	</head>
+	<body>
+		<!-- ─────────── ANNOUNCE BAR ─────────── -->
+		<div class="announce-bar">
+			Free custom teardown. Tell us the process, we send back the video.
+		</div>
+
+		<!-- ─────────── LANE SWITCH ─────────── -->
+		<nav class="lane-bar" aria-label="Choose your track">
+			<div class="lane-inner">
+				<span class="lane-label">Who are you?</span>
+				<a class="lane-link" href="/for-business" aria-current="page">I run a business or a non technical team</a>
+				<a class="lane-link" href="/for-teams">I run an engineering team</a>
+				<a class="lane-link" href="/ai-dev">I want this for myself</a>
+			</div>
+		</nav>
+
+		<!-- ─────────── HERO ─────────── -->
+		<section class="hero">
+			<div class="container-wide">
+				<h1 class="hero-headline">
+					Tell Us Your Worst Process. We Will Show You How to Fix It. <span class="gradient">Free.</span>
+				</h1>
+
+				<p class="hero-sub">
+					Pick the thing you hate doing most. The manual, repetitive, soul crushing task nobody wants to own. Submit it below and <strong>we will send back a custom video walking through exactly how we would automate it.</strong>
+				</p>
+
+				<p class="hero-sub">
+					If we cannot automate it, we will tell you that too.
+				</p>
+
+				<div class="cta-group">
+					<a href="#teardown" class="cta-btn">
+						Submit Your Process, Get a Free Video
+					</a>
+					<a href="#offer" class="cta-btn-secondary">
+						What is the catch?
+					</a>
+					<p class="cta-note">No call required. One form, four questions, one video back.</p>
+				</div>
+
+				<div class="graphic" style="margin-top: 56px;">
+					<svg viewBox="0 0 860 230" role="img" aria-label="A tangled manual process on the left redrawn as a single clean automated path on the right.">
+						<text class="g-label" x="185" y="26" text-anchor="middle">The process you have</text>
+						<text class="g-sub"   x="185" y="46" text-anchor="middle">Manual, repetitive, nobody owns it</text>
+						<path class="g-tangle" d="M70 100 C 120 60, 150 150, 200 100 S 280 40, 300 110 S 240 180, 170 150 S 90 170, 120 110" />
+						<path class="g-tangle" d="M95 135 C 160 175, 230 95, 285 145" style="animation-delay: .8s" />
+						<circle cx="70"  cy="100" r="5" fill="#dc2626" opacity="0.55" />
+						<circle cx="285" cy="145" r="5" fill="#dc2626" opacity="0.55" />
+
+						<path class="g-track" d="M350 120 H500" />
+						<path class="g-dash"  d="M350 120 H500" />
+						<text class="g-sub" x="425" y="104" text-anchor="middle">Free teardown</text>
+
+						<text class="g-label" x="675" y="26" text-anchor="middle">The process you could have</text>
+						<text class="g-sub"   x="675" y="46" text-anchor="middle">One path, runs without you</text>
+						<path class="g-clean" d="M550 120 H800" />
+						<circle class="g-node-accent" cx="550" cy="120" r="16" />
+						<circle class="g-node-accent" cx="675" cy="120" r="16" />
+						<circle class="g-node-accent" cx="800" cy="120" r="16" />
+						<text class="g-sub" x="550" y="158" text-anchor="middle">Input</text>
+						<text class="g-sub" x="675" y="158" text-anchor="middle">Automated</text>
+						<text class="g-sub" x="800" y="158" text-anchor="middle">Done</text>
+					</svg>
+					<p class="g-caption">The video shows you the right hand side, built for your specific process.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── PROOF STAT BAND ─────────── -->
+		<section class="section tight">
+			<div class="container-wide">
+				<div class="stat-band">
+					<div class="stat">
+						<b>30+</b>
+						<span>engineers trained</span>
+						<small>This year</small>
+					</div>
+					<div class="stat">
+						<b>Dept. of Labor</b>
+						<span>grant backing</span>
+						<small>Approval pending</small>
+					</div>
+					<div class="stat">
+						<b>CSU</b>
+						<span>California State University system</span>
+						<small>Recently accepted</small>
+					</div>
+					<div class="stat">
+						<b>Claude Partner</b>
+						<span>official partner</span>
+						<small>With a path to certification</small>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE OFFER ─────────── -->
+		<section class="section" id="offer" style="background: var(--bg3);">
+			<div class="container-wide">
+				<div class="offer-box">
+					<span class="offer-flag">The offer</span>
+					<h3>A custom video teardown of your worst process. Free.</h3>
+					<p>
+						Not a generic AI pitch with your logo on it. You tell us the actual process. We record a walkthrough of how we would automate it, including the tools, the steps, and the parts that would be hard.
+					</p>
+					<ol class="offer-steps">
+						<li>
+							<b>You vent.</b>
+							One form, four questions. Tell us the process nobody wants to own. The messier the better, and you do not need to know anything technical.
+						</li>
+						<li>
+							<b>We record a teardown.</b>
+							A custom video for your specific problem. What we would build, roughly what it would take, and where it would break.
+						</li>
+						<li>
+							<b>You decide what to do with it.</b>
+							Hand it to your own people and build it. Or have us train your team to build these themselves so you are not dependent on us.
+						</li>
+					</ol>
+
+					<a href="#teardown" class="cta-btn">
+						Submit Your Process, Get a Free Video
+					</a>
+
+					<p class="offer-value">
+						What we show you for free could save you what it would cost to hire someone to build it. <strong>Somewhere between $1,000 and $20,000, depending on the problem.</strong>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── HOW IT WORKS (FLOW GRAPHIC) ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">How the free teardown <span class="gradient">works</span></h2>
+				<p class="section-lead">Three steps, and only one of them is yours.</p>
+
+				<div class="graphic" style="margin-top: 44px;">
+					<svg viewBox="0 0 860 150" role="img" aria-label="Three steps: you submit the process, we record a custom video, you get it in your inbox.">
+						<path class="g-track" d="M144 58 H716" />
+						<path class="g-dash" d="M144 58 H716" />
+						<circle class="g-pulse" cx="144" cy="58" r="5" />
+
+						<circle class="g-node-accent" cx="110" cy="58" r="34" />
+						<text class="g-num" x="110" y="64" text-anchor="middle">1</text>
+						<text class="g-label" x="110" y="118" text-anchor="middle">You submit it</text>
+						<text class="g-sub" x="110" y="136" text-anchor="middle">Four questions, two minutes</text>
+
+						<circle class="g-node-accent" cx="430" cy="58" r="34" />
+						<text class="g-num" x="430" y="64" text-anchor="middle">2</text>
+						<text class="g-label" x="430" y="118" text-anchor="middle">We record it</text>
+						<text class="g-sub" x="430" y="136" text-anchor="middle">A video about your process</text>
+
+						<circle class="g-node-accent" cx="750" cy="58" r="34" />
+						<text class="g-num" x="750" y="64" text-anchor="middle">3</text>
+						<text class="g-label" x="750" y="118" text-anchor="middle">You get a plan</text>
+						<text class="g-sub" x="750" y="136" text-anchor="middle">Build it, or have us teach you</text>
+					</svg>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHAT YOU GET ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">What you actually <span class="gradient">get</span></h2>
+				<p class="section-lead">Three things, and none of them is a sales deck.</p>
+
+				<div class="skills-grid">
+					<div class="skill-card">
+						<h4>A video about your process</h4>
+						<p>Your workflow, your tools, your bottleneck. <strong>Not a generic AI overview.</strong> If you tell us about the invoice reconciliation nobody wants to touch, the video is about that.</p>
+					</div>
+					<div class="skill-card">
+						<h4>An honest no if it is a no</h4>
+						<p>Plenty of processes are not worth automating, and some are not automatable at all. <strong>We will say so and explain why</strong>, which saves you from paying someone else to find out.</p>
+					</div>
+					<div class="skill-card">
+						<h4>A build path, not a dependency</h4>
+						<p>If it works for you, we train your team to build these themselves. <strong>You own the thing when we are done</strong> and you are not on a retainer to keep it running.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE FORM ─────────── -->
+		<section class="section" id="teardown">
+			<div class="container-wide">
+				<div class="tf-wrap">
+					<div class="tf-head">
+						<h3>Tell us your worst process</h3>
+						<p>Four questions. The first one is the only one that matters, so take your time with it and be specific.</p>
+					</div>
+					<iframe
+						class="tf-embed"
+						src="https://form.typeform.com/to/jp7KXyy4"
+						title="Free process teardown request form"
+						loading="lazy"
+						allow="camera; microphone; autoplay; encrypted-media;"
+					></iframe>
+				</div>
+				<p class="g-caption" style="margin-top: 20px;">
+					Form not loading? <a href="https://form.typeform.com/to/jp7KXyy4" target="_blank" rel="noopener" style="color: var(--accent);">Open it in a new tab</a>.
+				</p>
+			</div>
+		</section>
+
+		<!-- ─────────── WHO RUNS IT ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">Who is <span class="gradient">making the video</span></h2>
+				<div class="who-box" style="margin-top: 40px;">
+					<img class="who-photo" src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian Jenney" width="92" height="92" loading="lazy" onerror="this.style.display='none'" />
+					<div>
+						<h4>Brian Jenney</h4>
+						<p class="who-role">Founder, Parsity</p>
+						<p>
+							Brian has built and led production AI systems at two companies with very different products. Real RAG pipelines and agents running in production, shipped and maintained, leading the build both times.
+						</p>
+						<p>
+							He also runs the training program that took 30 engineers through this material this year. <strong>Light on theory, heavy on practical application.</strong> That is the same standard the video gets held to.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── PROOF ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">People who learned to build <span class="gradient">this themselves</span></h2>
+				<p class="section-lead">The end state is your own people shipping, not a vendor you cannot fire.</p>
+
+				<div class="quote-grid">
+					<div class="quote-card">
+						<p class="quote-body">
+							Learned RAG and agents, then <strong>got a meeting with the VP over his company's AI initiative</strong> and was assigned to build the MVP. He has since shipped it.
+						</p>
+						<div class="quote-attr"><div><b>Joseph</b>now leading the AI system at his company</div></div>
+					</div>
+					<div class="quote-card">
+						<p class="quote-body">
+							A full-stack developer before this. Now <strong>shipping AI features at work</strong> and the one people ask when a new use case comes up.
+						</p>
+						<div class="quote-attr"><div><b>Chris</b>shipping AI features at his company</div></div>
+					</div>
+					<div class="quote-card">
+						<p class="quote-body">
+							Went from <strong>prompting to building production systems</strong>. Says the hands-on walkthrough of how these systems actually work was the part that changed things.
+						</p>
+						<div class="quote-attr"><div><b>Sean</b>shipping production AI at work</div></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FAQ ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container">
+				<h2 class="section-title">Questions we <span class="gradient">get</span></h2>
+				<div class="faq-list">
+					<div class="faq-item">
+						<h4>Is this really free?</h4>
+						<p>Yes. No card, no call required, no contract. We make money training teams to build this stuff. The video is how you find out whether we are worth hiring for that.</p>
+					</div>
+					<div class="faq-item">
+						<h4>What kind of processes work best?</h4>
+						<p>Anything repetitive that touches documents, email, spreadsheets, or a support queue. If a person on your team is copying information from one place to another, that is usually a good candidate.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Do I need a technical team?</h4>
+						<p>No. Some of the best submissions come from people who have never written a line of code. If the answer requires engineers you do not have, we will say that in the video instead of pretending otherwise.</p>
+					</div>
+					<div class="faq-item">
+						<h4>How long does it take?</h4>
+						<p>A few business days. A person records these, so we would rather be honest about the queue than promise you something in an hour.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Are you going to sell me something afterwards?</h4>
+						<p>Only if you ask. You get the video whether you reply or not, and there is no follow up sequence attached to it.</p>
+					</div>
+				</div>
+
+				<div class="partner-badge">
+					<span class="partner-badge-label">Official Claude Partner</span>
+					<div class="partner-badge-embed">
+						<a href="https://www.credly.com/badges/47599467-a748-4106-959b-830813b31885" target="_blank" rel="noopener" title="Verify on Credly">
+							<img src="https://images.credly.com/size/340x340/images/d8bc1ecf-6369-4bf9-8920-84169b35d918/blob" alt="Claude Partner badge" width="150" height="150" style="display: block;" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── CROSS-LINK ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<div class="crosslink">
+					<p><strong>Here for yourself, not a company?</strong> The individual program teaches you to build these systems, run as a cohort with weekly code review.</p>
+					<a href="/ai-dev">See the individual program</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── BOTTOM CTA ─────────── -->
+		<section class="bottom-cta" id="apply">
+			<div class="container">
+				<div class="final-card">
+					<h3>You already know which process you would pick.</h3>
+					<p>
+						The one you thought of in the first five seconds of reading this page. Put that one in the form. Worst case you get a free video explaining why it is harder than it looks.
+					</p>
+					<div class="final-btn-group">
+						<a href="#teardown" class="final-btn">
+							Submit Your Process, Get a Free Video
+						</a>
+						<a href="/for-teams" class="final-btn-alt">
+							I have engineers, show me the team version
+						</a>
+					</div>
+					<p class="final-note">
+						Questions? <a href="mailto:assistant@parsity.io" style="color: rgba(255,255,255,0.8);">assistant@parsity.io</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FOOTER ─────────── -->
+		<footer class="site-footer">
+			<div class="footer-links">
+				<a href="/for-teams">For engineering teams</a>
+				<a href="/for-business">For business owners</a>
+				<a href="/ai-dev">For individuals</a>
+			</div>
+			<p>Parsity. Practical AI engineering training. <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
+		</footer>
+	</body>
+</html>
