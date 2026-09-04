@@ -1,0 +1,2110 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Build a Production AI Agent in One Weekend | Parsity</title>
+		<meta name="description" content="October 3 and 4, 10am to 4pm PST. Saturday you build retrieval, Sunday you turn it into an agent, and you leave with a deployed application you built yourself. TypeScript and Next.js. $497, twenty seats." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--accent: #1d4ed8;
+				--accent-hover: #1e40af;
+				--accent-dim: #eff6ff;
+				--accent-mid: #bfdbfe;
+				--accent-glow: rgba(29, 78, 216, 0.18);
+				--secondary: #0f766e;
+				--navy: #0f2557;
+				--navy-2: #1e3a8a;
+				--bg: #ffffff;
+				--bg2: #ffffff;
+				--bg3: #f1f5f9;
+				--surface: #f8fafc;
+				--surface-hover: #eff6ff;
+				--text: #0f172a;
+				--text2: #475569;
+				--muted: #64748b;
+				--border: #c7d5ec;
+				--border-subtle: #e2e8f0;
+				--gradient-start: #1d4ed8;
+				--gradient-end: #1e3a8a;
+				--serif: 'Lora', Georgia, 'Times New Roman', serif;
+				--sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				--mono: var(--sans);
+				--warning: #b45309;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+
+			body {
+				background: var(--bg);
+				color: var(--text);
+				font-family: var(--sans);
+				line-height: 1.7;
+				min-height: 100vh;
+			}
+
+			/* ── ANNOUNCE BAR ── */
+			.announce-bar {
+				background: var(--navy);
+				padding: 12px 24px;
+				text-align: center;
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				color: #ffffff;
+			}
+
+			.container {
+				max-width: 840px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.container-wide {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+
+			/* ── HERO ── */
+			.hero {
+				padding: 88px 0;
+				text-align: center;
+				background: linear-gradient(180deg, #f2f6fd 0%, #ffffff 100%);
+				border-bottom: 1px solid var(--border-subtle);
+			}
+			.hero-media {
+				max-width: 760px;
+				margin: 56px auto 0;
+			}
+			.hero-media img {
+				display: block;
+				width: 100%;
+				height: auto;
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				box-shadow: 0 18px 48px rgba(15, 37, 87, 0.16);
+			}
+			.hero-media figcaption {
+				margin-top: 12px;
+				font-size: 13px;
+				color: var(--muted);
+			}
+
+			.hero-headline {
+				font-family: var(--serif);
+				font-size: clamp(30px, 5vw, 52px);
+				font-weight: 600;
+				line-height: 1.18;
+				letter-spacing: -0.01em;
+				color: var(--navy);
+				margin-bottom: 28px;
+				max-width: 900px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.hero-headline .gradient {
+				color: var(--accent);
+			}
+
+			.hero-sub {
+				font-size: clamp(17px, 2.2vw, 19px);
+				color: var(--text2);
+				max-width: 680px;
+				margin: 0 auto 20px;
+				line-height: 1.75;
+			}
+			.hero-sub strong {
+				color: var(--text);
+			}
+
+			.hero-price {
+				font-family: var(--serif);
+				font-size: 17px;
+				color: var(--accent);
+				margin-bottom: 32px;
+			}
+
+			/* ── CTA BUTTONS ── */
+			.cta-group {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 14px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+
+			.partner-badge {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				margin-top: 44px;
+			}
+			.partner-badge-label {
+				font-family: var(--sans);
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.partner-badge-embed {
+				transform-origin: top center;
+				animation: badge-jingle 5s ease-in-out infinite;
+			}
+			@keyframes badge-jingle {
+				0%, 88%, 100% { transform: rotate(0deg); }
+				90% { transform: rotate(-6deg); }
+				93% { transform: rotate(5deg); }
+				96% { transform: rotate(-3deg); }
+				98% { transform: rotate(1.5deg); }
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.partner-badge-embed { animation: none; }
+			}
+
+			.cta-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 17px 28px;
+				background: var(--accent);
+				color: white;
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.8px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+				box-shadow: 0 2px 8px var(--accent-glow);
+			}
+			.cta-btn:hover {
+				background: var(--accent-hover);
+				transform: translateY(-1px);
+				box-shadow: 0 8px 24px var(--accent-glow);
+			}
+
+			.cta-btn-secondary {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				width: 100%;
+				padding: 15px 28px;
+				background: #ffffff;
+				color: var(--accent);
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.cta-btn-secondary:hover {
+				background: var(--accent-dim);
+				border-color: var(--accent);
+			}
+
+			.cta-note {
+				font-size: 13px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 8px;
+			}
+
+			/* ── SECTIONS ── */
+			.section {
+				padding: 88px 0;
+				border-top: 1px solid var(--border-subtle);
+			}
+
+			.section-title {
+				font-family: var(--serif);
+				font-size: clamp(26px, 4vw, 38px);
+				font-weight: 600;
+				line-height: 1.25;
+				letter-spacing: -0.01em;
+				margin-bottom: 20px;
+				color: var(--navy);
+			}
+			.section-title .gradient {
+				color: var(--accent);
+			}
+
+			.section-text {
+				font-size: 17px;
+				color: var(--text2);
+				margin-bottom: 20px;
+				line-height: 1.75;
+			}
+			.section-text strong {
+				color: var(--text);
+			}
+
+			/* ── PRICING ── */
+			.pricing-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 24px;
+				margin: 44px 0 32px;
+				align-items: start;
+			}
+
+			.price-card {
+				position: relative;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 36px 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.price-card.featured {
+				border: 2px solid var(--accent);
+				box-shadow: 0 16px 44px rgba(15, 37, 87, 0.12);
+			}
+
+			.price-tag {
+				position: absolute;
+				top: -12px;
+				left: 32px;
+				background: var(--accent);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				padding: 5px 12px;
+				border-radius: 20px;
+			}
+
+			.price-card h3 {
+				font-family: var(--serif);
+				font-size: 21px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 6px;
+			}
+			.price-amount {
+				font-family: var(--serif);
+				font-size: 42px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1.2;
+			}
+			.price-terms {
+				font-size: 13px;
+				color: var(--muted);
+				margin-bottom: 22px;
+			}
+			.price-lead {
+				font-size: 15px;
+				font-weight: 600;
+				color: var(--text);
+				margin-bottom: 12px;
+			}
+
+			.price-list {
+				list-style: none;
+				margin-bottom: 28px;
+			}
+			.price-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 12px;
+				line-height: 1.55;
+			}
+			.price-list li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+
+			.price-fineprint {
+				font-size: 12px;
+				color: var(--muted);
+				text-align: center;
+				margin-top: 10px;
+			}
+			.price-alt-link {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 44px;
+				text-align: center;
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--accent);
+				text-decoration: none;
+				margin-top: 4px;
+			}
+			.price-alt-link:hover {
+				text-decoration: underline;
+			}
+
+			.pricing-notes {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 20px;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 14px;
+				padding: 32px;
+			}
+			.pricing-notes p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+				margin: 0;
+			}
+			.pricing-notes strong {
+				color: var(--navy);
+			}
+
+			/* ── PRICE COMPARISON TABLE ── */
+			.price-table-wrap {
+				overflow-x: auto;
+				margin: 36px 0 24px;
+			}
+			.price-table {
+				width: 100%;
+				min-width: 560px;
+				border-collapse: collapse;
+				font-size: 15px;
+			}
+			.price-table th,
+			.price-table td {
+				text-align: left;
+				padding: 16px 18px;
+				border-bottom: 1px solid var(--border-subtle);
+				color: var(--text2);
+			}
+			.price-table th {
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				color: var(--muted);
+			}
+			.price-table tr.ours td {
+				background: var(--accent-dim);
+				color: var(--text);
+			}
+			.price-table tr.ours td:first-child {
+				font-weight: 700;
+				color: var(--navy);
+			}
+
+			/* ── SKILLS GRID ── */
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.skill-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 28px;
+				transition: all 0.25s;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.skill-card:hover {
+				border-color: var(--accent-mid);
+				transform: translateY(-3px);
+				box-shadow: 0 12px 32px rgba(15, 37, 87, 0.1);
+			}
+
+			.skill-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+
+			.skill-card p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.skill-card p strong {
+				color: var(--text);
+			}
+
+			/* ── SYLLABUS DOWNLOAD ── */
+			.syllabus-box {
+				background: #ffffff;
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 44px 40px;
+				max-width: 640px;
+				margin: 0 auto;
+				text-align: center;
+				box-shadow: 0 12px 40px rgba(15, 37, 87, 0.08);
+			}
+			.syllabus-box h3 {
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+			.syllabus-box > p {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				max-width: 480px;
+				margin: 0 auto 28px;
+			}
+			.syllabus-form {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				max-width: 400px;
+				margin: 0 auto;
+			}
+			.syllabus-form input[type='text'],
+			.syllabus-form input[type='email'] {
+				padding: 15px 16px;
+				font-size: 16px;
+				font-family: var(--sans);
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				background: #fff;
+				color: var(--text);
+				outline: none;
+				transition: border-color 0.2s, box-shadow 0.2s;
+			}
+			.syllabus-form input:focus {
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px var(--accent-glow);
+			}
+			.syllabus-form input::placeholder {
+				color: var(--muted);
+			}
+			.syllabus-note {
+				font-size: 13px;
+				color: var(--muted);
+				margin-top: 14px;
+			}
+
+			/* ── FOUNDER NOTE ── */
+			.founder-note {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 44px 48px;
+				max-width: 680px;
+				margin: 0 auto;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.founder-note p {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.75;
+				margin-bottom: 16px;
+			}
+			.founder-note p strong {
+				color: var(--text);
+			}
+			.founder-note-q {
+				font-family: var(--serif);
+				font-size: 21px;
+				font-weight: 600;
+				color: var(--navy);
+				padding-top: 8px;
+			}
+			.founder-note-sig {
+				font-family: var(--serif);
+				font-style: italic;
+				color: var(--accent);
+				margin-bottom: 0 !important;
+				padding-top: 8px;
+			}
+			@media (max-width: 600px) {
+				.founder-note {
+					padding: 32px 24px;
+				}
+			}
+
+			/* ── PROBLEM SECTION ── */
+			.problem-text {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.8;
+				margin-bottom: 20px;
+			}
+			.problem-text strong {
+				color: var(--text);
+			}
+
+			.problem-highlight {
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				padding: 24px 28px;
+				margin: 32px 0;
+				border-radius: 12px;
+			}
+			.problem-highlight p {
+				font-family: var(--serif);
+				font-size: 17px;
+				color: var(--navy);
+				font-weight: 500;
+				margin: 0;
+			}
+
+			/* ── TESTIMONIALS ── */
+			.quote-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin-top: 40px;
+			}
+
+			.quote-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 28px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.quote-card.wide {
+				grid-column: 1 / -1;
+			}
+			.quote-card blockquote {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 18px;
+			}
+			.quote-card blockquote strong {
+				color: var(--text);
+			}
+			.quote-attr {
+				display: flex;
+				align-items: center;
+				gap: 14px;
+				font-size: 14px;
+				color: var(--muted);
+				line-height: 1.45;
+			}
+			.quote-avatar {
+				flex-shrink: 0;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				object-fit: cover;
+				background: var(--bg3);
+			}
+			.quote-attr b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 16px;
+				font-weight: 600;
+				color: var(--navy);
+			}
+
+			.proof-shots {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 24px;
+				max-width: 620px;
+				margin: 48px auto 0;
+			}
+			.proof-shot {
+				width: 100%;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.proof-shot img {
+				display: block;
+				width: 100%;
+				height: auto;
+			}
+
+			/* ── FOR YOU / NOT FOR YOU ── */
+			.fit-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+
+			.fit-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+
+			.fit-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				margin-bottom: 20px;
+			}
+			.fit-card.yes h4 {
+				color: var(--secondary);
+			}
+			.fit-card.no h4 {
+				color: #dc2626;
+			}
+
+			.fit-list {
+				list-style: none;
+			}
+			.fit-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 14px;
+				line-height: 1.55;
+			}
+			.fit-list li::before {
+				flex-shrink: 0;
+				font-weight: 700;
+			}
+			.fit-card.yes .fit-list li::before {
+				content: '✓';
+				color: var(--secondary);
+			}
+			.fit-card.no .fit-list li::before {
+				content: '✗';
+				color: #dc2626;
+			}
+
+			/* ── INCLUDED (TIER SPLIT) ── */
+			.tier-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 24px;
+				margin: 40px 0;
+			}
+			.tier-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 32px;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.tier-card h4 {
+				font-family: var(--serif);
+				font-size: 18px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 20px;
+			}
+			.tier-card ul {
+				list-style: none;
+			}
+			.tier-card li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				margin-bottom: 14px;
+				line-height: 1.55;
+			}
+			.tier-card li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+
+			/* ── FAQ ── */
+			.faq-list {
+				margin: 40px 0;
+			}
+
+			.faq-item {
+				border-bottom: 1px solid var(--border-subtle);
+				padding: 24px 0;
+			}
+			.faq-item:last-child {
+				border-bottom: none;
+			}
+
+			.faq-item h4 {
+				font-family: var(--serif);
+				font-size: 17px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 12px;
+			}
+
+			.faq-item p {
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.7;
+			}
+
+			/* ── BOTTOM CTA ── */
+			.bottom-cta {
+				padding: 100px 0;
+				text-align: center;
+				border-top: 1px solid var(--border-subtle);
+				background: #f6f9fd;
+			}
+
+			.final-card {
+				background: var(--navy);
+				border-radius: 16px;
+				padding: 56px 40px;
+				max-width: 700px;
+				margin: 0 auto;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.25);
+			}
+
+			.final-card h3 {
+				font-family: var(--serif);
+				font-size: clamp(22px, 4vw, 28px);
+				font-weight: 600;
+				color: white;
+				margin-bottom: 20px;
+				line-height: 1.35;
+			}
+
+			.final-card p {
+				color: rgba(255, 255, 255, 0.85);
+				font-size: 16px;
+				margin-bottom: 32px;
+				line-height: 1.7;
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.final-btn-group {
+				display: flex;
+				flex-direction: column;
+				gap: 14px;
+				max-width: 360px;
+				margin: 0 auto;
+			}
+
+			.final-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 17px 32px;
+				background: white;
+				color: var(--navy);
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.8px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+			}
+			.final-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+			}
+
+			.final-btn-alt {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				padding: 15px 32px;
+				background: transparent;
+				color: white;
+				font-family: var(--sans);
+				font-size: 14px;
+				font-weight: 600;
+				letter-spacing: 0.3px;
+				border: 1px solid rgba(255, 255, 255, 0.45);
+				border-radius: 8px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.final-btn-alt:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			.final-note {
+				font-size: 13px;
+				color: rgba(255, 255, 255, 0.65);
+				margin-top: 24px;
+			}
+
+			/* ── RESPONSIVE ── */
+			@media (max-width: 768px) {
+				.hero {
+					padding: 64px 0;
+				}
+				.section {
+					padding: 64px 0;
+				}
+				.skills-grid {
+					grid-template-columns: 1fr;
+				}
+				.final-card {
+					padding: 40px 24px;
+				}
+				.fit-grid {
+					grid-template-columns: 1fr;
+				}
+				.pricing-notes {
+					padding: 24px;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.hero-headline {
+					font-size: 28px;
+				}
+				.hero-sub {
+					font-size: 16px;
+				}
+				.price-card {
+					padding: 32px 22px;
+				}
+				.announce-bar {
+					font-size: 12px;
+					padding: 10px 16px;
+				}
+			}
+
+			/* ═══════════════════════════════════════════
+			   B2B LANDING ADDITIONS
+			   ═══════════════════════════════════════════ */
+
+			/* ── LANE SWITCH (top of both pages) ── */
+			.lane-bar {
+				background: #ffffff;
+				border-bottom: 1px solid var(--border-subtle);
+				padding: 14px 24px;
+			}
+			.lane-inner {
+				max-width: 1000px;
+				margin: 0 auto;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 10px;
+			}
+			.lane-label {
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				color: var(--muted);
+				margin-right: 6px;
+			}
+			.lane-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 9px 16px;
+				border-radius: 999px;
+				border: 1px solid var(--border);
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--text2);
+				text-decoration: none;
+				transition: all 0.2s;
+				background: #fff;
+			}
+			.lane-link:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+				background: var(--accent-dim);
+			}
+			.lane-link[aria-current='page'] {
+				background: var(--navy);
+				border-color: var(--navy);
+				color: #ffffff;
+			}
+			@media (max-width: 560px) {
+				.lane-label { width: 100%; text-align: center; margin: 0 0 4px; }
+				.lane-link { flex: 1 1 auto; justify-content: center; }
+			}
+
+			/* ── PROOF STAT BAND ── */
+			.stat-band {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+				gap: 1px;
+				background: var(--border-subtle);
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				overflow: hidden;
+				margin: 0 auto;
+				max-width: 1000px;
+			}
+			.stat {
+				background: #ffffff;
+				padding: 26px 22px;
+				text-align: center;
+			}
+			.stat b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 26px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1.25;
+				margin-bottom: 6px;
+			}
+			.stat span {
+				display: block;
+				font-size: 13.5px;
+				color: var(--text2);
+				line-height: 1.5;
+			}
+			.stat small {
+				display: block;
+				font-size: 12px;
+				color: var(--muted);
+				margin-top: 4px;
+			}
+
+			/* ── THE OFFER BOX (the star of each page) ── */
+			.offer-box {
+				position: relative;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				padding: 44px 44px 40px;
+				max-width: 720px;
+				margin: 0 auto;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
+			}
+			.offer-flag {
+				position: absolute;
+				top: -14px;
+				left: 44px;
+				background: var(--accent);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.4px;
+				text-transform: uppercase;
+				padding: 6px 14px;
+				border-radius: 20px;
+			}
+			.offer-box h3 {
+				font-family: var(--serif);
+				font-size: clamp(22px, 3.4vw, 30px);
+				font-weight: 600;
+				color: var(--navy);
+				line-height: 1.3;
+				margin-bottom: 14px;
+			}
+			.offer-box > p {
+				font-size: 16.5px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 28px;
+			}
+			.offer-box > p strong { color: var(--text); }
+
+			.offer-steps {
+				list-style: none;
+				counter-reset: offerstep;
+				margin: 0 0 30px;
+			}
+			.offer-steps li {
+				counter-increment: offerstep;
+				position: relative;
+				padding-left: 46px;
+				margin-bottom: 20px;
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.65;
+			}
+			.offer-steps li:last-child { margin-bottom: 0; }
+			.offer-steps li::before {
+				content: counter(offerstep);
+				position: absolute;
+				left: 0;
+				top: -1px;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				color: var(--accent);
+				font-family: var(--serif);
+				font-size: 15px;
+				font-weight: 700;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.offer-steps li b {
+				display: block;
+				font-family: var(--sans);
+				font-size: 16px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 2px;
+			}
+			.offer-value {
+				margin-top: 18px;
+				padding-top: 18px;
+				border-top: 1px solid var(--border-subtle);
+				font-size: 14px;
+				color: var(--muted);
+				text-align: center;
+				line-height: 1.6;
+			}
+			.offer-value strong { color: var(--navy); }
+			@media (max-width: 600px) {
+				.offer-box { padding: 36px 22px 30px; }
+				.offer-flag { left: 22px; }
+			}
+
+			/* ── ANIMATED FLOW GRAPHICS ── */
+			.graphic {
+				max-width: 860px;
+				margin: 0 auto;
+			}
+			.graphic svg {
+				display: block;
+				width: 100%;
+				height: auto;
+				overflow: visible;
+			}
+			.g-node { fill: #ffffff; stroke: var(--border); stroke-width: 1.5; }
+			.g-node-accent { fill: var(--accent-dim); stroke: var(--accent-mid); stroke-width: 1.5; }
+			.g-label {
+				font-family: var(--sans);
+				font-size: 13px;
+				font-weight: 600;
+				fill: var(--navy);
+			}
+			.g-sub {
+				font-family: var(--sans);
+				font-size: 11.5px;
+				fill: var(--muted);
+			}
+			.g-num {
+				font-family: var(--serif);
+				font-size: 15px;
+				font-weight: 700;
+				fill: var(--accent);
+			}
+			.g-track { fill: none; stroke: var(--border); stroke-width: 2; }
+			.g-dash {
+				fill: none;
+				stroke: var(--accent-mid);
+				stroke-width: 2;
+				stroke-dasharray: 6 8;
+				stroke-linecap: round;
+				animation: g-march 1.6s linear infinite;
+			}
+			@keyframes g-march { to { stroke-dashoffset: -28; } }
+
+			.g-pulse {
+				fill: var(--accent);
+				animation: g-travel 4.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+			}
+			.g-scatter { fill: var(--muted); opacity: 0.5; animation: g-drift 5s ease-in-out infinite; }
+			@keyframes g-drift {
+				0%, 100% { transform: translate(0, 0); }
+				50% { transform: translate(3px, -5px); }
+			}
+			.g-cell {
+				fill: var(--accent);
+				opacity: 0.16;
+				animation: g-lightup 3.6s ease-in-out infinite;
+			}
+			@keyframes g-lightup {
+				0%, 70%, 100% { opacity: 0.16; }
+				35% { opacity: 0.85; }
+			}
+			.g-tangle {
+				fill: none;
+				stroke: #dc2626;
+				stroke-width: 2;
+				stroke-linecap: round;
+				opacity: 0.55;
+				stroke-dasharray: 4 6;
+				animation: g-march 2.4s linear infinite;
+			}
+			.g-clean {
+				fill: none;
+				stroke: var(--secondary);
+				stroke-width: 2.5;
+				stroke-linecap: round;
+				stroke-dasharray: 300;
+				stroke-dashoffset: 300;
+				animation: g-draw 4s ease-in-out infinite;
+			}
+			@keyframes g-draw {
+				0% { stroke-dashoffset: 300; }
+				45%, 80% { stroke-dashoffset: 0; }
+				100% { stroke-dashoffset: 300; }
+			}
+			.g-caption {
+				text-align: center;
+				font-size: 13px;
+				color: var(--muted);
+				margin-top: 18px;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.g-dash, .g-pulse, .g-scatter, .g-cell, .g-tangle, .g-clean {
+					animation: none;
+				}
+				.g-clean { stroke-dashoffset: 0; }
+			}
+
+			/* ── WHO TEACHES IT ── */
+			.who-box {
+				display: flex;
+				gap: 28px;
+				align-items: flex-start;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 14px;
+				padding: 36px 40px;
+				max-width: 720px;
+				margin: 0 auto;
+				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
+			}
+			.who-photo {
+				flex-shrink: 0;
+				width: 92px;
+				height: 92px;
+				border-radius: 50%;
+				object-fit: cover;
+				border: 1px solid var(--border);
+				background: var(--bg3);
+			}
+			.who-box h4 {
+				font-family: var(--serif);
+				font-size: 20px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 4px;
+			}
+			.who-role {
+				font-size: 13px;
+				font-weight: 600;
+				letter-spacing: 0.4px;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 14px;
+			}
+			.who-box p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 12px;
+			}
+			.who-box p:last-child { margin-bottom: 0; }
+			.who-box p strong { color: var(--text); }
+			@media (max-width: 600px) {
+				.who-box { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
+			}
+
+			/* ── TYPEFORM EMBED ── */
+			.tf-wrap {
+				max-width: 720px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				overflow: hidden;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
+			}
+			.tf-head {
+				padding: 32px 36px 24px;
+				border-bottom: 1px solid var(--border-subtle);
+				text-align: center;
+			}
+			.tf-head h3 {
+				font-family: var(--serif);
+				font-size: clamp(21px, 3.2vw, 27px);
+				font-weight: 600;
+				color: var(--navy);
+				line-height: 1.3;
+				margin-bottom: 10px;
+			}
+			.tf-head p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.65;
+				max-width: 520px;
+				margin: 0 auto;
+			}
+			.tf-embed {
+				width: 100%;
+				height: 560px;
+				border: 0;
+				display: block;
+			}
+			@media (max-width: 600px) {
+				.tf-head { padding: 26px 20px 20px; }
+				.tf-embed { height: 620px; }
+			}
+
+			/* ── CROSS-LINK STRIP ── */
+			.crosslink {
+				max-width: 720px;
+				margin: 0 auto;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 14px;
+				padding: 28px 32px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 20px;
+				flex-wrap: wrap;
+			}
+			.crosslink p {
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.6;
+				margin: 0;
+				flex: 1 1 300px;
+			}
+			.crosslink p strong { color: var(--navy); }
+			.crosslink a {
+				flex-shrink: 0;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 13px 22px;
+				background: #ffffff;
+				border: 1px solid var(--accent);
+				border-radius: 8px;
+				color: var(--accent);
+				font-size: 14px;
+				font-weight: 600;
+				text-decoration: none;
+				transition: all 0.2s;
+			}
+			.crosslink a:hover { background: var(--accent); color: #ffffff; }
+
+			/* ── FOOTER ── */
+			.site-footer {
+				background: #ffffff;
+				border-top: 1px solid var(--border-subtle);
+				padding: 40px 24px;
+				text-align: center;
+			}
+			.site-footer p {
+				font-size: 13.5px;
+				color: var(--muted);
+				line-height: 1.7;
+			}
+			.site-footer a { color: var(--accent); text-decoration: none; }
+			.site-footer a:hover { text-decoration: underline; }
+			.footer-links {
+				display: flex;
+				justify-content: center;
+				gap: 22px;
+				flex-wrap: wrap;
+				margin-bottom: 14px;
+				font-size: 14px;
+				font-weight: 600;
+			}
+
+			/* ── MISC ── */
+			.section-lead {
+				font-size: 17px;
+				color: var(--text2);
+				line-height: 1.75;
+				max-width: 620px;
+				margin: 0 auto 8px;
+				text-align: center;
+			}
+			.center { text-align: center; }
+			.tight { padding-top: 56px; }
+
+			@keyframes g-travel {
+				0%   { transform: translateX(0);     opacity: 0; }
+				8%   { opacity: 1; }
+				92%  { opacity: 1; }
+				100% { transform: translateX(572px); opacity: 0; }
+			}
+
+			/* 4-card grids read better as a 2x2 than as 3 + orphan */
+			.skills-grid.grid-2 {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				max-width: 840px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			@media (max-width: 768px) {
+				.skills-grid.grid-2 { grid-template-columns: 1fr; }
+			}
+
+			/* Outcome cards. These are summaries, not verbatim quotes,
+			   so they are paragraphs rather than blockquotes. */
+			.quote-body {
+				font-size: 16px;
+				color: var(--text2);
+				line-height: 1.7;
+				margin-bottom: 18px;
+			}
+			.quote-body strong { color: var(--text); }
+
+			/* ── SINGLE PULL QUOTE ── */
+			.pullquote {
+				max-width: 720px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.pullquote blockquote {
+				font-family: var(--serif);
+				font-size: clamp(20px, 3vw, 27px);
+				font-weight: 500;
+				line-height: 1.5;
+				color: var(--navy);
+				letter-spacing: -0.01em;
+				text-wrap: balance;
+			}
+			.pullquote blockquote strong {
+				font-weight: 700;
+				color: var(--accent);
+			}
+			.pullquote-mark {
+				font-family: var(--serif);
+				font-size: 64px;
+				font-weight: 700;
+				line-height: 0.6;
+				color: var(--accent-mid);
+				display: block;
+				margin-bottom: 18px;
+			}
+			.pullquote cite {
+				display: block;
+				margin-top: 28px;
+				font-style: normal;
+				font-size: 14.5px;
+				color: var(--muted);
+				line-height: 1.5;
+			}
+			.pullquote cite b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 17px;
+				font-weight: 600;
+				font-style: normal;
+				color: var(--navy);
+			}
+
+			/* ═══════════════════════════════════════════
+			   AGENT WEEKEND
+			   ═══════════════════════════════════════════ */
+
+			/* ── EVENT HEADER CHIPS ── */
+			.event-meta {
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-bottom: 30px;
+			}
+			.event-chip {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 8px 16px;
+				border-radius: 999px;
+				background: #ffffff;
+				border: 1px solid var(--border);
+				font-size: 13.5px;
+				font-weight: 600;
+				color: var(--navy);
+			}
+			.event-chip.hot {
+				background: var(--accent-dim);
+				border-color: var(--accent-mid);
+				color: var(--accent);
+			}
+
+			.hero-price-big {
+				font-family: var(--serif);
+				font-size: clamp(34px, 6vw, 46px);
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1;
+				margin-bottom: 8px;
+			}
+			.hero-price-sub {
+				font-size: 14.5px;
+				color: var(--muted);
+				margin-bottom: 30px;
+			}
+
+			/* ── PREREQUISITE CALLOUT ── */
+			.prereq {
+				max-width: 720px;
+				margin: 0 auto;
+				background: var(--navy);
+				border-radius: 16px;
+				padding: 40px 44px;
+				color: #ffffff;
+			}
+			.prereq h3 {
+				font-family: var(--serif);
+				font-size: clamp(21px, 3.2vw, 27px);
+				font-weight: 600;
+				margin-bottom: 20px;
+				line-height: 1.3;
+			}
+			.prereq ul { list-style: none; }
+			.prereq li {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				font-size: 16px;
+				color: rgba(255, 255, 255, 0.86);
+				line-height: 1.6;
+				margin-bottom: 13px;
+			}
+			.prereq li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: #6ee7b7;
+			}
+			.prereq-tail {
+				margin-top: 22px;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.2);
+				font-size: 16px;
+				color: #ffffff;
+				font-weight: 600;
+			}
+			@media (max-width: 600px) { .prereq { padding: 32px 24px; } }
+
+			/* ── TWO DAY PLAN ── */
+			.day-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 24px;
+				margin-top: 44px;
+			}
+			.day-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 12px 40px rgba(15, 37, 87, 0.08);
+				display: flex;
+				flex-direction: column;
+			}
+			.day-head {
+				background: var(--navy);
+				padding: 26px 32px;
+				color: #ffffff;
+			}
+			.day-card:nth-child(2) .day-head { background: var(--accent); }
+			.day-eyebrow {
+				font-size: 11.5px;
+				font-weight: 700;
+				letter-spacing: 1.6px;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.7);
+				margin-bottom: 6px;
+			}
+			.day-head h3 {
+				font-family: var(--serif);
+				font-size: 27px;
+				font-weight: 600;
+				line-height: 1.2;
+			}
+			.day-time {
+				font-size: 13.5px;
+				color: rgba(255, 255, 255, 0.82);
+				margin-top: 6px;
+			}
+			.day-body { padding: 30px 32px 32px; flex: 1; }
+			.day-body ul { list-style: none; }
+			.day-body li {
+				position: relative;
+				padding-left: 19px;
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.6;
+				margin-bottom: 15px;
+			}
+			.day-body li::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 9px;
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: var(--accent-mid);
+			}
+			.day-body li b { color: var(--navy); font-weight: 600; }
+			.day-out {
+				margin-top: 22px;
+				padding: 16px 18px;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 10px;
+				font-size: 14.5px;
+				color: var(--navy);
+				font-weight: 600;
+				line-height: 1.5;
+			}
+			@media (max-width: 600px) {
+				.day-head { padding: 22px 24px; }
+				.day-body { padding: 26px 24px 28px; }
+			}
+
+			/* ── GUARANTEE ── */
+			.guarantee {
+				max-width: 720px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--secondary);
+				border-radius: 16px;
+				padding: 40px 44px;
+				text-align: center;
+				box-shadow: 0 12px 40px rgba(15, 118, 110, 0.1);
+			}
+			.guarantee-label {
+				font-size: 11.5px;
+				font-weight: 700;
+				letter-spacing: 1.6px;
+				text-transform: uppercase;
+				color: var(--secondary);
+				margin-bottom: 14px;
+			}
+			.guarantee p {
+				font-family: var(--serif);
+				font-size: clamp(19px, 3vw, 25px);
+				font-weight: 500;
+				color: var(--navy);
+				line-height: 1.45;
+				text-wrap: balance;
+			}
+			.guarantee small {
+				display: block;
+				margin-top: 18px;
+				font-family: var(--sans);
+				font-size: 14px;
+				color: var(--text2);
+				line-height: 1.6;
+			}
+			@media (max-width: 600px) { .guarantee { padding: 32px 24px; } }
+
+			/* ── BUY BOX ── */
+			.buy-box {
+				max-width: 480px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				padding: 40px 36px 34px;
+				text-align: center;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.16);
+			}
+			.buy-amount {
+				font-family: var(--serif);
+				font-size: 56px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1;
+			}
+			.buy-terms {
+				font-size: 14px;
+				color: var(--muted);
+				margin: 10px 0 26px;
+				line-height: 1.6;
+			}
+			.buy-list {
+				list-style: none;
+				text-align: left;
+				margin-bottom: 28px;
+			}
+			.buy-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.55;
+				margin-bottom: 12px;
+			}
+			.buy-list li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+			.buy-fine {
+				font-size: 12.5px;
+				color: var(--muted);
+				margin-top: 14px;
+				line-height: 1.6;
+			}
+			@media (max-width: 600px) { .buy-box { padding: 32px 22px 28px; } }
+
+			/* ── SETUP GRID ── */
+			.setup-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
+				gap: 20px;
+				margin-top: 40px;
+			}
+			.setup-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 24px;
+			}
+			.setup-card h4 {
+				font-family: var(--sans);
+				font-size: 15.5px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 8px;
+			}
+			.setup-card p {
+				font-size: 14.5px;
+				color: var(--text2);
+				line-height: 1.6;
+			}
+
+			/* ── AGENT LOOP GRAPHIC ── */
+			.g-loop {
+				fill: none;
+				stroke: var(--accent-mid);
+				stroke-width: 2;
+				stroke-dasharray: 5 7;
+				stroke-linecap: round;
+				animation: g-march 2s linear infinite;
+			}
+			.g-orbit {
+				fill: var(--accent);
+				animation: g-spin 5s linear infinite;
+				transform-origin: 690px 96px;
+			}
+			@keyframes g-spin { to { transform: rotate(360deg); } }
+			@media (prefers-reduced-motion: reduce) {
+				.g-loop, .g-orbit { animation: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ─────────── ANNOUNCE BAR ─────────── -->
+		<div class="announce-bar">
+			Saturday October 3 and Sunday October 4. 10am to 4pm PST. Twenty seats.
+		</div>
+
+		<!-- ─────────── HERO ─────────── -->
+		<section class="hero">
+			<div class="container-wide">
+				<div class="event-meta">
+					<span class="event-chip">Oct 3 and 4</span>
+					<span class="event-chip">10am to 4pm PST</span>
+					<span class="event-chip hot">20 seats</span>
+					<span class="event-chip">TypeScript and Next.js</span>
+				</div>
+
+				<h1 class="hero-headline">
+					Build a Production AI Agent in <span class="gradient">One Weekend</span>
+				</h1>
+
+				<p class="hero-sub">
+					Saturday you build retrieval. Sunday you turn it into an agent. <strong>Sunday evening you have a deployed application you built yourself.</strong>
+				</p>
+
+				<p class="hero-sub">
+					You already know how to code. We will teach you the AI engineering part.
+				</p>
+
+				<div class="hero-price-big">$497</div>
+				<p class="hero-price-sub">One weekend. Twenty seats. Pay over time with Klarna or Affirm at checkout.</p>
+
+				<div class="cta-group">
+					<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="cta-btn">
+						Claim Your Seat
+					</a>
+					<a href="#plan" class="cta-btn-secondary">
+						See the two day plan
+					</a>
+					<p class="cta-note">Your repo, your accounts and your API credits are set up before you arrive.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── PREREQUISITE ─────────── -->
+		<section class="section tight">
+			<div class="container-wide">
+				<div class="prereq">
+					<h3>This is not a learn to code workshop.</h3>
+					<ul>
+						<li>You write software for a living, or close enough that nobody would question it</li>
+						<li>You are comfortable in TypeScript and you have shipped something in Next.js</li>
+						<li>You have called an LLM API, and possibly built a demo with one</li>
+						<li>You have never built a RAG pipeline or an agent you would put in front of real users</li>
+					</ul>
+					<p class="prereq-tail">If that is you, this weekend was built for you.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE TWO DAY PLAN ─────────── -->
+		<section class="section" id="plan" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">Two days. One <span class="gradient">deployed agent</span>.</h2>
+				<p class="section-lead">
+					Saturday is retrieval. Sunday is agents. Every hour of it is you writing code, not watching someone else write it.
+				</p>
+
+				<div class="day-grid">
+					<div class="day-card">
+						<div class="day-head">
+							<p class="day-eyebrow">Day one</p>
+							<h3>Saturday: Retrieval</h3>
+							<p class="day-time">October 3, 10am to 4pm PST</p>
+						</div>
+						<div class="day-body">
+							<ul>
+								<li><b>Ingest real data.</b> Not a cleaned toy dataset that was always going to work.</li>
+								<li><b>Chunking.</b> The strategies, and why this decision sets the ceiling on your quality before you have written a line of retrieval code.</li>
+								<li><b>Embeddings.</b> Generate them, understand what the numbers actually represent.</li>
+								<li><b>Vector database.</b> Load it, index it, query it.</li>
+								<li><b>Retrieval.</b> Wire it end to end and watch it return the right thing.</li>
+							</ul>
+							<p class="day-out">By 4pm Saturday you have working RAG over real data.</p>
+						</div>
+					</div>
+
+					<div class="day-card">
+						<div class="day-head">
+							<p class="day-eyebrow">Day two</p>
+							<h3>Sunday: Agents</h3>
+							<p class="day-time">October 4, 10am to 4pm PST</p>
+						</div>
+						<div class="day-body">
+							<ul>
+								<li><b>Tool calling.</b> Give the model things it can actually do, and control when it does them.</li>
+								<li><b>Structured outputs.</b> Get data back you can rely on instead of parsing prose.</li>
+								<li><b>Agentic RAG.</b> Turn Saturday's retrieval into something that decides when and what to retrieve.</li>
+								<li><b>Observability.</b> See where it fails and what it costs, because you cannot fix what you cannot see.</li>
+								<li><b>Evals.</b> The basic ones, so you know whether a change made it better or worse.</li>
+								<li><b>Deploy it.</b> A real URL, not localhost.</li>
+							</ul>
+							<p class="day-out">By 4pm Sunday it is deployed and it is yours.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="graphic" style="margin-top: 56px;">
+					<svg viewBox="0 0 860 200" role="img" aria-label="Saturday: data becomes chunks, embeddings and a vector database feeding retrieval. Sunday: that retrieval becomes an agent loop with tools that gets deployed.">
+						<text class="g-label" x="215" y="26" text-anchor="middle">Saturday</text>
+						<text class="g-sub"   x="215" y="44" text-anchor="middle">Retrieval</text>
+
+						<path class="g-track" d="M60 96 H370" />
+						<path class="g-dash"  d="M60 96 H370" />
+						<circle class="g-pulse" cx="60" cy="96" r="5" style="animation-duration: 3.4s" />
+
+						<circle class="g-node-accent" cx="60"  cy="96" r="20" />
+						<circle class="g-node-accent" cx="163" cy="96" r="20" />
+						<circle class="g-node-accent" cx="266" cy="96" r="20" />
+						<circle class="g-node-accent" cx="370" cy="96" r="20" />
+						<text class="g-sub" x="60"  y="140" text-anchor="middle">Data</text>
+						<text class="g-sub" x="163" y="140" text-anchor="middle">Chunks</text>
+						<text class="g-sub" x="266" y="140" text-anchor="middle">Vectors</text>
+						<text class="g-sub" x="370" y="140" text-anchor="middle">Retrieval</text>
+
+						<path class="g-track" d="M396 96 H640" />
+						<path class="g-dash"  d="M396 96 H640" />
+						<text class="g-sub" x="518" y="82" text-anchor="middle">becomes</text>
+
+						<text class="g-label" x="690" y="26" text-anchor="middle">Sunday</text>
+						<text class="g-sub"   x="690" y="44" text-anchor="middle">Agent, then deployed</text>
+						<circle class="g-loop" cx="690" cy="96" r="46" />
+						<circle class="g-orbit" cx="690" cy="50" r="6" />
+						<circle class="g-node-accent" cx="690" cy="96" r="26" />
+						<text class="g-sub" x="690" y="100" text-anchor="middle">Agent</text>
+						<text class="g-sub" x="690" y="170" text-anchor="middle">Tools, evals, observability</text>
+
+						<path class="g-track" d="M740 96 H790" />
+						<path class="g-dash"  d="M740 96 H790" />
+						<circle class="g-node-accent" cx="812" cy="96" r="20" />
+						<text class="g-sub" x="812" y="140" text-anchor="middle">Deployed</text>
+					</svg>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHAT YOU LEAVE WITH ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">What you leave <span class="gradient">with</span></h2>
+				<p class="section-lead">Three things, and the first one is the point of the whole weekend.</p>
+
+				<div class="skills-grid">
+					<div class="skill-card">
+						<h4>A deployed application</h4>
+						<p><strong>Built by you, running at a URL.</strong> Not a repo you cloned and ran. Something you can open in front of your team on Monday.</p>
+					</div>
+					<div class="skill-card">
+						<h4>The repo, yours to keep</h4>
+						<p>Every line you wrote over the weekend. Use it as the starting point for the thing your company actually needs, or as the project you point at in an interview.</p>
+					</div>
+					<div class="skill-card">
+						<h4>An architecture you can defend</h4>
+						<p>You will be able to say why you chunked it that way, when agentic retrieval beats plain RAG, and <strong>what it costs to run.</strong> That conversation is worth more than the code.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WE SET IT UP ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">Nobody spends the morning fighting <span class="gradient">environment variables</span></h2>
+				<p class="section-lead">
+					The setup is done before you arrive. Twelve hours is enough to build this properly and not one hour more, so we do not spend any of it on installs.
+				</p>
+
+				<div class="setup-grid">
+					<div class="setup-card">
+						<h4>Repo ready</h4>
+						<p>Cloned, installed and running before day one. You get it the week before with a checklist that takes ten minutes.</p>
+					</div>
+					<div class="setup-card">
+						<h4>Accounts sorted</h4>
+						<p>Every service you need, with instructions written for the exact version we are using that weekend.</p>
+					</div>
+					<div class="setup-card">
+						<h4>API credits included</h4>
+						<p>You will not pay for a single token. The credits are part of your seat.</p>
+					</div>
+					<div class="setup-card">
+						<h4>Starter app running</h4>
+						<p>A working Next.js application on day one, so you spend the weekend building the AI part and nothing else.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── GUARANTEE ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<div class="guarantee">
+					<p class="guarantee-label">The guarantee</p>
+					<p>If you do not finish during the weekend, we work with you the following week until you do.</p>
+					<small>
+						Not a refund you have to argue for. We stay on it with you until the thing is deployed, because a weekend you did not finish is worth nothing to either of us.
+					</small>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── BUY ─────────── -->
+		<section class="section" id="seat" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">One weekend. Twenty <span class="gradient">seats</span>.</h2>
+				<p class="section-lead" style="margin-bottom: 40px;">
+					Twenty because that is how many people one instructor can actually help build something in two days.
+				</p>
+
+				<div class="buy-box">
+					<div class="buy-amount">$497</div>
+					<p class="buy-terms">Saturday October 3 and Sunday October 4<br />10am to 4pm PST both days</p>
+					<ul class="buy-list">
+						<li>Twelve hours of live, hands-on building</li>
+						<li>Repo, accounts and starter app set up in advance</li>
+						<li>API credits included</li>
+						<li>The deployed app and the repo are yours</li>
+						<li>If you do not finish, we stay with you until you do</li>
+					</ul>
+					<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="cta-btn">
+						Claim Your Seat
+					</a>
+					<p class="buy-fine">
+						Pay in full, or pay over time with Klarna or Affirm at checkout. Your employer can expense this. Ask for an invoice at <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a>.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHO RUNS IT ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">Who <span class="gradient">runs it</span></h2>
+				<div class="who-box" style="margin-top: 40px;">
+					<img class="who-photo" src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian Jenney" width="92" height="92" loading="lazy" onerror="this.style.display='none'" />
+					<div>
+						<h4>Brian Jenney</h4>
+						<p class="who-role">Founder, Parsity</p>
+						<p>
+							Brian led development on the AI system an influencer marketing company used to help record labels like Roc Nation and Universal find TikTok influencers. A multimodal RAG system, with the agentic layer and the web app built on top of it. Before that he was a founding engineer at an AI startup matching Fortune 500 buyers with suppliers, since acquired.
+						</p>
+						<p>
+							<strong>Light on theory, heavy on practical application.</strong> The failure modes you will hit on Sunday are ones he has already hit in production, on someone's payroll, with a CEO asking why it was taking so long.
+						</p>
+					</div>
+				</div>
+
+				<div class="stat-band" style="margin-top: 48px;">
+					<div class="stat">
+						<b>30+</b>
+						<span>engineers trained</span>
+						<small>This year</small>
+					</div>
+					<div class="stat">
+						<b>Dept. of Labor</b>
+						<span>grant backing</span>
+						<small>Federally vetted</small>
+					</div>
+					<div class="stat">
+						<b>CSU</b>
+						<span>California State University system</span>
+						<small>Recently accepted</small>
+					</div>
+					<div class="stat">
+						<b>Claude Partner</b>
+						<span>official partner</span>
+						<small>With a path to certification</small>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── PROOF ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container-wide">
+				<div class="pullquote">
+					<blockquote>
+						<span class="pullquote-mark" aria-hidden="true">&ldquo;</span>
+						This course has taken me from wondering how working with RAG, agents, and LLMs work, <strong>to now building these things myself, with the understanding of exactly what's happening.</strong> It has empowered me to learn by building.
+					</blockquote>
+					<cite><b>Joe</b>now leading the AI initiative at his company</cite>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FAQ ─────────── -->
+		<section class="section">
+			<div class="container">
+				<h2 class="section-title">Questions we <span class="gradient">get</span></h2>
+				<div class="faq-list">
+					<div class="faq-item">
+						<h4>Do I need to know Python?</h4>
+						<p>No. The whole weekend is TypeScript and Next.js. Most AI tutorials are written in Python, which is exactly why so many working web developers stall out before they start.</p>
+					</div>
+					<div class="faq-item">
+						<h4>What if I have never touched a vector database?</h4>
+						<p>Good. That is the point of Saturday. The prerequisite is that you can write software, not that you have done any of this before.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Twelve hours is not much. Is this going to be shallow?</h4>
+						<p>It is narrow, which is different. We are not covering fine tuning, model selection, or six other things you can read about later. One retrieval system, one agent, deployed. Narrow scope is what makes finishing in a weekend realistic.</p>
+					</div>
+					<div class="faq-item">
+						<h4>What if I miss part of a day?</h4>
+						<p>The guarantee covers it. If you are not finished by Sunday evening, for any reason, we work with you the following week until the thing is deployed.</p>
+					</div>
+					<div class="faq-item">
+						<h4>How is this different from the six week program?</h4>
+						<p>Scope. This is one weekend and one outcome. The <a href="/ai-dev" style="color: var(--accent);">six week AI Engineer program</a> goes deeper, includes weekly code review on your own work, and ends in a capstone. Plenty of people do this weekend first to find out whether they want the longer thing.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Can my employer pay?</h4>
+						<p>Yes, and at $497 it usually clears without a committee. Email <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a> for an invoice or a training budget request template.</p>
+					</div>
+					<div class="faq-item">
+						<h4>I am not in Pacific time.</h4>
+						<p>10am to 4pm PST is 1pm to 7pm Eastern and 6pm to midnight in London. Plenty of people outside the US have done our live sessions. If the hours are impossible where you are, email me before you buy.</p>
+					</div>
+				</div>
+
+				<div class="partner-badge">
+					<span class="partner-badge-label">Official Claude Partner</span>
+					<div class="partner-badge-embed">
+						<a href="https://www.credly.com/badges/47599467-a748-4106-959b-830813b31885" target="_blank" rel="noopener" title="Verify on Credly">
+							<img src="https://images.credly.com/size/340x340/images/d8bc1ecf-6369-4bf9-8920-84169b35d918/blob" alt="Claude Partner badge" width="150" height="150" style="display: block;" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── BOTTOM CTA ─────────── -->
+		<section class="bottom-cta" id="apply">
+			<div class="container">
+				<div class="final-card">
+					<h3>You have been meaning to learn this for a year.</h3>
+					<p>
+						It is one weekend and $497. By Sunday evening you either have a deployed agent you built, or we are still working with you until you do.
+					</p>
+					<p>
+						<strong>October 3 and 4. Twenty seats.</strong>
+					</p>
+					<div class="final-btn-group">
+						<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="final-btn">
+							Claim Your Seat, $497
+						</a>
+					</div>
+					<p class="final-note">
+						Questions before you buy? <a href="mailto:assistant@parsity.io" style="color: rgba(255,255,255,0.8);">assistant@parsity.io</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── FOOTER ─────────── -->
+		<footer class="site-footer">
+			<div class="footer-links">
+				<a href="/ai-dev">Six week AI Engineer program</a>
+				<a href="/for-teams">For engineering teams</a>
+				<a href="/for-business">For business owners</a>
+			</div>
+			<p>Parsity. Practical AI engineering training. <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
+		</footer>
+	</body>
+</html>
