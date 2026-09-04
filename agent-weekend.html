@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Free AI Training for Your Engineering Team | Parsity</title>
-		<meta name="description" content="We train your existing engineers to build production AI systems. RAG, agents, evals, security. Get a free one hour training session for your team before you spend a dollar." />
+		<title>Build a Production AI Agent in One Weekend | Parsity</title>
+		<meta name="description" content="October 3 and 4, 10am to 4pm PST. Saturday you build retrieval, Sunday you turn it into an agent, and you leave with a deployed application you built yourself. TypeScript and Next.js. $497, twenty seats." />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -1434,60 +1434,579 @@
 				font-style: normal;
 				color: var(--navy);
 			}
+
+			/* ═══════════════════════════════════════════
+			   AGENT WEEKEND
+			   ═══════════════════════════════════════════ */
+
+			/* ── EVENT HEADER CHIPS ── */
+			.event-meta {
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin-bottom: 30px;
+			}
+			.event-chip {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 8px 16px;
+				border-radius: 999px;
+				background: #ffffff;
+				border: 1px solid var(--border);
+				font-size: 13.5px;
+				font-weight: 600;
+				color: var(--navy);
+			}
+			.event-chip.hot {
+				background: var(--accent-dim);
+				border-color: var(--accent-mid);
+				color: var(--accent);
+			}
+
+			.hero-price-big {
+				font-family: var(--serif);
+				font-size: clamp(34px, 6vw, 46px);
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1;
+				margin-bottom: 8px;
+			}
+			.hero-price-sub {
+				font-size: 14.5px;
+				color: var(--muted);
+				margin-bottom: 30px;
+			}
+
+			/* ── PREREQUISITE CALLOUT ── */
+			.prereq {
+				max-width: 720px;
+				margin: 0 auto;
+				background: var(--navy);
+				border-radius: 16px;
+				padding: 40px 44px;
+				color: #ffffff;
+			}
+			.prereq h3 {
+				font-family: var(--serif);
+				font-size: clamp(21px, 3.2vw, 27px);
+				font-weight: 600;
+				margin-bottom: 20px;
+				line-height: 1.3;
+			}
+			.prereq ul { list-style: none; }
+			.prereq li {
+				display: flex;
+				align-items: flex-start;
+				gap: 12px;
+				font-size: 16px;
+				color: rgba(255, 255, 255, 0.86);
+				line-height: 1.6;
+				margin-bottom: 13px;
+			}
+			.prereq li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: #6ee7b7;
+			}
+			.prereq-tail {
+				margin-top: 22px;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.2);
+				font-size: 16px;
+				color: #ffffff;
+				font-weight: 600;
+			}
+			@media (max-width: 600px) { .prereq { padding: 32px 24px; } }
+
+			/* ── TWO DAY PLAN ── */
+			.day-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+				gap: 24px;
+				margin-top: 44px;
+			}
+			.day-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 12px 40px rgba(15, 37, 87, 0.08);
+				display: flex;
+				flex-direction: column;
+			}
+			.day-head {
+				background: var(--navy);
+				padding: 26px 32px;
+				color: #ffffff;
+			}
+			.day-card:nth-child(2) .day-head { background: var(--accent); }
+			.day-eyebrow {
+				font-size: 11.5px;
+				font-weight: 700;
+				letter-spacing: 1.6px;
+				text-transform: uppercase;
+				color: rgba(255, 255, 255, 0.7);
+				margin-bottom: 6px;
+			}
+			.day-head h3 {
+				font-family: var(--serif);
+				font-size: 27px;
+				font-weight: 600;
+				line-height: 1.2;
+			}
+			.day-time {
+				font-size: 13.5px;
+				color: rgba(255, 255, 255, 0.82);
+				margin-top: 6px;
+			}
+			.day-body { padding: 30px 32px 32px; flex: 1; }
+			.day-body ul { list-style: none; }
+			.day-body li {
+				position: relative;
+				padding-left: 19px;
+				font-size: 15.5px;
+				color: var(--text2);
+				line-height: 1.6;
+				margin-bottom: 15px;
+			}
+			.day-body li::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 9px;
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: var(--accent-mid);
+			}
+			.day-body li b { color: var(--navy); font-weight: 600; }
+			.day-out {
+				margin-top: 22px;
+				padding: 16px 18px;
+				background: var(--accent-dim);
+				border: 1px solid var(--accent-mid);
+				border-radius: 10px;
+				font-size: 14.5px;
+				color: var(--navy);
+				font-weight: 600;
+				line-height: 1.5;
+			}
+			@media (max-width: 600px) {
+				.day-head { padding: 22px 24px; }
+				.day-body { padding: 26px 24px 28px; }
+			}
+
+			/* ── GUARANTEE ── */
+			.guarantee {
+				max-width: 720px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--secondary);
+				border-radius: 16px;
+				padding: 40px 44px;
+				text-align: center;
+				box-shadow: 0 12px 40px rgba(15, 118, 110, 0.1);
+			}
+			.guarantee-label {
+				font-size: 11.5px;
+				font-weight: 700;
+				letter-spacing: 1.6px;
+				text-transform: uppercase;
+				color: var(--secondary);
+				margin-bottom: 14px;
+			}
+			.guarantee p {
+				font-family: var(--serif);
+				font-size: clamp(19px, 3vw, 25px);
+				font-weight: 500;
+				color: var(--navy);
+				line-height: 1.45;
+				text-wrap: balance;
+			}
+			.guarantee small {
+				display: block;
+				margin-top: 18px;
+				font-family: var(--sans);
+				font-size: 14px;
+				color: var(--text2);
+				line-height: 1.6;
+			}
+			@media (max-width: 600px) { .guarantee { padding: 32px 24px; } }
+
+			/* ── BUY BOX ── */
+			.buy-box {
+				max-width: 480px;
+				margin: 0 auto;
+				background: #ffffff;
+				border: 2px solid var(--accent);
+				border-radius: 18px;
+				padding: 40px 36px 34px;
+				text-align: center;
+				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.16);
+			}
+			.buy-amount {
+				font-family: var(--serif);
+				font-size: 56px;
+				font-weight: 700;
+				color: var(--navy);
+				line-height: 1;
+			}
+			.buy-terms {
+				font-size: 14px;
+				color: var(--muted);
+				margin: 10px 0 26px;
+				line-height: 1.6;
+			}
+			.buy-list {
+				list-style: none;
+				text-align: left;
+				margin-bottom: 28px;
+			}
+			.buy-list li {
+				display: flex;
+				align-items: flex-start;
+				gap: 11px;
+				font-size: 15px;
+				color: var(--text2);
+				line-height: 1.55;
+				margin-bottom: 12px;
+			}
+			.buy-list li::before {
+				content: '✓';
+				flex-shrink: 0;
+				font-weight: 700;
+				color: var(--secondary);
+			}
+			.buy-fine {
+				font-size: 12.5px;
+				color: var(--muted);
+				margin-top: 14px;
+				line-height: 1.6;
+			}
+			@media (max-width: 600px) { .buy-box { padding: 32px 22px 28px; } }
+
+			/* ── SETUP GRID ── */
+			.setup-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
+				gap: 20px;
+				margin-top: 40px;
+			}
+			.setup-card {
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 12px;
+				padding: 24px;
+			}
+			.setup-card h4 {
+				font-family: var(--sans);
+				font-size: 15.5px;
+				font-weight: 600;
+				color: var(--navy);
+				margin-bottom: 8px;
+			}
+			.setup-card p {
+				font-size: 14.5px;
+				color: var(--text2);
+				line-height: 1.6;
+			}
+
+			/* ── AGENT LOOP GRAPHIC ── */
+			.g-loop {
+				fill: none;
+				stroke: var(--accent-mid);
+				stroke-width: 2;
+				stroke-dasharray: 5 7;
+				stroke-linecap: round;
+				animation: g-march 2s linear infinite;
+			}
+			.g-orbit {
+				fill: var(--accent);
+				animation: g-spin 5s linear infinite;
+				transform-origin: 690px 96px;
+			}
+			@keyframes g-spin { to { transform: rotate(360deg); } }
+			@media (prefers-reduced-motion: reduce) {
+				.g-loop, .g-orbit { animation: none; }
+			}
 		</style>
 	</head>
 	<body>
 		<!-- ─────────── ANNOUNCE BAR ─────────── -->
 		<div class="announce-bar">
-			Over 30 engineers trained this year. Now booking free team sessions.
+			Saturday October 3 and Sunday October 4. 10am to 4pm PST. Twenty seats.
 		</div>
-
-		<!-- ─────────── LANE SWITCH ─────────── -->
-		<nav class="lane-bar" aria-label="Choose your track">
-			<div class="lane-inner">
-				<span class="lane-label">Who are you?</span>
-				<a class="lane-link" href="/for-teams" aria-current="page">I run an engineering team</a>
-				<a class="lane-link" href="/for-business">I run a business or a non technical team</a>
-				<a class="lane-link" href="/ai-dev">I want this for myself</a>
-			</div>
-		</nav>
 
 		<!-- ─────────── HERO ─────────── -->
 		<section class="hero">
 			<div class="container-wide">
+				<div class="event-meta">
+					<span class="event-chip">Oct 3 and 4</span>
+					<span class="event-chip">10am to 4pm PST</span>
+					<span class="event-chip hot">20 seats</span>
+					<span class="event-chip">TypeScript and Next.js</span>
+				</div>
+
 				<h1 class="hero-headline">
-					So You Don't Have to Hire an <span class="gradient">AI Engineer</span>
+					Build a Production AI Agent in <span class="gradient">One Weekend</span>
 				</h1>
 
 				<p class="hero-sub">
-					We train your existing engineers to build production AI systems. RAG over your own data, agent architecture, evals, security, observability. <strong>The real stuff, not prompt tips.</strong>
+					Saturday you build retrieval. Sunday you turn it into an agent. <strong>Sunday evening you have a deployed application you built yourself.</strong>
 				</p>
 
 				<p class="hero-sub">
-					Try it before you spend a dollar. One hour of live training with your team, built around your stack, free and with no strings.
+					You already know how to code. We will teach you the AI engineering part.
 				</p>
 
-				<div class="cta-group">
-					<a href="https://calendly.com/brianjenney83/free-team-training-call" target="_blank" rel="noopener" class="cta-btn">
-						Schedule Your Free Team Training Call
-					</a>
-					<a href="#curriculum" class="cta-btn-secondary">
-						See what we teach
-					</a>
-					<p class="cta-note">Fifteen minutes. If your team is not a fit, I will tell you on the call.</p>
-				</div>
+				<div class="hero-price-big">$497</div>
+				<p class="hero-price-sub">One weekend. Twenty seats. Pay over time with Klarna or Affirm at checkout.</p>
 
-				<figure class="hero-media">
-					<img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/themes/2164183145/settings_images/316b55e-c5d6-4315-3d73-1b582aa4a_78acea11-25bf-4e23-9289-3bd7f173428b.png" width="910" height="502" alt="Brian teaching a live session: a Qdrant vector database dashboard showing a cluster of 512-dimension embeddings from transcript data, with his webcam feed in the corner." />
-					<figcaption>A live session. Engineers writing code, not watching slides.</figcaption>
-				</figure>
+				<div class="cta-group">
+					<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="cta-btn">
+						Claim Your Seat
+					</a>
+					<a href="#plan" class="cta-btn-secondary">
+						See the two day plan
+					</a>
+					<p class="cta-note">Your repo, your accounts and your API credits are set up before you arrive.</p>
+				</div>
 			</div>
 		</section>
 
-		<!-- ─────────── PROOF STAT BAND ─────────── -->
+		<!-- ─────────── PREREQUISITE ─────────── -->
 		<section class="section tight">
 			<div class="container-wide">
-				<div class="stat-band">
+				<div class="prereq">
+					<h3>This is not a learn to code workshop.</h3>
+					<ul>
+						<li>You write software for a living, or close enough that nobody would question it</li>
+						<li>You are comfortable in TypeScript and you have shipped something in Next.js</li>
+						<li>You have called an LLM API, and possibly built a demo with one</li>
+						<li>You have never built a RAG pipeline or an agent you would put in front of real users</li>
+					</ul>
+					<p class="prereq-tail">If that is you, this weekend was built for you.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── THE TWO DAY PLAN ─────────── -->
+		<section class="section" id="plan" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">Two days. One <span class="gradient">deployed agent</span>.</h2>
+				<p class="section-lead">
+					Saturday is retrieval. Sunday is agents. Every hour of it is you writing code, not watching someone else write it.
+				</p>
+
+				<div class="day-grid">
+					<div class="day-card">
+						<div class="day-head">
+							<p class="day-eyebrow">Day one</p>
+							<h3>Saturday: Retrieval</h3>
+							<p class="day-time">October 3, 10am to 4pm PST</p>
+						</div>
+						<div class="day-body">
+							<ul>
+								<li><b>Ingest real data.</b> Not a cleaned toy dataset that was always going to work.</li>
+								<li><b>Chunking.</b> The strategies, and why this decision sets the ceiling on your quality before you have written a line of retrieval code.</li>
+								<li><b>Embeddings.</b> Generate them, understand what the numbers actually represent.</li>
+								<li><b>Vector database.</b> Load it, index it, query it.</li>
+								<li><b>Retrieval.</b> Wire it end to end and watch it return the right thing.</li>
+							</ul>
+							<p class="day-out">By 4pm Saturday you have working RAG over real data.</p>
+						</div>
+					</div>
+
+					<div class="day-card">
+						<div class="day-head">
+							<p class="day-eyebrow">Day two</p>
+							<h3>Sunday: Agents</h3>
+							<p class="day-time">October 4, 10am to 4pm PST</p>
+						</div>
+						<div class="day-body">
+							<ul>
+								<li><b>Tool calling.</b> Give the model things it can actually do, and control when it does them.</li>
+								<li><b>Structured outputs.</b> Get data back you can rely on instead of parsing prose.</li>
+								<li><b>Agentic RAG.</b> Turn Saturday's retrieval into something that decides when and what to retrieve.</li>
+								<li><b>Observability.</b> See where it fails and what it costs, because you cannot fix what you cannot see.</li>
+								<li><b>Evals.</b> The basic ones, so you know whether a change made it better or worse.</li>
+								<li><b>Deploy it.</b> A real URL, not localhost.</li>
+							</ul>
+							<p class="day-out">By 4pm Sunday it is deployed and it is yours.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="graphic" style="margin-top: 56px;">
+					<svg viewBox="0 0 860 200" role="img" aria-label="Saturday: data becomes chunks, embeddings and a vector database feeding retrieval. Sunday: that retrieval becomes an agent loop with tools that gets deployed.">
+						<text class="g-label" x="215" y="26" text-anchor="middle">Saturday</text>
+						<text class="g-sub"   x="215" y="44" text-anchor="middle">Retrieval</text>
+
+						<path class="g-track" d="M60 96 H370" />
+						<path class="g-dash"  d="M60 96 H370" />
+						<circle class="g-pulse" cx="60" cy="96" r="5" style="animation-duration: 3.4s" />
+
+						<circle class="g-node-accent" cx="60"  cy="96" r="20" />
+						<circle class="g-node-accent" cx="163" cy="96" r="20" />
+						<circle class="g-node-accent" cx="266" cy="96" r="20" />
+						<circle class="g-node-accent" cx="370" cy="96" r="20" />
+						<text class="g-sub" x="60"  y="140" text-anchor="middle">Data</text>
+						<text class="g-sub" x="163" y="140" text-anchor="middle">Chunks</text>
+						<text class="g-sub" x="266" y="140" text-anchor="middle">Vectors</text>
+						<text class="g-sub" x="370" y="140" text-anchor="middle">Retrieval</text>
+
+						<path class="g-track" d="M396 96 H640" />
+						<path class="g-dash"  d="M396 96 H640" />
+						<text class="g-sub" x="518" y="82" text-anchor="middle">becomes</text>
+
+						<text class="g-label" x="690" y="26" text-anchor="middle">Sunday</text>
+						<text class="g-sub"   x="690" y="44" text-anchor="middle">Agent, then deployed</text>
+						<circle class="g-loop" cx="690" cy="96" r="46" />
+						<circle class="g-orbit" cx="690" cy="50" r="6" />
+						<circle class="g-node-accent" cx="690" cy="96" r="26" />
+						<text class="g-sub" x="690" y="100" text-anchor="middle">Agent</text>
+						<text class="g-sub" x="690" y="170" text-anchor="middle">Tools, evals, observability</text>
+
+						<path class="g-track" d="M740 96 H790" />
+						<path class="g-dash"  d="M740 96 H790" />
+						<circle class="g-node-accent" cx="812" cy="96" r="20" />
+						<text class="g-sub" x="812" y="140" text-anchor="middle">Deployed</text>
+					</svg>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHY THESE TWO THINGS ─────────── -->
+		<section class="section" id="why">
+			<div class="container-wide">
+				<h2 class="section-title center">Why retrieval and agents, and <span class="gradient">nothing else</span></h2>
+				<p class="section-lead">
+					No fine tuning, no model comparison, no tour of six frameworks. Two days buys one thing done properly, and this is the thing. The reasoning is not vibes.
+				</p>
+
+				<div class="skills-grid">
+					<div class="skill-card">
+						<h4>It is what the job listing actually says</h4>
+						<p>Brian designed the hiring process for an AI Engineer role at a startup he worked at. Stripped of the title, the job came down to four things: <strong>RAG</strong> (chunking, re-ranking, and an opinion on retrieval strategies), <strong>agents and workflows</strong> (tool calling versus orchestration, plus evals), agent frameworks and when to skip them, and <strong>observability</strong> (token cost, and where agents drift from what you expected). That list is Saturday and Sunday.</p>
+					</div>
+					<div class="skill-card">
+						<h4>It is what we watch companies ask for</h4>
+						<p>Between consulting work and a recruiting partnership, we see live hiring demand instead of guessing at it. Startups ask for RAG, vector databases, production agents, and people who deploy software properly with tests and observability. Non-technical companies ask for agents that automate a workflow and plug into tools they already run. <strong>Both lists open the same way.</strong></p>
+					</div>
+					<div class="skill-card">
+						<h4>Almost nobody has done it yet</h4>
+						<p>The field is new enough that most working web developers have no production experience with any of this, and companies know it. <strong>Right now a serious side project is a legitimate answer to "where have you done this."</strong> That has not been true of React or Postgres for a decade, and this window closes as the knowledge goes mainstream.</p>
+					</div>
+				</div>
+
+				<div class="problem-highlight" style="max-width: 720px; margin: 40px auto 0;">
+					<p>What you build this weekend is that side project. It is deployed, it is yours, and Sunday evening is a starting point rather than a finish line. Take it as far as you want.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHAT YOU LEAVE WITH ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">What you leave <span class="gradient">with</span></h2>
+				<p class="section-lead">Three things, and the first one is the point of the whole weekend.</p>
+
+				<div class="skills-grid">
+					<div class="skill-card">
+						<h4>A deployed application</h4>
+						<p><strong>Built by you, running at a URL.</strong> Not a repo you cloned and ran. Something you can open in front of your team on Monday.</p>
+					</div>
+					<div class="skill-card">
+						<h4>The repo, yours to keep</h4>
+						<p>Every line you wrote over the weekend. Use it as the starting point for the thing your company actually needs, or as the project you point at in an interview.</p>
+					</div>
+					<div class="skill-card">
+						<h4>An architecture you can defend</h4>
+						<p>You will be able to say why you chunked it that way, when agentic retrieval beats plain RAG, and <strong>what it costs to run.</strong> That conversation is worth more than the code.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WE SET IT UP ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">Nobody spends the morning fighting <span class="gradient">environment variables</span></h2>
+				<p class="section-lead">
+					The setup is done before you arrive. Twelve hours is enough to build this properly and not one hour more, so we do not spend any of it on installs.
+				</p>
+
+				<div class="setup-grid">
+					<div class="setup-card">
+						<h4>Repo ready</h4>
+						<p>Cloned, installed and running before day one. You get it the week before with a checklist that takes ten minutes.</p>
+					</div>
+					<div class="setup-card">
+						<h4>Accounts sorted</h4>
+						<p>Every service you need, with instructions written for the exact version we are using that weekend.</p>
+					</div>
+					<div class="setup-card">
+						<h4>API credits included</h4>
+						<p>You will not pay for a single token. The credits are part of your seat.</p>
+					</div>
+					<div class="setup-card">
+						<h4>Starter app running</h4>
+						<p>A working Next.js application on day one, so you spend the weekend building the AI part and nothing else.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── BUY ─────────── -->
+		<section class="section" id="seat" style="background: var(--bg3);">
+			<div class="container-wide">
+				<h2 class="section-title center">One weekend. Twenty <span class="gradient">seats</span>.</h2>
+				<p class="section-lead" style="margin-bottom: 40px;">
+					Twenty because that is how many people one instructor can actually help build something in two days.
+				</p>
+
+				<div class="buy-box">
+					<div class="buy-amount">$497</div>
+					<p class="buy-terms">Saturday October 3 and Sunday October 4<br />10am to 4pm PST both days</p>
+					<ul class="buy-list">
+						<li>Twelve hours of live, hands-on building</li>
+						<li>Repo, accounts and starter app set up in advance</li>
+						<li>API credits included</li>
+						<li>The deployed app and the repo are yours</li>
+						<li>Your $497 applies as credit toward any longer Parsity program</li>
+					</ul>
+					<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="cta-btn">
+						Claim Your Seat
+					</a>
+					<p class="buy-fine">
+						Pay in full, or pay over time with Klarna or Affirm at checkout. Your $497 applies as credit toward any of our longer programs if you decide to go deeper. Your employer can expense this. Ask for an invoice at <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a>.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ─────────── WHO RUNS IT ─────────── -->
+		<section class="section">
+			<div class="container-wide">
+				<h2 class="section-title center">Who <span class="gradient">runs it</span></h2>
+				<div class="who-box" style="margin-top: 40px;">
+					<img class="who-photo" src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian Jenney" width="92" height="92" loading="lazy" onerror="this.style.display='none'" />
+					<div>
+						<h4>Brian Jenney</h4>
+						<p class="who-role">Founder, Parsity</p>
+						<p>
+							Brian led development on the AI system an influencer marketing company used to help record labels like Roc Nation and Universal find TikTok influencers. A multimodal RAG system, with the agentic layer and the web app built on top of it. Before that he was a founding engineer at an AI startup matching Fortune 500 buyers with suppliers, since acquired.
+						</p>
+						<p>
+							<strong>Light on theory, heavy on practical application.</strong> The failure modes you will hit on Sunday are ones he has already hit in production, on someone's payroll, with a CEO asking why it was taking so long.
+						</p>
+					</div>
+				</div>
+
+				<div class="stat-band" style="margin-top: 48px;">
 					<div class="stat">
 						<b>30+</b>
 						<span>engineers trained</span>
@@ -1512,187 +2031,38 @@
 			</div>
 		</section>
 
-		<!-- ─────────── THE OFFER ─────────── -->
-		<section class="section" id="offer" style="background: var(--bg3);">
-			<div class="container-wide">
-				<div class="offer-box">
-					<span class="offer-flag">The offer</span>
-					<h3>One hour of real training for your team. Free.</h3>
-					<p>
-						Most training vendors want a pilot fee and a six week scoping process before your engineers see anything. We would rather just show you the work.
-					</p>
-					<ol class="offer-steps">
-						<li>
-							<b>A fifteen minute call.</b>
-							We learn what your team builds, what data you sit on, and where AI actually fits. You get a straight answer about whether we can help.
-						</li>
-						<li>
-							<b>A free one hour training session.</b>
-							Live with your engineers or recorded async, your choice. Built around your stack and your problem, not a generic deck.
-						</li>
-						<li>
-							<b>Your team leaves having built something.</b>
-							If you want more, we scope it. If you do not, you keep the session and we part as friends.
-						</li>
-					</ol>
-
-					<a href="https://calendly.com/brianjenney83/free-team-training-call" target="_blank" rel="noopener" class="cta-btn">
-						Schedule Your Free Team Training Call
-					</a>
-
-					<p class="offer-value">
-						Hiring an AI engineer costs six figures. <strong>This costs an hour of your team's time.</strong>
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- ─────────── HOW IT WORKS (FLOW GRAPHIC) ─────────── -->
-		<section class="section">
-			<div class="container-wide">
-				<h2 class="section-title center">How the free session <span class="gradient">works</span></h2>
-				<p class="section-lead">Three steps. No procurement process, no pilot fee, no card.</p>
-
-				<div class="graphic" style="margin-top: 44px;">
-					<svg viewBox="0 0 860 150" role="img" aria-label="Three steps: a fifteen minute call, then a free one hour session, then your team ships.">
-						<path class="g-track" d="M144 58 H716" />
-						<path class="g-dash" d="M144 58 H716" />
-						<circle class="g-pulse" cx="144" cy="58" r="5" />
-
-						<circle class="g-node-accent" cx="110" cy="58" r="34" />
-						<text class="g-num" x="110" y="64" text-anchor="middle">1</text>
-						<text class="g-label" x="110" y="118" text-anchor="middle">15 minute call</text>
-						<text class="g-sub" x="110" y="136" text-anchor="middle">We learn your stack</text>
-
-						<circle class="g-node-accent" cx="430" cy="58" r="34" />
-						<text class="g-num" x="430" y="64" text-anchor="middle">2</text>
-						<text class="g-label" x="430" y="118" text-anchor="middle">Free 1 hour session</text>
-						<text class="g-sub" x="430" y="136" text-anchor="middle">Live or async, your call</text>
-
-						<circle class="g-node-accent" cx="750" cy="58" r="34" />
-						<text class="g-num" x="750" y="64" text-anchor="middle">3</text>
-						<text class="g-label" x="750" y="118" text-anchor="middle">Your team ships</text>
-						<text class="g-sub" x="750" y="136" text-anchor="middle">You decide what is next</text>
-					</svg>
-				</div>
-			</div>
-		</section>
-
-		<!-- ─────────── WHAT WE TEACH ─────────── -->
-		<section class="section" id="curriculum" style="background: var(--bg3);">
-			<div class="container-wide">
-				<h2 class="section-title center">What we actually <span class="gradient">teach</span></h2>
-				<p class="section-lead">
-					Built around what companies hire AI engineers to do. Your engineers learn to build it, not to watch a demo of it.
-				</p>
-
-				<div class="skills-grid grid-2">
-					<div class="skill-card">
-						<h4>RAG over your actual data</h4>
-						<p>Chunking, retrieval, re-ranking, and the <strong>evals that tell you whether any of it works</strong>. On your documents, not a toy dataset that was clean to begin with.</p>
-					</div>
-					<div class="skill-card">
-						<h4>Production agent architecture</h4>
-						<p>Tool use, orchestration, and the failure modes that break agents under load. Your team learns <strong>the tradeoffs between approaches</strong>, not one framework's API.</p>
-					</div>
-					<div class="skill-card">
-						<h4>Security and observability</h4>
-						<p>Prompt injection, cost control, tracing, and what to log. <strong>The things that turn a demo into something you can put in front of customers.</strong></p>
-					</div>
-					<div class="skill-card">
-						<h4>Explaining it to leadership</h4>
-						<p>Engineers who can build and explain get budget. We train that conversation too, because a system nobody can defend in a meeting does not get shipped.</p>
-					</div>
-				</div>
-
-				<div class="graphic" style="margin-top: 56px;">
-					<svg viewBox="0 0 860 178" role="img" aria-label="Scattered individual AI experiments on the left converge into one organized production system on the right.">
-						<text class="g-label" x="118" y="24" text-anchor="middle">Your team today</text>
-						<text class="g-sub" x="118" y="42" text-anchor="middle">Scattered experiments</text>
-						<circle class="g-scatter" cx="60"  cy="90"  r="7" />
-						<circle class="g-scatter" cx="128" cy="72"  r="9"  style="animation-delay: .4s" />
-						<circle class="g-scatter" cx="176" cy="112" r="6"  style="animation-delay: .9s" />
-						<circle class="g-scatter" cx="86"  cy="140" r="8"  style="animation-delay: 1.3s" />
-						<circle class="g-scatter" cx="148" cy="158" r="5"  style="animation-delay: 1.8s" />
-						<circle class="g-scatter" cx="44"  cy="120" r="5"  style="animation-delay: 2.2s" />
-						<circle class="g-scatter" cx="112" cy="110" r="6"  style="animation-delay: 2.7s" />
-
-						<path class="g-track" d="M230 118 H620" />
-						<path class="g-dash"  d="M230 118 H620" />
-						<circle class="g-pulse" cx="230" cy="118" r="5" style="animation-duration: 3.6s" />
-						<text class="g-sub" x="425" y="102" text-anchor="middle">Six weeks of hands-on training</text>
-
-						<text class="g-label" x="742" y="24" text-anchor="middle">Your team after</text>
-						<text class="g-sub" x="742" y="42" text-anchor="middle">One system they can defend</text>
-						<rect class="g-cell" x="662" y="62"  width="44" height="44" rx="7" />
-						<rect class="g-cell" x="720" y="62"  width="44" height="44" rx="7" style="animation-delay: .3s" />
-						<rect class="g-cell" x="778" y="62"  width="44" height="44" rx="7" style="animation-delay: .6s" />
-						<rect class="g-cell" x="662" y="120" width="44" height="44" rx="7" style="animation-delay: .9s" />
-						<rect class="g-cell" x="720" y="120" width="44" height="44" rx="7" style="animation-delay: 1.2s" />
-						<rect class="g-cell" x="778" y="120" width="44" height="44" rx="7" style="animation-delay: 1.5s" />
-					</svg>
-					<p class="g-caption">Same engineers. The difference is whether the knowledge lives in one person's side project or in your codebase.</p>
-				</div>
-			</div>
-		</section>
-
-		<!-- ─────────── WHO RUNS IT ─────────── -->
-		<section class="section">
-			<div class="container-wide">
-				<h2 class="section-title center">Who <span class="gradient">runs it</span></h2>
-				<div class="who-box" style="margin-top: 40px;">
-					<img class="who-photo" src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian Jenney" width="92" height="92" loading="lazy" onerror="this.style.display='none'" />
-					<div>
-						<h4>Brian Jenney</h4>
-						<p class="who-role">Founder, Parsity</p>
-						<p>
-							Brian led development on the AI system an influencer marketing company used to help record labels like Roc Nation and Universal find TikTok influencers. A multimodal RAG system, with the agentic layer and the web app built on top of it. Before that he was a founding engineer at an AI startup matching Fortune 500 buyers with suppliers, since acquired.
-						</p>
-						<p>
-							Sessions are run by working senior engineers, not career instructors. <strong>Light on theory, heavy on practical application.</strong> The people teaching your team have hit the failure modes they are teaching, in production, on someone's payroll.
-						</p>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<!-- ─────────── PROOF ─────────── -->
-		<section class="section" style="background: var(--bg3);">
-			<div class="container-wide">
-				<div class="pullquote">
-					<blockquote>
-						<span class="pullquote-mark" aria-hidden="true">&ldquo;</span>
-						This course has taken me from wondering how working with RAG, agents, and LLMs work, <strong>to now building these things myself, with the understanding of exactly what's happening.</strong> It has empowered me to learn by building.
-					</blockquote>
-					<cite><b>Joe</b>now leading the AI initiative at his company</cite>
-				</div>
-			</div>
-		</section>
-
 		<!-- ─────────── FAQ ─────────── -->
 		<section class="section">
 			<div class="container">
 				<h2 class="section-title">Questions we <span class="gradient">get</span></h2>
 				<div class="faq-list">
 					<div class="faq-item">
-						<h4>What does the free session actually cover?</h4>
-						<p>We pick one thing your team wants to build and we build it. Usually that is a RAG pipeline over a document set you already have, or a small agent that touches one of your internal tools. Your engineers write code during the hour.</p>
+						<h4>Do I need to know Python?</h4>
+						<p>No. The whole weekend is TypeScript and Next.js. Most AI tutorials are written in Python, which is exactly why so many working web developers stall out before they start.</p>
 					</div>
 					<div class="faq-item">
-						<h4>Live or async, which should we pick?</h4>
-						<p>Live if your team can get an hour together. Async if you are spread across time zones or your engineers cannot block the same hour. Same material, same instructor, same code.</p>
+						<h4>What if I have never touched a vector database?</h4>
+						<p>Good. That is the point of Saturday. The prerequisite is that you can write software, not that you have done any of this before.</p>
 					</div>
 					<div class="faq-item">
-						<h4>What happens after the free session?</h4>
-						<p>We tell you what a full engagement looks like and what it costs. If you say no, nothing happens. There is no follow up sequence and nobody calls you again.</p>
+						<h4>Twelve hours is not much. Is this going to be shallow?</h4>
+						<p>It is narrow, which is different. We are not covering fine tuning, model selection, or six other things you can read about later. One retrieval system, one agent, deployed. Narrow scope is what makes finishing in a weekend realistic.</p>
 					</div>
 					<div class="faq-item">
-						<h4>Can we use our own codebase and data?</h4>
-						<p>Yes, and it works better that way. If your data cannot leave your environment, we work with sanitized samples or your engineers run everything locally.</p>
+						<h4>What if I miss part of a day?</h4>
+						<p>Come to both days if you possibly can. The whole design assumes Sunday builds directly on what you wrote Saturday, so missing a chunk of Saturday is genuinely hard to recover from. If something comes up, email me and we will sort out what makes sense.</p>
 					</div>
 					<div class="faq-item">
-						<h4>How many engineers can join?</h4>
-						<p>Bring the team. The session works best with somewhere between three and fifteen people. If you are larger than that, tell me on the call and we will figure out the format.</p>
+						<h4>How is this different from the six week program?</h4>
+						<p>Scope. This is one weekend and one outcome. The <a href="/ai-dev" style="color: var(--accent);">six week AI Engineer program</a> goes deeper: weekly code review on your own work, a capstone, mentorship, and real help with the job search, which a weekend cannot give you. This weekend is the cheapest way to find out whether you want the longer thing, and <strong>your $497 applies as credit if you do.</strong></p>
+					</div>
+					<div class="faq-item">
+						<h4>Can my employer pay?</h4>
+						<p>Yes, and at $497 it usually clears without a committee. Email <a href="mailto:assistant@parsity.io" style="color: var(--accent);">assistant@parsity.io</a> for an invoice or a training budget request template.</p>
+					</div>
+					<div class="faq-item">
+						<h4>I am not in Pacific time.</h4>
+						<p>10am to 4pm PST is 1pm to 7pm Eastern and 6pm to midnight in London. Plenty of people outside the US have done our live sessions. If the hours are impossible where you are, email me before you buy.</p>
 					</div>
 				</div>
 
@@ -1707,31 +2077,24 @@
 			</div>
 		</section>
 
-		<!-- ─────────── CROSS-LINK ─────────── -->
-		<section class="section" style="background: var(--bg3);">
-			<div class="container-wide">
-				<div class="crosslink">
-					<p><strong>Here for yourself, not a team?</strong> The individual program is the same curriculum, run as a cohort with weekly code review.</p>
-					<a href="/ai-dev">See the individual program</a>
-				</div>
-			</div>
-		</section>
-
 		<!-- ─────────── BOTTOM CTA ─────────── -->
 		<section class="bottom-cta" id="apply">
 			<div class="container">
 				<div class="final-card">
-					<h3>Find out if we are worth hiring before you pay us anything.</h3>
+					<h3>You have been meaning to learn this for a year.</h3>
 					<p>
-						Fifteen minutes to talk, then a free hour with your engineers. If it is good, we talk about what is next. If it is not, you got a free training session out of it.
+						One weekend and $497. Twelve hours from now to Sunday evening, and the thing you have been meaning to learn is deployed and running under your own name.
+					</p>
+					<p>
+						<strong>October 3 and 4. Twenty seats.</strong>
 					</p>
 					<div class="final-btn-group">
-						<a href="https://calendly.com/brianjenney83/free-team-training-call" target="_blank" rel="noopener" class="final-btn">
-							Schedule Your Free Team Training Call
+						<a href="https://buy.stripe.com/dRm14o0hu5nJ6oGf11djO0J" class="final-btn">
+							Claim Your Seat, $497
 						</a>
 					</div>
 					<p class="final-note">
-						Questions? <a href="mailto:assistant@parsity.io" style="color: rgba(255,255,255,0.8);">assistant@parsity.io</a>
+						Questions before you buy? <a href="mailto:assistant@parsity.io" style="color: rgba(255,255,255,0.8);">assistant@parsity.io</a>
 					</p>
 				</div>
 			</div>
@@ -1740,9 +2103,9 @@
 		<!-- ─────────── FOOTER ─────────── -->
 		<footer class="site-footer">
 			<div class="footer-links">
+				<a href="/ai-dev">Six week AI Engineer program</a>
 				<a href="/for-teams">For engineering teams</a>
 				<a href="/for-business">For business owners</a>
-				<a href="/ai-dev">For individuals</a>
 			</div>
 			<p>Parsity. Practical AI engineering training. <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
 		</footer>
