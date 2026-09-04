@@ -12,7 +12,7 @@
 			rel="stylesheet"
 		/>
 		<style>
-			:root {
+			#parsity-lp {
 				--accent: #1d4ed8;
 				--accent-hover: #1e40af;
 				--accent-dim: #eff6ff;
@@ -39,16 +39,16 @@
 				--warning: #b45309;
 			}
 
-			* {
+			#parsity-lp, #parsity-lp * {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
 			}
-			html {
+			#parsity-lp {
 				scroll-behavior: smooth;
 			}
 
-			body {
+			#parsity-lp {
 				background: var(--bg);
 				color: var(--text);
 				font-family: var(--sans);
@@ -57,7 +57,7 @@
 			}
 
 			/* ── ANNOUNCE BAR ── */
-			.announce-bar {
+			#parsity-lp .announce-bar {
 				background: var(--navy);
 				padding: 12px 24px;
 				text-align: center;
@@ -68,29 +68,29 @@
 				color: #ffffff;
 			}
 
-			.container {
+			#parsity-lp .container {
 				max-width: 840px;
 				margin: 0 auto;
 				padding: 0 24px;
 			}
-			.container-wide {
+			#parsity-lp .container-wide {
 				max-width: 1000px;
 				margin: 0 auto;
 				padding: 0 24px;
 			}
 
 			/* ── HERO ── */
-			.hero {
+			#parsity-lp .hero {
 				padding: 88px 0;
 				text-align: center;
 				background: linear-gradient(180deg, #f2f6fd 0%, #ffffff 100%);
 				border-bottom: 1px solid var(--border-subtle);
 			}
-			.hero-media {
+			#parsity-lp .hero-media {
 				max-width: 760px;
 				margin: 56px auto 0;
 			}
-			.hero-media img {
+			#parsity-lp .hero-media img {
 				display: block;
 				width: 100%;
 				height: auto;
@@ -98,13 +98,13 @@
 				border-radius: 12px;
 				box-shadow: 0 18px 48px rgba(15, 37, 87, 0.16);
 			}
-			.hero-media figcaption {
+			#parsity-lp .hero-media figcaption {
 				margin-top: 12px;
 				font-size: 13px;
 				color: var(--muted);
 			}
 
-			.hero-headline {
+			#parsity-lp .hero-headline {
 				font-family: var(--serif);
 				font-size: clamp(30px, 5vw, 52px);
 				font-weight: 600;
@@ -116,22 +116,22 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
-			.hero-headline .gradient {
+			#parsity-lp .hero-headline .gradient {
 				color: var(--accent);
 			}
 
-			.hero-sub {
+			#parsity-lp .hero-sub {
 				font-size: clamp(17px, 2.2vw, 19px);
 				color: var(--text2);
 				max-width: 680px;
 				margin: 0 auto 20px;
 				line-height: 1.75;
 			}
-			.hero-sub strong {
+			#parsity-lp .hero-sub strong {
 				color: var(--text);
 			}
 
-			.hero-price {
+			#parsity-lp .hero-price {
 				font-family: var(--serif);
 				font-size: 17px;
 				color: var(--accent);
@@ -139,7 +139,7 @@
 			}
 
 			/* ── CTA BUTTONS ── */
-			.cta-group {
+			#parsity-lp .cta-group {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -148,14 +148,14 @@
 				margin: 0 auto;
 			}
 
-			.partner-badge {
+			#parsity-lp .partner-badge {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				gap: 10px;
 				margin-top: 44px;
 			}
-			.partner-badge-label {
+			#parsity-lp .partner-badge-label {
 				font-family: var(--sans);
 				font-size: 12px;
 				font-weight: 700;
@@ -163,7 +163,7 @@
 				text-transform: uppercase;
 				color: var(--muted);
 			}
-			.partner-badge-embed {
+			#parsity-lp .partner-badge-embed {
 				transform-origin: top center;
 				animation: badge-jingle 5s ease-in-out infinite;
 			}
@@ -175,10 +175,10 @@
 				98% { transform: rotate(1.5deg); }
 			}
 			@media (prefers-reduced-motion: reduce) {
-				.partner-badge-embed { animation: none; }
+				#parsity-lp .partner-badge-embed { animation: none; }
 			}
 
-			.cta-btn {
+			#parsity-lp .cta-btn {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -198,13 +198,13 @@
 				transition: all 0.2s;
 				box-shadow: 0 2px 8px var(--accent-glow);
 			}
-			.cta-btn:hover {
+			#parsity-lp .cta-btn:hover {
 				background: var(--accent-hover);
 				transform: translateY(-1px);
 				box-shadow: 0 8px 24px var(--accent-glow);
 			}
 
-			.cta-btn-secondary {
+			#parsity-lp .cta-btn-secondary {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -223,12 +223,12 @@
 				text-decoration: none;
 				transition: all 0.2s;
 			}
-			.cta-btn-secondary:hover {
+			#parsity-lp .cta-btn-secondary:hover {
 				background: var(--accent-dim);
 				border-color: var(--accent);
 			}
 
-			.cta-note {
+			#parsity-lp .cta-note {
 				font-size: 13px;
 				color: var(--muted);
 				text-align: center;
@@ -236,12 +236,12 @@
 			}
 
 			/* ── SECTIONS ── */
-			.section {
+			#parsity-lp .section {
 				padding: 88px 0;
 				border-top: 1px solid var(--border-subtle);
 			}
 
-			.section-title {
+			#parsity-lp .section-title {
 				font-family: var(--serif);
 				font-size: clamp(26px, 4vw, 38px);
 				font-weight: 600;
@@ -250,22 +250,22 @@
 				margin-bottom: 20px;
 				color: var(--navy);
 			}
-			.section-title .gradient {
+			#parsity-lp .section-title .gradient {
 				color: var(--accent);
 			}
 
-			.section-text {
+			#parsity-lp .section-text {
 				font-size: 17px;
 				color: var(--text2);
 				margin-bottom: 20px;
 				line-height: 1.75;
 			}
-			.section-text strong {
+			#parsity-lp .section-text strong {
 				color: var(--text);
 			}
 
 			/* ── PRICING ── */
-			.pricing-grid {
+			#parsity-lp .pricing-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 				gap: 24px;
@@ -273,7 +273,7 @@
 				align-items: start;
 			}
 
-			.price-card {
+			#parsity-lp .price-card {
 				position: relative;
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
@@ -281,12 +281,12 @@
 				padding: 36px 32px;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.price-card.featured {
+			#parsity-lp .price-card.featured {
 				border: 2px solid var(--accent);
 				box-shadow: 0 16px 44px rgba(15, 37, 87, 0.12);
 			}
 
-			.price-tag {
+			#parsity-lp .price-tag {
 				position: absolute;
 				top: -12px;
 				left: 32px;
@@ -300,37 +300,37 @@
 				border-radius: 20px;
 			}
 
-			.price-card h3 {
+			#parsity-lp .price-card h3 {
 				font-family: var(--serif);
 				font-size: 21px;
 				font-weight: 600;
 				color: var(--navy);
 				margin-bottom: 6px;
 			}
-			.price-amount {
+			#parsity-lp .price-amount {
 				font-family: var(--serif);
 				font-size: 42px;
 				font-weight: 700;
 				color: var(--navy);
 				line-height: 1.2;
 			}
-			.price-terms {
+			#parsity-lp .price-terms {
 				font-size: 13px;
 				color: var(--muted);
 				margin-bottom: 22px;
 			}
-			.price-lead {
+			#parsity-lp .price-lead {
 				font-size: 15px;
 				font-weight: 600;
 				color: var(--text);
 				margin-bottom: 12px;
 			}
 
-			.price-list {
+			#parsity-lp .price-list {
 				list-style: none;
 				margin-bottom: 28px;
 			}
-			.price-list li {
+			#parsity-lp .price-list li {
 				display: flex;
 				align-items: flex-start;
 				gap: 11px;
@@ -339,20 +339,20 @@
 				margin-bottom: 12px;
 				line-height: 1.55;
 			}
-			.price-list li::before {
+			#parsity-lp .price-list li::before {
 				content: '✓';
 				flex-shrink: 0;
 				font-weight: 700;
 				color: var(--secondary);
 			}
 
-			.price-fineprint {
+			#parsity-lp .price-fineprint {
 				font-size: 12px;
 				color: var(--muted);
 				text-align: center;
 				margin-top: 10px;
 			}
-			.price-alt-link {
+			#parsity-lp .price-alt-link {
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -364,11 +364,11 @@
 				text-decoration: none;
 				margin-top: 4px;
 			}
-			.price-alt-link:hover {
+			#parsity-lp .price-alt-link:hover {
 				text-decoration: underline;
 			}
 
-			.pricing-notes {
+			#parsity-lp .pricing-notes {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 				gap: 20px;
@@ -377,59 +377,58 @@
 				border-radius: 14px;
 				padding: 32px;
 			}
-			.pricing-notes p {
+			#parsity-lp .pricing-notes p {
 				font-size: 15px;
 				color: var(--text2);
 				line-height: 1.65;
 				margin: 0;
 			}
-			.pricing-notes strong {
+			#parsity-lp .pricing-notes strong {
 				color: var(--navy);
 			}
 
 			/* ── PRICE COMPARISON TABLE ── */
-			.price-table-wrap {
+			#parsity-lp .price-table-wrap {
 				overflow-x: auto;
 				margin: 36px 0 24px;
 			}
-			.price-table {
+			#parsity-lp .price-table {
 				width: 100%;
 				min-width: 560px;
 				border-collapse: collapse;
 				font-size: 15px;
 			}
-			.price-table th,
-			.price-table td {
+			#parsity-lp .price-table th, #parsity-lp .price-table td {
 				text-align: left;
 				padding: 16px 18px;
 				border-bottom: 1px solid var(--border-subtle);
 				color: var(--text2);
 			}
-			.price-table th {
+			#parsity-lp .price-table th {
 				font-size: 12px;
 				font-weight: 700;
 				letter-spacing: 1px;
 				text-transform: uppercase;
 				color: var(--muted);
 			}
-			.price-table tr.ours td {
+			#parsity-lp .price-table tr.ours td {
 				background: var(--accent-dim);
 				color: var(--text);
 			}
-			.price-table tr.ours td:first-child {
+			#parsity-lp .price-table tr.ours td:first-child {
 				font-weight: 700;
 				color: var(--navy);
 			}
 
 			/* ── SKILLS GRID ── */
-			.skills-grid {
+			#parsity-lp .skills-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 				gap: 24px;
 				margin: 40px 0;
 			}
 
-			.skill-card {
+			#parsity-lp .skill-card {
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: 12px;
@@ -437,13 +436,13 @@
 				transition: all 0.25s;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.skill-card:hover {
+			#parsity-lp .skill-card:hover {
 				border-color: var(--accent-mid);
 				transform: translateY(-3px);
 				box-shadow: 0 12px 32px rgba(15, 37, 87, 0.1);
 			}
 
-			.skill-card h4 {
+			#parsity-lp .skill-card h4 {
 				font-family: var(--serif);
 				font-size: 18px;
 				font-weight: 600;
@@ -451,17 +450,17 @@
 				margin-bottom: 12px;
 			}
 
-			.skill-card p {
+			#parsity-lp .skill-card p {
 				font-size: 15px;
 				color: var(--text2);
 				line-height: 1.65;
 			}
-			.skill-card p strong {
+			#parsity-lp .skill-card p strong {
 				color: var(--text);
 			}
 
 			/* ── SYLLABUS DOWNLOAD ── */
-			.syllabus-box {
+			#parsity-lp .syllabus-box {
 				background: #ffffff;
 				border: 1px solid var(--border);
 				border-radius: 16px;
@@ -471,29 +470,28 @@
 				text-align: center;
 				box-shadow: 0 12px 40px rgba(15, 37, 87, 0.08);
 			}
-			.syllabus-box h3 {
+			#parsity-lp .syllabus-box h3 {
 				font-family: var(--serif);
 				font-size: 26px;
 				font-weight: 600;
 				color: var(--navy);
 				margin-bottom: 12px;
 			}
-			.syllabus-box > p {
+			#parsity-lp .syllabus-box > p {
 				font-size: 16px;
 				color: var(--text2);
 				line-height: 1.7;
 				max-width: 480px;
 				margin: 0 auto 28px;
 			}
-			.syllabus-form {
+			#parsity-lp .syllabus-form {
 				display: flex;
 				flex-direction: column;
 				gap: 12px;
 				max-width: 400px;
 				margin: 0 auto;
 			}
-			.syllabus-form input[type='text'],
-			.syllabus-form input[type='email'] {
+			#parsity-lp .syllabus-form input[type='text'], #parsity-lp .syllabus-form input[type='email'] {
 				padding: 15px 16px;
 				font-size: 16px;
 				font-family: var(--sans);
@@ -504,21 +502,21 @@
 				outline: none;
 				transition: border-color 0.2s, box-shadow 0.2s;
 			}
-			.syllabus-form input:focus {
+			#parsity-lp .syllabus-form input:focus {
 				border-color: var(--accent);
 				box-shadow: 0 0 0 3px var(--accent-glow);
 			}
-			.syllabus-form input::placeholder {
+			#parsity-lp .syllabus-form input::placeholder {
 				color: var(--muted);
 			}
-			.syllabus-note {
+			#parsity-lp .syllabus-note {
 				font-size: 13px;
 				color: var(--muted);
 				margin-top: 14px;
 			}
 
 			/* ── FOUNDER NOTE ── */
-			.founder-note {
+			#parsity-lp .founder-note {
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: 12px;
@@ -527,23 +525,23 @@
 				margin: 0 auto;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.founder-note p {
+			#parsity-lp .founder-note p {
 				font-size: 17px;
 				color: var(--text2);
 				line-height: 1.75;
 				margin-bottom: 16px;
 			}
-			.founder-note p strong {
+			#parsity-lp .founder-note p strong {
 				color: var(--text);
 			}
-			.founder-note-q {
+			#parsity-lp .founder-note-q {
 				font-family: var(--serif);
 				font-size: 21px;
 				font-weight: 600;
 				color: var(--navy);
 				padding-top: 8px;
 			}
-			.founder-note-sig {
+			#parsity-lp .founder-note-sig {
 				font-family: var(--serif);
 				font-style: italic;
 				color: var(--accent);
@@ -551,30 +549,30 @@
 				padding-top: 8px;
 			}
 			@media (max-width: 600px) {
-				.founder-note {
+				#parsity-lp .founder-note {
 					padding: 32px 24px;
 				}
 			}
 
 			/* ── PROBLEM SECTION ── */
-			.problem-text {
+			#parsity-lp .problem-text {
 				font-size: 17px;
 				color: var(--text2);
 				line-height: 1.8;
 				margin-bottom: 20px;
 			}
-			.problem-text strong {
+			#parsity-lp .problem-text strong {
 				color: var(--text);
 			}
 
-			.problem-highlight {
+			#parsity-lp .problem-highlight {
 				background: var(--accent-dim);
 				border: 1px solid var(--accent-mid);
 				padding: 24px 28px;
 				margin: 32px 0;
 				border-radius: 12px;
 			}
-			.problem-highlight p {
+			#parsity-lp .problem-highlight p {
 				font-family: var(--serif);
 				font-size: 17px;
 				color: var(--navy);
@@ -583,33 +581,33 @@
 			}
 
 			/* ── TESTIMONIALS ── */
-			.quote-grid {
+			#parsity-lp .quote-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 				gap: 24px;
 				margin-top: 40px;
 			}
 
-			.quote-card {
+			#parsity-lp .quote-card {
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: 12px;
 				padding: 28px;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.quote-card.wide {
+			#parsity-lp .quote-card.wide {
 				grid-column: 1 / -1;
 			}
-			.quote-card blockquote {
+			#parsity-lp .quote-card blockquote {
 				font-size: 16px;
 				color: var(--text2);
 				line-height: 1.7;
 				margin-bottom: 18px;
 			}
-			.quote-card blockquote strong {
+			#parsity-lp .quote-card blockquote strong {
 				color: var(--text);
 			}
-			.quote-attr {
+			#parsity-lp .quote-attr {
 				display: flex;
 				align-items: center;
 				gap: 14px;
@@ -617,7 +615,7 @@
 				color: var(--muted);
 				line-height: 1.45;
 			}
-			.quote-avatar {
+			#parsity-lp .quote-avatar {
 				flex-shrink: 0;
 				width: 48px;
 				height: 48px;
@@ -625,7 +623,7 @@
 				object-fit: cover;
 				background: var(--bg3);
 			}
-			.quote-attr b {
+			#parsity-lp .quote-attr b {
 				display: block;
 				font-family: var(--serif);
 				font-size: 16px;
@@ -633,7 +631,7 @@
 				color: var(--navy);
 			}
 
-			.proof-shots {
+			#parsity-lp .proof-shots {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
@@ -641,7 +639,7 @@
 				max-width: 620px;
 				margin: 48px auto 0;
 			}
-			.proof-shot {
+			#parsity-lp .proof-shot {
 				width: 100%;
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
@@ -649,21 +647,21 @@
 				overflow: hidden;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.proof-shot img {
+			#parsity-lp .proof-shot img {
 				display: block;
 				width: 100%;
 				height: auto;
 			}
 
 			/* ── FOR YOU / NOT FOR YOU ── */
-			.fit-grid {
+			#parsity-lp .fit-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 				gap: 24px;
 				margin: 40px 0;
 			}
 
-			.fit-card {
+			#parsity-lp .fit-card {
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: 12px;
@@ -671,23 +669,23 @@
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
 
-			.fit-card h4 {
+			#parsity-lp .fit-card h4 {
 				font-family: var(--serif);
 				font-size: 18px;
 				font-weight: 600;
 				margin-bottom: 20px;
 			}
-			.fit-card.yes h4 {
+			#parsity-lp .fit-card.yes h4 {
 				color: var(--secondary);
 			}
-			.fit-card.no h4 {
+			#parsity-lp .fit-card.no h4 {
 				color: #dc2626;
 			}
 
-			.fit-list {
+			#parsity-lp .fit-list {
 				list-style: none;
 			}
-			.fit-list li {
+			#parsity-lp .fit-list li {
 				display: flex;
 				align-items: flex-start;
 				gap: 12px;
@@ -696,44 +694,44 @@
 				margin-bottom: 14px;
 				line-height: 1.55;
 			}
-			.fit-list li::before {
+			#parsity-lp .fit-list li::before {
 				flex-shrink: 0;
 				font-weight: 700;
 			}
-			.fit-card.yes .fit-list li::before {
+			#parsity-lp .fit-card.yes .fit-list li::before {
 				content: '✓';
 				color: var(--secondary);
 			}
-			.fit-card.no .fit-list li::before {
+			#parsity-lp .fit-card.no .fit-list li::before {
 				content: '✗';
 				color: #dc2626;
 			}
 
 			/* ── INCLUDED (TIER SPLIT) ── */
-			.tier-grid {
+			#parsity-lp .tier-grid {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 				gap: 24px;
 				margin: 40px 0;
 			}
-			.tier-card {
+			#parsity-lp .tier-card {
 				background: #ffffff;
 				border: 1px solid var(--border-subtle);
 				border-radius: 12px;
 				padding: 32px;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.tier-card h4 {
+			#parsity-lp .tier-card h4 {
 				font-family: var(--serif);
 				font-size: 18px;
 				font-weight: 600;
 				color: var(--navy);
 				margin-bottom: 20px;
 			}
-			.tier-card ul {
+			#parsity-lp .tier-card ul {
 				list-style: none;
 			}
-			.tier-card li {
+			#parsity-lp .tier-card li {
 				display: flex;
 				align-items: flex-start;
 				gap: 11px;
@@ -742,7 +740,7 @@
 				margin-bottom: 14px;
 				line-height: 1.55;
 			}
-			.tier-card li::before {
+			#parsity-lp .tier-card li::before {
 				content: '✓';
 				flex-shrink: 0;
 				font-weight: 700;
@@ -750,19 +748,19 @@
 			}
 
 			/* ── FAQ ── */
-			.faq-list {
+			#parsity-lp .faq-list {
 				margin: 40px 0;
 			}
 
-			.faq-item {
+			#parsity-lp .faq-item {
 				border-bottom: 1px solid var(--border-subtle);
 				padding: 24px 0;
 			}
-			.faq-item:last-child {
+			#parsity-lp .faq-item:last-child {
 				border-bottom: none;
 			}
 
-			.faq-item h4 {
+			#parsity-lp .faq-item h4 {
 				font-family: var(--serif);
 				font-size: 17px;
 				font-weight: 600;
@@ -770,21 +768,21 @@
 				margin-bottom: 12px;
 			}
 
-			.faq-item p {
+			#parsity-lp .faq-item p {
 				font-size: 15px;
 				color: var(--text2);
 				line-height: 1.7;
 			}
 
 			/* ── BOTTOM CTA ── */
-			.bottom-cta {
+			#parsity-lp .bottom-cta {
 				padding: 100px 0;
 				text-align: center;
 				border-top: 1px solid var(--border-subtle);
 				background: #f6f9fd;
 			}
 
-			.final-card {
+			#parsity-lp .final-card {
 				background: var(--navy);
 				border-radius: 16px;
 				padding: 56px 40px;
@@ -793,7 +791,7 @@
 				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.25);
 			}
 
-			.final-card h3 {
+			#parsity-lp .final-card h3 {
 				font-family: var(--serif);
 				font-size: clamp(22px, 4vw, 28px);
 				font-weight: 600;
@@ -802,7 +800,7 @@
 				line-height: 1.35;
 			}
 
-			.final-card p {
+			#parsity-lp .final-card p {
 				color: rgba(255, 255, 255, 0.85);
 				font-size: 16px;
 				margin-bottom: 32px;
@@ -812,7 +810,7 @@
 				margin-right: auto;
 			}
 
-			.final-btn-group {
+			#parsity-lp .final-btn-group {
 				display: flex;
 				flex-direction: column;
 				gap: 14px;
@@ -820,7 +818,7 @@
 				margin: 0 auto;
 			}
 
-			.final-btn {
+			#parsity-lp .final-btn {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -839,12 +837,12 @@
 				transition: all 0.2s;
 				box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 			}
-			.final-btn:hover {
+			#parsity-lp .final-btn:hover {
 				transform: translateY(-2px);
 				box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
 			}
 
-			.final-btn-alt {
+			#parsity-lp .final-btn-alt {
 				display: inline-flex;
 				align-items: center;
 				justify-content: center;
@@ -862,11 +860,11 @@
 				text-decoration: none;
 				transition: all 0.2s;
 			}
-			.final-btn-alt:hover {
+			#parsity-lp .final-btn-alt:hover {
 				background: rgba(255, 255, 255, 0.12);
 			}
 
-			.final-note {
+			#parsity-lp .final-note {
 				font-size: 13px;
 				color: rgba(255, 255, 255, 0.65);
 				margin-top: 24px;
@@ -874,37 +872,37 @@
 
 			/* ── RESPONSIVE ── */
 			@media (max-width: 768px) {
-				.hero {
+				#parsity-lp .hero {
 					padding: 64px 0;
 				}
-				.section {
+				#parsity-lp .section {
 					padding: 64px 0;
 				}
-				.skills-grid {
+				#parsity-lp .skills-grid {
 					grid-template-columns: 1fr;
 				}
-				.final-card {
+				#parsity-lp .final-card {
 					padding: 40px 24px;
 				}
-				.fit-grid {
+				#parsity-lp .fit-grid {
 					grid-template-columns: 1fr;
 				}
-				.pricing-notes {
+				#parsity-lp .pricing-notes {
 					padding: 24px;
 				}
 			}
 
 			@media (max-width: 480px) {
-				.hero-headline {
+				#parsity-lp .hero-headline {
 					font-size: 28px;
 				}
-				.hero-sub {
+				#parsity-lp .hero-sub {
 					font-size: 16px;
 				}
-				.price-card {
+				#parsity-lp .price-card {
 					padding: 32px 22px;
 				}
-				.announce-bar {
+				#parsity-lp .announce-bar {
 					font-size: 12px;
 					padding: 10px 16px;
 				}
@@ -915,12 +913,12 @@
 			   ═══════════════════════════════════════════ */
 
 			/* ── LANE SWITCH (top of both pages) ── */
-			.lane-bar {
+			#parsity-lp .lane-bar {
 				background: #ffffff;
 				border-bottom: 1px solid var(--border-subtle);
 				padding: 14px 24px;
 			}
-			.lane-inner {
+			#parsity-lp .lane-inner {
 				max-width: 1000px;
 				margin: 0 auto;
 				display: flex;
@@ -929,15 +927,7 @@
 				flex-wrap: wrap;
 				gap: 10px;
 			}
-			.lane-label {
-				font-size: 12px;
-				font-weight: 700;
-				letter-spacing: 1.2px;
-				text-transform: uppercase;
-				color: var(--muted);
-				margin-right: 6px;
-			}
-			.lane-link {
+			#parsity-lp .lane-link {
 				display: inline-flex;
 				align-items: center;
 				gap: 8px;
@@ -951,23 +941,22 @@
 				transition: all 0.2s;
 				background: #fff;
 			}
-			.lane-link:hover {
+			#parsity-lp .lane-link:hover {
 				border-color: var(--accent);
 				color: var(--accent);
 				background: var(--accent-dim);
 			}
-			.lane-link[aria-current='page'] {
+			#parsity-lp .lane-link[aria-current='page'] {
 				background: var(--navy);
 				border-color: var(--navy);
 				color: #ffffff;
 			}
 			@media (max-width: 560px) {
-				.lane-label { width: 100%; text-align: center; margin: 0 0 4px; }
-				.lane-link { flex: 1 1 auto; justify-content: center; }
+				#parsity-lp .lane-link { flex: 1 1 auto; justify-content: center; }
 			}
 
 			/* ── PROOF STAT BAND ── */
-			.stat-band {
+			#parsity-lp .stat-band {
 				display: grid;
 				grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 				gap: 1px;
@@ -978,12 +967,12 @@
 				margin: 0 auto;
 				max-width: 1000px;
 			}
-			.stat {
+			#parsity-lp .stat {
 				background: #ffffff;
 				padding: 26px 22px;
 				text-align: center;
 			}
-			.stat b {
+			#parsity-lp .stat b {
 				display: block;
 				font-family: var(--serif);
 				font-size: 26px;
@@ -992,13 +981,13 @@
 				line-height: 1.25;
 				margin-bottom: 6px;
 			}
-			.stat span {
+			#parsity-lp .stat span {
 				display: block;
 				font-size: 13.5px;
 				color: var(--text2);
 				line-height: 1.5;
 			}
-			.stat small {
+			#parsity-lp .stat small {
 				display: block;
 				font-size: 12px;
 				color: var(--muted);
@@ -1006,7 +995,7 @@
 			}
 
 			/* ── THE OFFER BOX (the star of each page) ── */
-			.offer-box {
+			#parsity-lp .offer-box {
 				position: relative;
 				background: #ffffff;
 				border: 2px solid var(--accent);
@@ -1016,7 +1005,7 @@
 				margin: 0 auto;
 				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
 			}
-			.offer-flag {
+			#parsity-lp .offer-flag {
 				position: absolute;
 				top: -14px;
 				left: 44px;
@@ -1029,7 +1018,7 @@
 				padding: 6px 14px;
 				border-radius: 20px;
 			}
-			.offer-box h3 {
+			#parsity-lp .offer-box h3 {
 				font-family: var(--serif);
 				font-size: clamp(22px, 3.4vw, 30px);
 				font-weight: 600;
@@ -1037,20 +1026,20 @@
 				line-height: 1.3;
 				margin-bottom: 14px;
 			}
-			.offer-box > p {
+			#parsity-lp .offer-box > p {
 				font-size: 16.5px;
 				color: var(--text2);
 				line-height: 1.7;
 				margin-bottom: 28px;
 			}
-			.offer-box > p strong { color: var(--text); }
+			#parsity-lp .offer-box > p strong { color: var(--text); }
 
-			.offer-steps {
+			#parsity-lp .offer-steps {
 				list-style: none;
 				counter-reset: offerstep;
 				margin: 0 0 30px;
 			}
-			.offer-steps li {
+			#parsity-lp .offer-steps li {
 				counter-increment: offerstep;
 				position: relative;
 				padding-left: 46px;
@@ -1059,8 +1048,8 @@
 				color: var(--text2);
 				line-height: 1.65;
 			}
-			.offer-steps li:last-child { margin-bottom: 0; }
-			.offer-steps li::before {
+			#parsity-lp .offer-steps li:last-child { margin-bottom: 0; }
+			#parsity-lp .offer-steps li::before {
 				content: counter(offerstep);
 				position: absolute;
 				left: 0;
@@ -1078,7 +1067,7 @@
 				align-items: center;
 				justify-content: center;
 			}
-			.offer-steps li b {
+			#parsity-lp .offer-steps li b {
 				display: block;
 				font-family: var(--sans);
 				font-size: 16px;
@@ -1086,7 +1075,7 @@
 				color: var(--navy);
 				margin-bottom: 2px;
 			}
-			.offer-value {
+			#parsity-lp .offer-value {
 				margin-top: 18px;
 				padding-top: 18px;
 				border-top: 1px solid var(--border-subtle);
@@ -1095,44 +1084,44 @@
 				text-align: center;
 				line-height: 1.6;
 			}
-			.offer-value strong { color: var(--navy); }
+			#parsity-lp .offer-value strong { color: var(--navy); }
 			@media (max-width: 600px) {
-				.offer-box { padding: 36px 22px 30px; }
-				.offer-flag { left: 22px; }
+				#parsity-lp .offer-box { padding: 36px 22px 30px; }
+				#parsity-lp .offer-flag { left: 22px; }
 			}
 
 			/* ── ANIMATED FLOW GRAPHICS ── */
-			.graphic {
+			#parsity-lp .graphic {
 				max-width: 860px;
 				margin: 0 auto;
 			}
-			.graphic svg {
+			#parsity-lp .graphic svg {
 				display: block;
 				width: 100%;
 				height: auto;
 				overflow: visible;
 			}
-			.g-node { fill: #ffffff; stroke: var(--border); stroke-width: 1.5; }
-			.g-node-accent { fill: var(--accent-dim); stroke: var(--accent-mid); stroke-width: 1.5; }
-			.g-label {
+			#parsity-lp .g-node { fill: #ffffff; stroke: var(--border); stroke-width: 1.5; }
+			#parsity-lp .g-node-accent { fill: var(--accent-dim); stroke: var(--accent-mid); stroke-width: 1.5; }
+			#parsity-lp .g-label {
 				font-family: var(--sans);
 				font-size: 13px;
 				font-weight: 600;
 				fill: var(--navy);
 			}
-			.g-sub {
+			#parsity-lp .g-sub {
 				font-family: var(--sans);
 				font-size: 11.5px;
 				fill: var(--muted);
 			}
-			.g-num {
+			#parsity-lp .g-num {
 				font-family: var(--serif);
 				font-size: 15px;
 				font-weight: 700;
 				fill: var(--accent);
 			}
-			.g-track { fill: none; stroke: var(--border); stroke-width: 2; }
-			.g-dash {
+			#parsity-lp .g-track { fill: none; stroke: var(--border); stroke-width: 2; }
+			#parsity-lp .g-dash {
 				fill: none;
 				stroke: var(--accent-mid);
 				stroke-width: 2;
@@ -1142,16 +1131,16 @@
 			}
 			@keyframes g-march { to { stroke-dashoffset: -28; } }
 
-			.g-pulse {
+			#parsity-lp .g-pulse {
 				fill: var(--accent);
 				animation: g-travel 4.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 			}
-			.g-scatter { fill: var(--muted); opacity: 0.5; animation: g-drift 5s ease-in-out infinite; }
+			#parsity-lp .g-scatter { fill: var(--muted); opacity: 0.5; animation: g-drift 5s ease-in-out infinite; }
 			@keyframes g-drift {
 				0%, 100% { transform: translate(0, 0); }
 				50% { transform: translate(3px, -5px); }
 			}
-			.g-cell {
+			#parsity-lp .g-cell {
 				fill: var(--accent);
 				opacity: 0.16;
 				animation: g-lightup 3.6s ease-in-out infinite;
@@ -1160,7 +1149,7 @@
 				0%, 70%, 100% { opacity: 0.16; }
 				35% { opacity: 0.85; }
 			}
-			.g-tangle {
+			#parsity-lp .g-tangle {
 				fill: none;
 				stroke: #dc2626;
 				stroke-width: 2;
@@ -1169,7 +1158,7 @@
 				stroke-dasharray: 4 6;
 				animation: g-march 2.4s linear infinite;
 			}
-			.g-clean {
+			#parsity-lp .g-clean {
 				fill: none;
 				stroke: var(--secondary);
 				stroke-width: 2.5;
@@ -1183,7 +1172,7 @@
 				45%, 80% { stroke-dashoffset: 0; }
 				100% { stroke-dashoffset: 300; }
 			}
-			.g-caption {
+			#parsity-lp .g-caption {
 				text-align: center;
 				font-size: 13px;
 				color: var(--muted);
@@ -1191,14 +1180,14 @@
 			}
 
 			@media (prefers-reduced-motion: reduce) {
-				.g-dash, .g-pulse, .g-scatter, .g-cell, .g-tangle, .g-clean {
+				#parsity-lp .g-dash, #parsity-lp .g-pulse, #parsity-lp .g-scatter, #parsity-lp .g-cell, #parsity-lp .g-tangle, #parsity-lp .g-clean {
 					animation: none;
 				}
-				.g-clean { stroke-dashoffset: 0; }
+				#parsity-lp .g-clean { stroke-dashoffset: 0; }
 			}
 
 			/* ── WHO TEACHES IT ── */
-			.who-box {
+			#parsity-lp .who-box {
 				display: flex;
 				gap: 28px;
 				align-items: flex-start;
@@ -1210,7 +1199,7 @@
 				margin: 0 auto;
 				box-shadow: 0 1px 3px rgba(15, 37, 87, 0.04);
 			}
-			.who-photo {
+			#parsity-lp .who-photo {
 				flex-shrink: 0;
 				width: 92px;
 				height: 92px;
@@ -1219,14 +1208,14 @@
 				border: 1px solid var(--border);
 				background: var(--bg3);
 			}
-			.who-box h4 {
+			#parsity-lp .who-box h4 {
 				font-family: var(--serif);
 				font-size: 20px;
 				font-weight: 600;
 				color: var(--navy);
 				margin-bottom: 4px;
 			}
-			.who-role {
+			#parsity-lp .who-role {
 				font-size: 13px;
 				font-weight: 600;
 				letter-spacing: 0.4px;
@@ -1234,20 +1223,20 @@
 				color: var(--accent);
 				margin-bottom: 14px;
 			}
-			.who-box p {
+			#parsity-lp .who-box p {
 				font-size: 15.5px;
 				color: var(--text2);
 				line-height: 1.7;
 				margin-bottom: 12px;
 			}
-			.who-box p:last-child { margin-bottom: 0; }
-			.who-box p strong { color: var(--text); }
+			#parsity-lp .who-box p:last-child { margin-bottom: 0; }
+			#parsity-lp .who-box p strong { color: var(--text); }
 			@media (max-width: 600px) {
-				.who-box { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
+				#parsity-lp .who-box { flex-direction: column; align-items: center; text-align: center; padding: 32px 24px; }
 			}
 
 			/* ── TYPEFORM EMBED ── */
-			.tf-wrap {
+			#parsity-lp .tf-wrap {
 				max-width: 720px;
 				margin: 0 auto;
 				background: #ffffff;
@@ -1256,12 +1245,12 @@
 				overflow: hidden;
 				box-shadow: 0 24px 64px rgba(15, 37, 87, 0.14);
 			}
-			.tf-head {
+			#parsity-lp .tf-head {
 				padding: 32px 36px 24px;
 				border-bottom: 1px solid var(--border-subtle);
 				text-align: center;
 			}
-			.tf-head h3 {
+			#parsity-lp .tf-head h3 {
 				font-family: var(--serif);
 				font-size: clamp(21px, 3.2vw, 27px);
 				font-weight: 600;
@@ -1269,26 +1258,26 @@
 				line-height: 1.3;
 				margin-bottom: 10px;
 			}
-			.tf-head p {
+			#parsity-lp .tf-head p {
 				font-size: 15.5px;
 				color: var(--text2);
 				line-height: 1.65;
 				max-width: 520px;
 				margin: 0 auto;
 			}
-			.tf-embed {
+			#parsity-lp .tf-embed {
 				width: 100%;
 				height: 560px;
 				border: 0;
 				display: block;
 			}
 			@media (max-width: 600px) {
-				.tf-head { padding: 26px 20px 20px; }
-				.tf-embed { height: 620px; }
+				#parsity-lp .tf-head { padding: 26px 20px 20px; }
+				#parsity-lp .tf-embed { height: 620px; }
 			}
 
 			/* ── CROSS-LINK STRIP ── */
-			.crosslink {
+			#parsity-lp .crosslink {
 				max-width: 720px;
 				margin: 0 auto;
 				background: var(--accent-dim);
@@ -1301,15 +1290,15 @@
 				gap: 20px;
 				flex-wrap: wrap;
 			}
-			.crosslink p {
+			#parsity-lp .crosslink p {
 				font-size: 15.5px;
 				color: var(--text2);
 				line-height: 1.6;
 				margin: 0;
 				flex: 1 1 300px;
 			}
-			.crosslink p strong { color: var(--navy); }
-			.crosslink a {
+			#parsity-lp .crosslink p strong { color: var(--navy); }
+			#parsity-lp .crosslink a {
 				flex-shrink: 0;
 				display: inline-flex;
 				align-items: center;
@@ -1324,23 +1313,23 @@
 				text-decoration: none;
 				transition: all 0.2s;
 			}
-			.crosslink a:hover { background: var(--accent); color: #ffffff; }
+			#parsity-lp .crosslink a:hover { background: var(--accent); color: #ffffff; }
 
 			/* ── FOOTER ── */
-			.site-footer {
+			#parsity-lp .site-footer {
 				background: #ffffff;
 				border-top: 1px solid var(--border-subtle);
 				padding: 40px 24px;
 				text-align: center;
 			}
-			.site-footer p {
+			#parsity-lp .site-footer p {
 				font-size: 13.5px;
 				color: var(--muted);
 				line-height: 1.7;
 			}
-			.site-footer a { color: var(--accent); text-decoration: none; }
-			.site-footer a:hover { text-decoration: underline; }
-			.footer-links {
+			#parsity-lp .site-footer a { color: var(--accent); text-decoration: none; }
+			#parsity-lp .site-footer a:hover { text-decoration: underline; }
+			#parsity-lp .footer-links {
 				display: flex;
 				justify-content: center;
 				gap: 22px;
@@ -1351,7 +1340,7 @@
 			}
 
 			/* ── MISC ── */
-			.section-lead {
+			#parsity-lp .section-lead {
 				font-size: 17px;
 				color: var(--text2);
 				line-height: 1.75;
@@ -1359,44 +1348,44 @@
 				margin: 0 auto 8px;
 				text-align: center;
 			}
-			.center { text-align: center; }
-			.tight { padding-top: 56px; }
+			#parsity-lp .center { text-align: center; }
+			#parsity-lp .tight { padding-top: 56px; }
 
 			@keyframes g-travel {
-				0%   { transform: translateX(0);     opacity: 0; }
-				8%   { opacity: 1; }
-				92%  { opacity: 1; }
+				0% { transform: translateX(0);     opacity: 0; }
+				8% { opacity: 1; }
+				92% { opacity: 1; }
 				100% { transform: translateX(572px); opacity: 0; }
 			}
 
 			/* 4-card grids read better as a 2x2 than as 3 + orphan */
-			.skills-grid.grid-2 {
+			#parsity-lp .skills-grid.grid-2 {
 				grid-template-columns: repeat(2, minmax(0, 1fr));
 				max-width: 840px;
 				margin-left: auto;
 				margin-right: auto;
 			}
 			@media (max-width: 768px) {
-				.skills-grid.grid-2 { grid-template-columns: 1fr; }
+				#parsity-lp .skills-grid.grid-2 { grid-template-columns: 1fr; }
 			}
 
 			/* Outcome cards. These are summaries, not verbatim quotes,
 			   so they are paragraphs rather than blockquotes. */
-			.quote-body {
+			#parsity-lp .quote-body {
 				font-size: 16px;
 				color: var(--text2);
 				line-height: 1.7;
 				margin-bottom: 18px;
 			}
-			.quote-body strong { color: var(--text); }
+			#parsity-lp .quote-body strong { color: var(--text); }
 
 			/* ── SINGLE PULL QUOTE ── */
-			.pullquote {
+			#parsity-lp .pullquote {
 				max-width: 720px;
 				margin: 0 auto;
 				text-align: center;
 			}
-			.pullquote blockquote {
+			#parsity-lp .pullquote blockquote {
 				font-family: var(--serif);
 				font-size: clamp(20px, 3vw, 27px);
 				font-weight: 500;
@@ -1405,11 +1394,11 @@
 				letter-spacing: -0.01em;
 				text-wrap: balance;
 			}
-			.pullquote blockquote strong {
+			#parsity-lp .pullquote blockquote strong {
 				font-weight: 700;
 				color: var(--accent);
 			}
-			.pullquote-mark {
+			#parsity-lp .pullquote-mark {
 				font-family: var(--serif);
 				font-size: 64px;
 				font-weight: 700;
@@ -1418,7 +1407,7 @@
 				display: block;
 				margin-bottom: 18px;
 			}
-			.pullquote cite {
+			#parsity-lp .pullquote cite {
 				display: block;
 				margin-top: 28px;
 				font-style: normal;
@@ -1426,7 +1415,7 @@
 				color: var(--muted);
 				line-height: 1.5;
 			}
-			.pullquote cite b {
+			#parsity-lp .pullquote cite b {
 				display: block;
 				font-family: var(--serif);
 				font-size: 17px;
@@ -1434,9 +1423,111 @@
 				font-style: normal;
 				color: var(--navy);
 			}
+
+			/* ── HOST THEME HARDENING ──
+			   Kajabi sets colors on headings and links with !important.
+			   These re-assert the page's own values at equal weight. */
+			#parsity-lp { color: var(--text) !important; }
+			#parsity-lp .hero-media figcaption { color: var(--muted) !important; }
+			#parsity-lp .hero-headline { color: var(--navy) !important; }
+			#parsity-lp .hero-headline .gradient { color: var(--accent) !important; }
+			#parsity-lp .hero-sub { color: var(--text2) !important; }
+			#parsity-lp .hero-sub strong { color: var(--text) !important; }
+			#parsity-lp .hero-price { color: var(--accent) !important; }
+			#parsity-lp .partner-badge-label { color: var(--muted) !important; }
+			#parsity-lp .cta-btn { color: white !important; }
+			#parsity-lp .cta-btn-secondary { color: var(--accent) !important; }
+			#parsity-lp .cta-note { color: var(--muted) !important; }
+			#parsity-lp .section-title { color: var(--navy) !important; }
+			#parsity-lp .section-title .gradient { color: var(--accent) !important; }
+			#parsity-lp .section-text { color: var(--text2) !important; }
+			#parsity-lp .section-text strong { color: var(--text) !important; }
+			#parsity-lp .price-tag { color: #ffffff !important; }
+			#parsity-lp .price-card h3 { color: var(--navy) !important; }
+			#parsity-lp .price-amount { color: var(--navy) !important; }
+			#parsity-lp .price-terms { color: var(--muted) !important; }
+			#parsity-lp .price-lead { color: var(--text) !important; }
+			#parsity-lp .price-list li { color: var(--text2) !important; }
+			#parsity-lp .price-list li::before { color: var(--secondary) !important; }
+			#parsity-lp .price-fineprint { color: var(--muted) !important; }
+			#parsity-lp .price-alt-link { color: var(--accent) !important; }
+			#parsity-lp .pricing-notes p { color: var(--text2) !important; }
+			#parsity-lp .pricing-notes strong { color: var(--navy) !important; }
+			#parsity-lp .price-table th, #parsity-lp .price-table td { color: var(--text2) !important; }
+			#parsity-lp .price-table th { color: var(--muted) !important; }
+			#parsity-lp .price-table tr.ours td { color: var(--text) !important; }
+			#parsity-lp .price-table tr.ours td:first-child { color: var(--navy) !important; }
+			#parsity-lp .skill-card h4 { color: var(--navy) !important; }
+			#parsity-lp .skill-card p { color: var(--text2) !important; }
+			#parsity-lp .skill-card p strong { color: var(--text) !important; }
+			#parsity-lp .syllabus-box h3 { color: var(--navy) !important; }
+			#parsity-lp .syllabus-box > p { color: var(--text2) !important; }
+			#parsity-lp .syllabus-form input[type='text'], #parsity-lp .syllabus-form input[type='email'] { color: var(--text) !important; }
+			#parsity-lp .syllabus-form input::placeholder { color: var(--muted) !important; }
+			#parsity-lp .syllabus-note { color: var(--muted) !important; }
+			#parsity-lp .founder-note p { color: var(--text2) !important; }
+			#parsity-lp .founder-note p strong { color: var(--text) !important; }
+			#parsity-lp .founder-note-q { color: var(--navy) !important; }
+			#parsity-lp .founder-note-sig { color: var(--accent) !important; }
+			#parsity-lp .problem-text strong { color: var(--text) !important; }
+			#parsity-lp .problem-highlight p { color: var(--navy) !important; }
+			#parsity-lp .quote-card blockquote { color: var(--text2) !important; }
+			#parsity-lp .quote-card blockquote strong { color: var(--text) !important; }
+			#parsity-lp .quote-attr { color: var(--muted) !important; }
+			#parsity-lp .quote-attr b { color: var(--navy) !important; }
+			#parsity-lp .fit-card.yes h4 { color: var(--secondary) !important; }
+			#parsity-lp .fit-card.no h4 { color: #dc2626 !important; }
+			#parsity-lp .fit-list li { color: var(--text2) !important; }
+			#parsity-lp .fit-card.yes .fit-list li::before { color: var(--secondary) !important; }
+			#parsity-lp .fit-card.no .fit-list li::before { color: #dc2626 !important; }
+			#parsity-lp .tier-card h4 { color: var(--navy) !important; }
+			#parsity-lp .tier-card li { color: var(--text2) !important; }
+			#parsity-lp .tier-card li::before { color: var(--secondary) !important; }
+			#parsity-lp .faq-item h4 { color: var(--navy) !important; }
+			#parsity-lp .faq-item p { color: var(--text2) !important; }
+			#parsity-lp .final-card h3 { color: white !important; }
+			#parsity-lp .final-card p { color: rgba(255, 255, 255, 0.85) !important; }
+			#parsity-lp .final-btn { color: var(--navy) !important; }
+			#parsity-lp .final-btn-alt { color: white !important; }
+			#parsity-lp .final-note { color: rgba(255, 255, 255, 0.65) !important; }
+			#parsity-lp .lane-link { color: var(--text2) !important; }
+			#parsity-lp .lane-link:hover { color: var(--accent) !important; }
+			#parsity-lp .lane-link[aria-current='page'] { color: #ffffff !important; }
+			#parsity-lp .stat b { color: var(--navy) !important; }
+			#parsity-lp .stat span { color: var(--text2) !important; }
+			#parsity-lp .stat small { color: var(--muted) !important; }
+			#parsity-lp .offer-flag { color: #ffffff !important; }
+			#parsity-lp .offer-box h3 { color: var(--navy) !important; }
+			#parsity-lp .offer-box > p { color: var(--text2) !important; }
+			#parsity-lp .offer-box > p strong { color: var(--text) !important; }
+			#parsity-lp .offer-steps li { color: var(--text2) !important; }
+			#parsity-lp .offer-steps li::before { color: var(--accent) !important; }
+			#parsity-lp .offer-steps li b { color: var(--navy) !important; }
+			#parsity-lp .offer-value { color: var(--muted) !important; }
+			#parsity-lp .offer-value strong { color: var(--navy) !important; }
+			#parsity-lp .g-caption { color: var(--muted) !important; }
+			#parsity-lp .who-box h4 { color: var(--navy) !important; }
+			#parsity-lp .who-role { color: var(--accent) !important; }
+			#parsity-lp .who-box p { color: var(--text2) !important; }
+			#parsity-lp .who-box p strong { color: var(--text) !important; }
+			#parsity-lp .tf-head h3 { color: var(--navy) !important; }
+			#parsity-lp .tf-head p { color: var(--text2) !important; }
+			#parsity-lp .crosslink p { color: var(--text2) !important; }
+			#parsity-lp .crosslink p strong { color: var(--navy) !important; }
+			#parsity-lp .crosslink a { color: var(--accent) !important; }
+			#parsity-lp .crosslink a:hover { color: #ffffff !important; }
+			#parsity-lp .site-footer p { color: var(--muted) !important; }
+			#parsity-lp .site-footer a { color: var(--accent) !important; }
+			#parsity-lp .quote-body strong { color: var(--text) !important; }
+			#parsity-lp .pullquote blockquote { color: var(--navy) !important; }
+			#parsity-lp .pullquote blockquote strong { color: var(--accent) !important; }
+			#parsity-lp .pullquote-mark { color: var(--accent-mid) !important; }
+			#parsity-lp .pullquote cite { color: var(--muted) !important; }
+			#parsity-lp .pullquote cite b { color: var(--navy) !important; }
 		</style>
 	</head>
 	<body>
+		<div id="parsity-lp">
 		<!-- ─────────── ANNOUNCE BAR ─────────── -->
 		<div class="announce-bar">
 			Over 30 engineers trained this year. Now booking free team sessions.
@@ -1445,7 +1536,6 @@
 		<!-- ─────────── LANE SWITCH ─────────── -->
 		<nav class="lane-bar" aria-label="Choose your track">
 			<div class="lane-inner">
-				<span class="lane-label">Who are you?</span>
 				<a class="lane-link" href="https://www.parsity.io/for-teams" aria-current="page">I run an engineering team</a>
 				<a class="lane-link" href="https://www.parsity.io/for-business">I run a business or a non technical team</a>
 				<a class="lane-link" href="https://www.parsity.io/ai-dev">I want this for myself</a>
@@ -1746,5 +1836,6 @@
 			</div>
 			<p>Parsity. Practical AI engineering training. <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
 		</footer>
+		</div>
 	</body>
 </html>
