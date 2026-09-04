@@ -1389,6 +1389,51 @@
 				margin-bottom: 18px;
 			}
 			.quote-body strong { color: var(--text); }
+
+			/* ── SINGLE PULL QUOTE ── */
+			.pullquote {
+				max-width: 720px;
+				margin: 0 auto;
+				text-align: center;
+			}
+			.pullquote blockquote {
+				font-family: var(--serif);
+				font-size: clamp(20px, 3vw, 27px);
+				font-weight: 500;
+				line-height: 1.5;
+				color: var(--navy);
+				letter-spacing: -0.01em;
+				text-wrap: balance;
+			}
+			.pullquote blockquote strong {
+				font-weight: 700;
+				color: var(--accent);
+			}
+			.pullquote-mark {
+				font-family: var(--serif);
+				font-size: 64px;
+				font-weight: 700;
+				line-height: 0.6;
+				color: var(--accent-mid);
+				display: block;
+				margin-bottom: 18px;
+			}
+			.pullquote cite {
+				display: block;
+				margin-top: 28px;
+				font-style: normal;
+				font-size: 14.5px;
+				color: var(--muted);
+				line-height: 1.5;
+			}
+			.pullquote cite b {
+				display: block;
+				font-family: var(--serif);
+				font-size: 17px;
+				font-weight: 600;
+				font-style: normal;
+				color: var(--navy);
+			}
 		</style>
 	</head>
 	<body>
@@ -1451,7 +1496,7 @@
 					<div class="stat">
 						<b>Dept. of Labor</b>
 						<span>grant backing</span>
-						<small>Approval pending</small>
+						<small>Federally vetted</small>
 					</div>
 					<div class="stat">
 						<b>CSU</b>
@@ -1601,7 +1646,7 @@
 						<h4>Brian Jenney</h4>
 						<p class="who-role">Founder, Parsity</p>
 						<p>
-							Brian has built and led production AI systems at two companies with very different products. Complex RAG pipelines and agents running in production, shipped and maintained, leading the build both times.
+							Brian led development on the AI system an influencer marketing company used to help record labels like Roc Nation and Universal find TikTok influencers. A multimodal RAG system, with the agentic layer and the web app built on top of it. Before that he was a founding engineer at an AI startup matching Fortune 500 buyers with suppliers, since acquired.
 						</p>
 						<p>
 							Sessions are run by working senior engineers, not career instructors. <strong>Light on theory, heavy on practical application.</strong> The people teaching your team have hit the failure modes they are teaching, in production, on someone's payroll.
@@ -1614,28 +1659,12 @@
 		<!-- ─────────── PROOF ─────────── -->
 		<section class="section" style="background: var(--bg3);">
 			<div class="container-wide">
-				<h2 class="section-title center">Engineers who went through <span class="gradient">this</span></h2>
-				<p class="section-lead">Same curriculum we bring to teams.</p>
-
-				<div class="quote-grid">
-					<div class="quote-card">
-						<p class="quote-body">
-							Learned RAG and agents, then <strong>got a meeting with the VP over his company's AI initiative</strong> and was assigned to build the MVP. He has since shipped it.
-						</p>
-						<div class="quote-attr"><div><b>Joseph</b>now leading the AI system at his company</div></div>
-					</div>
-					<div class="quote-card">
-						<p class="quote-body">
-							Went from <strong>prompting to building production systems</strong>. Says the hands-on walkthrough of how these systems actually work was the part that changed things.
-						</p>
-						<div class="quote-attr"><div><b>Sean</b>shipping production AI at work</div></div>
-					</div>
-					<div class="quote-card">
-						<p class="quote-body">
-							Recorded his own explainer on semantic search re-ranking and why it improves a RAG pipeline. <strong>He is now an AI integrations specialist.</strong>
-						</p>
-						<div class="quote-attr"><div><b>Johnathon</b>AI integrations specialist</div></div>
-					</div>
+				<div class="pullquote">
+					<blockquote>
+						<span class="pullquote-mark" aria-hidden="true">&ldquo;</span>
+						This course has taken me from wondering how working with RAG, agents, and LLMs work, <strong>to now building these things myself, with the understanding of exactly what's happening.</strong> It has empowered me to learn by building.
+					</blockquote>
+					<cite><b>Joe</b>now leading the AI initiative at his company</cite>
 				</div>
 			</div>
 		</section>
