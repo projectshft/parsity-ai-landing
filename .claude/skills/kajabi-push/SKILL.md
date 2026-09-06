@@ -20,8 +20,8 @@ IDs live in the `PAGES` dict in `kajabi.py`.
 
 ## Adding a page
 
-Open it in the Kajabi editor and copy the IDs from the URL
-`/admin/themes/<theme_id>/settings/edit?file_id=<file_id>` into `PAGES`.
+Open it in the Kajabi editor and copy the theme ID from the URL
+`/admin/themes/<theme_id>/settings/edit` into `PAGES`.
 
 ## Auth failures
 

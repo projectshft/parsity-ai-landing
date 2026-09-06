@@ -11,10 +11,11 @@ expires in ~1 day; refresh when you get a 401.
 """
 import json, os, sys, urllib.request
 
-# name -> (theme_id, file_id). Both are in the editor URL:
-# /admin/themes/<theme_id>/settings/edit?file_id=<file_id>
+# name -> theme_id, from the editor URL /admin/themes/<theme_id>/settings/edit
 PAGES = {
-    "for-teams": (2167439756, 3460295095),
+    "for-teams": 2167439756,     # AI For Teams: train a team on RAG/agents
+    "ai-dev": 2164183145,        # AI for Web Developers: the bootcamp
+    "for-business": 2167439690,  # AI For Business: automation
 }
 
 BASE = "https://app.kajabi.com/admin/themes/{}/settings"
@@ -53,8 +54,9 @@ def code_block(sections):
 
 def main():
     cmd, page, path = sys.argv[1:4]
-    theme_id, file_id = PAGES[page]
-    theme = call("GET", f"{BASE.format(theme_id)}?file_id={file_id}")["theme"]["data"]["attributes"]
+    theme_id = PAGES[page]
+    resp = call("GET", BASE.format(theme_id))
+    theme, file_id = resp["theme"]["data"]["attributes"], resp["file"]["data"]["id"]
     settings = theme["settings"]
     sid, sec, blk = code_block(settings["sections"])
 
@@ -64,7 +66,7 @@ def main():
     elif cmd == "push":
         blk["settings"]["code"] = open(path).read()
         call("PUT", BASE.format(theme_id), {
-            "file_id": str(file_id),
+            "file_id": file_id,
             "theme_setting": {"sections": {sid: sec}, "content_for_index": settings["content_for_index"]},
             "based_on": theme["updatedAt"],
         })
