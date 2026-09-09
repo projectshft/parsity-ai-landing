@@ -748,6 +748,47 @@
 				color: var(--secondary);
 			}
 
+			/* ── WORKSHOP PROMO ── */
+			.workshop-promo {
+				position: relative;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				padding: 48px 40px;
+				text-align: center;
+				max-width: 700px;
+				margin: 0 auto;
+				box-shadow: 0 8px 28px rgba(15, 37, 87, 0.08);
+			}
+			.workshop-promo-badge {
+				display: inline-block;
+				background: var(--warning);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				padding: 5px 14px;
+				border-radius: 20px;
+				margin-bottom: 18px;
+			}
+			.workshop-promo .section-title {
+				margin-bottom: 12px;
+			}
+			.workshop-promo .section-text {
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.workshop-promo .cta-group {
+				margin-top: 28px;
+			}
+			@media (max-width: 480px) {
+				.workshop-promo {
+					padding: 36px 24px;
+				}
+			}
+
 			/* ── FAQ ── */
 			.faq-list {
 				margin: 40px 0;
@@ -755,7 +796,7 @@
 
 			.faq-item {
 				border-bottom: 1px solid var(--border-subtle);
-				padding: 24px 0;
+				padding: 24px 20px;
 			}
 			.faq-item:last-child {
 				border-bottom: none;
@@ -1021,7 +1062,27 @@
 			</div>
 		</section>
 
-		
+		<!-- ─────────── NEW: 2-DAY WORKSHOP ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container">
+				<div class="workshop-promo">
+					<span class="workshop-promo-badge">New</span>
+					<h2 class="section-title">
+						2-Day Agentic Engineering <span class="gradient">Workshop</span>
+					</h2>
+					<p class="section-text">
+						Can't commit to six weeks? This is the weekend intensive: RAG, vector databases, evals, observability, agents, human-in-the-loop. You leave with a fully deployed project. 12 spots, $500, the weekend before the cohort kicks off.
+					</p>
+					<div class="cta-group">
+						<a href="https://form.typeform.com/to/pGyrF84f" target="_blank" rel="noopener" class="cta-btn">
+							Sign up for early access
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
 		<section class="section">
 			<div class="container">
 				<h2 class="section-title">
