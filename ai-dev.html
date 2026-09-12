@@ -1074,13 +1074,24 @@
 						Can't commit to six weeks? Two days, and you leave with a deployed, production grade AI agent: vector database with agentic retrieval, observability, evals, human-in-the-loop. For software developers only. 12 spots, $497.
 					</p>
 					<div class="cta-group">
-						<a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="cta-btn">
+						<a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="cta-btn" id="weekend-cta">
 							Sign up for early access
 						</a>
 					</div>
 				</div>
 			</div>
 		</section>
+		<script>
+			(function () {
+				var forms = { agentic: 'EDuBEz4U', aiengineer: 'qyEMw7Ao' };
+				var variant = localStorage.getItem('weekendFormVariant');
+				if (variant !== 'agentic' && variant !== 'aiengineer') {
+					variant = Math.random() < 0.5 ? 'agentic' : 'aiengineer';
+					localStorage.setItem('weekendFormVariant', variant);
+				}
+				document.getElementById('weekend-cta').href = 'https://form.typeform.com/to/' + forms[variant];
+			})();
+		</script>
 
 
 		<section class="section">
