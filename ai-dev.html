@@ -748,6 +748,47 @@
 				color: var(--secondary);
 			}
 
+			/* ── WORKSHOP PROMO ── */
+			.workshop-promo {
+				position: relative;
+				background: #ffffff;
+				border: 1px solid var(--border-subtle);
+				border-radius: 16px;
+				padding: 48px 40px;
+				text-align: center;
+				max-width: 700px;
+				margin: 0 auto;
+				box-shadow: 0 8px 28px rgba(15, 37, 87, 0.08);
+			}
+			.workshop-promo-badge {
+				display: inline-block;
+				background: var(--warning);
+				color: #ffffff;
+				font-size: 11px;
+				font-weight: 700;
+				letter-spacing: 1.2px;
+				text-transform: uppercase;
+				padding: 5px 14px;
+				border-radius: 20px;
+				margin-bottom: 18px;
+			}
+			.workshop-promo .section-title {
+				margin-bottom: 12px;
+			}
+			.workshop-promo .section-text {
+				max-width: 540px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.workshop-promo .cta-group {
+				margin-top: 28px;
+			}
+			@media (max-width: 480px) {
+				.workshop-promo {
+					padding: 36px 24px;
+				}
+			}
+
 			/* ── FAQ ── */
 			.faq-list {
 				margin: 40px 0;
@@ -755,7 +796,7 @@
 
 			.faq-item {
 				border-bottom: 1px solid var(--border-subtle);
-				padding: 24px 0;
+				padding: 24px 20px;
 			}
 			.faq-item:last-child {
 				border-bottom: none;
@@ -981,7 +1022,7 @@
 				<div class="pricing-grid">
 					<div class="price-card">
 						<h3>Self-Paced</h3>
-						<div class="price-amount">$1,997</div>
+						<div class="price-amount">$1,197</div>
 						<p class="price-terms">One time.</p>
 						<ul class="price-list">
 							<li>Full curriculum, start whenever you want</li>
@@ -993,13 +1034,13 @@
 						</ul>
 						<a href="https://buy.stripe.com/dRmfZhgrv7aIchba1N4wM0r" class="cta-btn">Hold my spot for $97</a>
 						<p class="price-fineprint">Refundable. Applies to your tuition.</p>
-						<a href="https://buy.stripe.com/dRm4gz5MRamUftn0rd4wM0s" class="price-alt-link">Or pay in full</a>
+						<a href="https://buy.stripe.com/fZu7sMaW84jFcN47yzdjO0K" class="price-alt-link">Or pay in full</a>
 					</div>
 
 					<div class="price-card featured">
 						<span class="price-tag">Most popular</span>
 						<h3>Live Cohort</h3>
-						<div class="price-amount">$3,997</div>
+						<div class="price-amount">$1,997</div>
 						<p class="price-terms">One time. Ten seats.</p>
 						<p class="price-lead">Everything in self-paced, plus:</p>
 						<ul class="price-list">
@@ -1009,7 +1050,7 @@
 						</ul>
 						<a href="https://buy.stripe.com/dRmfZhgrv7aIchba1N4wM0r" class="cta-btn">Hold my seat for $97</a>
 						<p class="price-fineprint">Refundable until the cohort starts. Applies to your tuition.</p>
-						<a href="https://buy.stripe.com/eVqaEX0sxdz64OJa1N4wM0t" class="price-alt-link">Or pay in full</a>
+						<a href="https://buy.stripe.com/fZueVe0hu4jF00ibOPdjO0L" class="price-alt-link">Or pay in full</a>
 					</div>
 				</div>
 
@@ -1021,7 +1062,27 @@
 			</div>
 		</section>
 
-		
+		<!-- ─────────── NEW: 2-DAY WORKSHOP ─────────── -->
+		<section class="section" style="background: var(--bg3);">
+			<div class="container">
+				<div class="workshop-promo">
+					<span class="workshop-promo-badge">New</span>
+					<h2 class="section-title">
+						AI Engineer in a <span class="gradient">Weekend</span>
+					</h2>
+					<p class="section-text">
+						Can't commit to six weeks? Two days, and you leave with a deployed, production grade AI agent: vector database with agentic retrieval, observability, evals, human-in-the-loop. For software developers only. 12 spots, $497.
+					</p>
+					<div class="cta-group">
+						<a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="cta-btn">
+							Sign up for early access
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
 		<section class="section">
 			<div class="container">
 				<h2 class="section-title">
@@ -1040,12 +1101,12 @@
 						<tbody>
 							<tr class="ours">
 								<td>Parsity self-paced</td>
-								<td>$1,997</td>
+								<td>$1,197</td>
 								<td>Remote, start anytime</td>
 							</tr>
 							<tr class="ours">
 								<td>Parsity live cohort</td>
-								<td>$3,997</td>
+								<td>$1,997</td>
 								<td>Remote, six Saturdays</td>
 							</tr>
 							<tr>
@@ -1140,7 +1201,7 @@
 				</p>
 
 				<div class="problem-highlight">
-					<p>AI Engineer compensation commonly ranges from $145k to $206k+ before equity. That is the one number on this page, and it is the reason the roles stay open.</p>
+					<p>Companies are not short of applicants for these roles. They are short of engineers who have actually built these systems, which is why the listings sit open for months.</p>
 				</div>
 
 				<p class="problem-text">
