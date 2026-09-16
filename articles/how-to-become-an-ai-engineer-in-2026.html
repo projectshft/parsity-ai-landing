@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>How To Become An AI Engineer in 2026 | Parsity</title>
+		<meta
+			name="description"
+			content="What to learn to get hired as an AI engineer, what to build so someone believes you, and what to skip entirely."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="article.css" />
+	</head>
+	<body>
+		<article class="article">
+			<header class="article-head">
+				<p class="eyebrow"><a href="https://parsity.io">Parsity</a></p>
+				<h1>How To Become An AI Engineer in 2026</h1>
+				<p class="byline">Brian Jenney, founder of Parsity</p>
+			</header>
+
+			<p>
+				I'm going to show you exactly what to learn to get hired as an AI engineer this year, what to build so
+				someone believes you, and what to skip entirely (this last part is going to save you about six months).
+			</p>
+
+			<p>First, a small problem. Nobody agrees on what this job is called. Yet.</p>
+
+			<p>
+				You've seen it posted as AI engineer. You've seen applied AI engineer. You've seen forward deployed
+				engineer, which sounds like you'll be issued a rifle. Some companies call it GenAI engineer. One company I
+				talked to calls it "product engineer, AI" and I'm pretty sure they made that up in a meeting.
+			</p>
+
+			<p>
+				They all mean roughly the same thing: someone who can take AI and wire it into an organization so the
+				organization gets faster, cheaper, or better at something it already does.
+			</p>
+
+			<h2>Why you probably want this job</h2>
+
+			<p>The pay is good and the competition is thin. I like that for you.</p>
+
+			<p>
+				This is one of the few areas right now where a working software engineer has a genuine structural
+				advantage. You already know how to ship. You already know what a queue is, why the database fell over, how
+				to read a stack trace at 11pm. Most of the people flooding into "AI" cannot do any of that.
+			</p>
+
+			<p>
+				I went from full stack engineer to AI engineer over about two years. I fell into it sideways, by working at
+				two startups that needed someone to build this stuff and having nobody better available. Then some
+				consulting and freelance work on other people's AI projects. Then I ended up designing the AI engineering
+				interview loop at the last startup I was at, which means I've been on the other side of the table watching
+				people fail it.
+			</p>
+
+			<p>These days I also help recruit for these roles.</p>
+
+			<p>And I see the same skills come up over and over and over again. It's almost boring how consistent it is.</p>
+
+			<h2>Unfortunately, most people learn the wrong things</h2>
+
+			<p>
+				Here's the pattern I watch play out constantly. A good engineer decides to get into AI, opens a browser,
+				and within about forty minutes is watching a video about backpropagation.
+			</p>
+
+			<h3>The main reason: you think you need machine learning</h3>
+
+			<p>
+				You don't. Unless you actively want to, unless linear algebra genuinely tickles your pickle, learning ML
+				and heavy math is a waste of your time for this specific goal.
+			</p>
+
+			<p>
+				Nobody is hiring you to train a model. They're hiring you to take models that already exist and make them
+				useful inside a business that has messy data, weird requirements, and a compliance team.
+			</p>
+
+			<p>Those are different jobs. The math one requires a PhD and pays about the same.</p>
+
+			<p>The other reasons people stall out:</p>
+
+			<ul>
+				<li>
+					<strong>They build chatbots that only talk.</strong> A thing that answers questions is a demo. A thing
+					that changes the state of a system is software.
+				</li>
+				<li>
+					<strong>They learn a framework before they learn the primitives.</strong> Then the framework changes,
+					which it will, and they own nothing.
+				</li>
+				<li>
+					<strong>They never write a single eval.</strong> So they have no idea if their thing works, and they say
+					things like "it seems pretty good" in interviews.
+				</li>
+				<li>
+					<strong>They build on clean data.</strong> Every tutorial dataset is pristine. Every real corpus is a
+					horror show of PDFs, duplicate pages, and a spreadsheet somebody exported in 2019.
+				</li>
+				<li>
+					<strong>They have zero observability.</strong> The agent does something insane in production and there is
+					no trace, no log, no way to reconstruct what happened.
+				</li>
+			</ul>
+
+			<p>
+				The good news is that this list is short, learnable, and most of it is documented for free by companies
+				that want you to use their products.
+			</p>
+
+			<p>Here's how, step by step.</p>
+
+			<h2>Step 1: Get good at RAG</h2>
+
+			<p>
+				Retrieval augmented generation. There are ten thousand articles on this and most of them stop at "chunk
+				your docs, embed them, stick them in a vector database, profit."
+			</p>
+
+			<p>That's the tutorial version. The tutorial version does not survive contact with a real corpus.</p>
+
+			<p>What you actually need to understand:</p>
+
+			<p>
+				<strong>Chunking strategies.</strong> How you split a document determines everything downstream. Split on
+				token count and you'll cut a table in half. Split on headers and you'll get a chunk that's four words long.
+			</p>
+
+			<p>
+				<strong>Metadata and filtering.</strong> This is the single highest-leverage thing on this list and it's
+				the thing most people skip. If a user asks about the 2025 refund policy, you should not be doing a semantic
+				search across every document you own and hoping. You filter first, then search.
+			</p>
+
+			<p>
+				<strong>Sparse and dense vectors, and hybrid search.</strong> Dense vectors are great at meaning and
+				terrible at exact matches. Somebody searches for an internal part number or an error code and your
+				beautiful semantic search returns nothing useful. Sparse vectors (think BM25, keyword-ish) handle that.
+				Hybrid means you run both and fuse the results.
+			</p>
+
+			<p>Here's roughly what that looks like in Qdrant:</p>
+
+			<pre><code>results = client.query_points(
+    collection_name="docs",
+    prefetch=[
+        models.Prefetch(query=dense_vec, using="dense", limit=50),
+        models.Prefetch(query=sparse_vec, using="sparse", limit=50),
+    ],
+    query=models.FusionQuery(fusion=models.Fusion.RRF),
+    query_filter=models.Filter(
+        must=[
+            models.FieldCondition(
+                key="doc_type",
+                match=models.MatchValue(value="policy"),
+            ),
+            models.FieldCondition(
+                key="year",
+                range=models.Range(gte=2025),
+            ),
+        ]
+    ),
+    limit=10,
+)</code></pre>
+
+			<p>
+				Two filters and a fusion query. That's not complicated code. But knowing <em>why</em> you'd write it is the
+				entire skill.
+			</p>
+
+			<p>
+				<strong>Reranking.</strong> Retrieve 50, rerank down to 8, send those. A cross-encoder reranker will fix a
+				shocking number of "the answer was in there somewhere but the model didn't see it" problems.
+			</p>
+
+			<p>
+				<strong>Retrieval quality.</strong> You have to be able to answer "is my retrieval any good" with a number.
+				More on that in step 3.
+			</p>
+
+			<p>
+				<strong>Multimodal</strong>, if your documents have images, charts, or scanned pages that matter. Which, in
+				most enterprises, they do.
+			</p>
+
+			<p>
+				You can look at <strong>graph RAG</strong> if you want. I don't think it's important for getting hired right
+				now. It shows up in maybe one conversation in twenty.
+			</p>
+
+			<p>
+				Where to learn all of this: read the documentation. Pinecone and Qdrant have both written extensively on
+				metadata filtering, sparse vs dense vectors, hybrid search, and reranking, largely because they want you to
+				understand it well enough to buy their thing. Their incentive happens to align with your education. Take
+				the free lunch.
+			</p>
+
+			<h2>Step 2: Build production agents</h2>
+
+			<p>This is the other half of the job, and it's where people go wrong fastest.</p>
+
+			<p>The best short thing written on this is Anthropic's "Building Effective Agents." It's not long. Read it twice.</p>
+
+			<p>
+				<strong>Do not start with a framework.</strong> Do not start with LangChain, LangGraph, or anything else.
+				Start by calling a provider API directly and wrapping it yourself. Anthropic, OpenAI, whoever, they're
+				close enough to identical that switching is a rename.
+			</p>
+
+			<p>When you strip away the frameworks and the Twitter threads, an agent is two things:</p>
+
+			<blockquote class="pull">Context and the ability to execute on tasks.</blockquote>
+
+			<p>That's it in terms of what actually matters. Everything else is packaging.</p>
+
+			<p>
+				Context is what the model knows when it makes a decision. That's your system prompt, your conversation
+				history, your retrieved documents, and increasingly a vector database used as memory so the agent can
+				remember what happened last Tuesday.
+			</p>
+
+			<p>Execution is the part almost every tutorial skips, and it's the part that gets you hired.</p>
+
+			<p>
+				<strong>Your agent has to be able to change something.</strong> Not just answer. Change. Update a row in a
+				SQL database. Move a deal in HubSpot. File a ticket. Kick off a workflow.
+			</p>
+
+			<p>
+				The moment an agent can write to an external system, three things get real: permissions, failure modes, and
+				the need for a human in the loop. Which brings us to the workflow patterns worth knowing. Tool use,
+				chaining, routing, parallelization, and human in the loop.
+			</p>
+
+			<p>
+				Human in the loop is the one I'd learn cold, because it's the one that makes an agent shippable at a
+				company with customers. The pattern is simple. The agent can read freely. Before it does anything
+				destructive, it stops and asks.
+			</p>
+
+			<pre><code>NEEDS_APPROVAL = {"update_deal_stage", "delete_deal", "send_email"}
+
+for block in response.content:
+    if block.type != "tool_use":
+        continue
+
+    if block.name in NEEDS_APPROVAL and not approvals.get(block.id):
+        results.append({
+            "type": "tool_result",
+            "tool_use_id": block.id,
+            "content": "Blocked pending human approval. "
+                       "Summarize the change for the user and ask them to confirm.",
+        })
+        pending.append(block)
+    else:
+        results.append({
+            "type": "tool_result",
+            "tool_use_id": block.id,
+            "content": execute(block.name, block.input),
+        })</code></pre>
+
+			<p>
+				That's the entire pattern. A set, an if statement, and a tool result that tells the model to go ask
+				permission instead of pretending it succeeded.
+			</p>
+
+			<p>You did not need a framework for that.</p>
+
+			<h2>Step 3: Prove it works, then watch it</h2>
+
+			<p>
+				You've built the thing. Now the two skills that separate people who ship AI from people who demo AI.
+			</p>
+
+			<h3>Evals</h3>
+
+			<p>
+				Agents are non-deterministic. You cannot unit test them. <code>assert response == expected</code> is a dead
+				end the first time the model rephrases something.
+			</p>
+
+			<p>So you write evals instead.</p>
+
+			<p>
+				Start with retrieval quality, because it's the easiest to measure and it's usually where the failure
+				actually is. Collect thirty or forty questions people genuinely ask. For each one, note which documents
+				<em>should</em> come back. Now you can measure whether they do, and you can change a chunking strategy and
+				know within a minute whether you made things better or worse.
+			</p>
+
+			<p>
+				Then evaluate the output itself, usually with another model as the judge. You give the judge the question,
+				the retrieved context, the answer, and a rubric. It scores against criteria.
+			</p>
+
+			<pre><code>JUDGE_PROMPT = """You are grading an AI assistant's answer.
+
+Question: {question}
+Retrieved context: {context}
+Answer: {answer}
+
+Score 1-10 on each:
+- grounded: every claim is supported by the context
+- complete: addresses the full question
+- refusal: if the context lacks the answer, the assistant said so
+  instead of guessing (score 10 if not applicable)
+"""</code></pre>
+
+			<p>
+				Run it on every change. Watch the numbers move. This is the closest thing to a test suite you get, and
+				being the person on the team who set it up is a very good position to be in.
+			</p>
+
+			<h3>Observability</h3>
+
+			<p>
+				Non-negotiable. If your agent is running in production and you can't reconstruct what it did, you don't
+				have a product, you have a rumor.
+			</p>
+
+			<p>
+				Log the inputs, the retrieved chunks, the tool calls, the tool results, the final output, the latency, and
+				the cost. Then give users a way to tell you when it was wrong. A thumbs down button attached to a trace ID
+				will teach you more about your system than a month of staring at code.
+			</p>
+
+			<p>
+				Use LangSmith. Use CloudWatch. Use a Postgres table with a JSONB column. The tool matters far less than the
+				habit.
+			</p>
+
+			<h2>The technology worth touching</h2>
+
+			<p>Not to master. Just to have opened, used once, and formed an opinion about:</p>
+
+			<ul>
+				<li>
+					<strong>LangGraph</strong> and <strong>LangChain</strong>. Learn the primitives first, then these take an
+					afternoon. In that order, or you'll learn the abstraction and not the thing.
+				</li>
+				<li>
+					<strong>Pinecone</strong> and <strong>Qdrant</strong>. Pick one, build something real with it, read the
+					other's docs anyway.
+				</li>
+				<li><strong>Vercel AI SDK</strong> my personal fave as a Typescript dev.</li>
+				<li><strong>PydanticAI</strong> on the Python side, for structured outputs and typed tool definitions.</li>
+				<li><strong>Anthropic's papers and cookbooks</strong>. Free, short, written by people who ship this.</li>
+			</ul>
+
+			<h2>Build these three things</h2>
+
+			<p>
+				Nobody is going to hire you off a certificate. They're going to hire you because you can describe a system
+				you built, in detail, including the part where it broke.
+			</p>
+
+			<p>Build these in order.</p>
+
+			<h3>1. A RAG app over a public corpus</h3>
+
+			<p>
+				Pull down a public dataset with real ugly documents in it. arXiv is a good one, because the papers are
+				long, inconsistently formatted, and full of tables and math that will punish lazy chunking.
+			</p>
+
+			<p>Build something that lets a user ask questions about it.</p>
+
+			<p>
+				The part that makes this project count is not the happy path. It's the refusal. When someone asks about a
+				topic your corpus doesn't cover, the system needs to say so, or redirect them toward what it does know. It
+				must not confidently make something up.
+			</p>
+
+			<p>
+				That one behavior is what separates a portfolio project from a toy, and it's the first thing I'd probe in
+				an interview.
+			</p>
+
+			<aside class="callout">
+				<p>
+					<em
+						>If you want to see this built end to end, we run live sessions on RAG inside the
+						<a href="https://parsity.io">Parsity AI engineering program</a>, including the retrieval quality
+						and refusal work most tutorials skip.</em
+					>
+				</p>
+			</aside>
+
+			<h3>2. A chat agent wired into a CRM</h3>
+
+			<p>
+				Now connect an agent to a CRM and let it help someone understand their deal pipeline. Which deals are
+				stalled, what's closing this month, what got flagged and why.
+			</p>
+
+			<p>Then let it take actions. Update a deal. Move a stage. Add a note.</p>
+
+			<p>
+				With a human in the loop on anything destructive. Reading and reporting happens freely. Changing or
+				deleting requires the agent to stop, explain what it's about to do, and get a yes.
+			</p>
+
+			<p>
+				This project hits every pillar at once: retrieval, tool use, permissions, external writes, and the workflow
+				pattern that makes it safe enough to actually deploy.
+			</p>
+
+			<aside class="callout">
+				<p>
+					<em
+						>We build exactly this in the <a href="https://parsity.io">Parsity program</a>, starting with an
+						agent that updates a SQL database using the human in the loop pattern, before adding a real CRM behind
+						it.</em
+					>
+				</p>
+			</aside>
+
+			<h3>3. An agent with no chat interface at all</h3>
+
+			<p>This is the one that will make you stand out, because almost nobody builds it.</p>
+
+			<p>
+				Run an agent on a cron job. Have it execute a series of boolean searches against public job boards
+				(Greenhouse boards are often public and structured), store what it finds, deduplicate against what it's
+				already seen, and surface new matches based on criteria. Push it further and have it help draft
+				applications.
+			</p>
+
+			<p>
+				No chat window. No user typing. Just a system that wakes up, does research, makes decisions, writes to a
+				database, and reports.
+			</p>
+
+			<p>
+				Building this forces you to understand that an agent is a system, not a UI. The number of candidates who
+				understand that is small. The number of job postings that need it is not.
+			</p>
+
+			<h2>The short version</h2>
+
+			<p>
+				Skip the math. Learn RAG properly, including the metadata filtering and hybrid search parts everyone skips.
+				Build agents that can change things, not just talk. Write evals. Log everything.
+			</p>
+
+			<p>Then build three projects that a working engineer would recognize as software.</p>
+
+			<p>The title on the job posting will keep changing. What they're testing for won't.</p>
+
+			<div class="article-cta">
+				<p>
+					If you want the structured version of this with live sessions, code review, and people who've shipped it,
+					that's what we do at <a href="https://parsity.io">parsity.io</a>.
+				</p>
+				<a href="https://parsity.io" class="cta-btn">See the program</a>
+			</div>
+		</article>
+	</body>
+</html>

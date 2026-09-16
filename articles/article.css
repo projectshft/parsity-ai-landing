@@ -1,0 +1,225 @@
+/* Shared styling for Parsity articles. Tokens match the /ai-dev landing page. */
+
+:root {
+	--accent: #1d4ed8;
+	--accent-hover: #1e40af;
+	--accent-dim: #eff6ff;
+	--accent-mid: #bfdbfe;
+	--accent-glow: rgba(29, 78, 216, 0.18);
+	--navy: #0f2557;
+	--bg: #ffffff;
+	--bg3: #f1f5f9;
+	--surface: #f8fafc;
+	--text: #0f172a;
+	--text2: #334155;
+	--muted: #64748b;
+	--border: #c7d5ec;
+	--border-subtle: #e2e8f0;
+	--serif: 'Lora', Georgia, 'Times New Roman', serif;
+	--sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--sans);
+	line-height: 1.75;
+}
+
+/* ── LAYOUT ── */
+.article {
+	max-width: 720px;
+	margin: 0 auto;
+	padding: 0 24px 96px;
+}
+.article-head {
+	padding: 72px 0 40px;
+	border-bottom: 1px solid var(--border-subtle);
+	margin-bottom: 44px;
+}
+.eyebrow {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin-bottom: 20px;
+}
+.article .eyebrow a {
+	color: inherit;
+	text-decoration: none;
+}
+.article .eyebrow a:hover {
+	text-decoration: underline;
+}
+h1 {
+	font-family: var(--serif);
+	font-size: clamp(32px, 5.5vw, 48px);
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.015em;
+	color: var(--navy);
+	margin-bottom: 22px;
+}
+.byline {
+	font-size: 14px;
+	color: var(--muted);
+}
+
+/* ── BODY TYPE ── */
+.article p {
+	font-size: 18px;
+	color: var(--text2);
+	margin-bottom: 24px;
+}
+.article p strong,
+.article li strong {
+	color: var(--text);
+	font-weight: 600;
+}
+.article em {
+	font-style: italic;
+}
+h2 {
+	font-family: var(--serif);
+	font-size: clamp(24px, 3.4vw, 32px);
+	font-weight: 600;
+	line-height: 1.25;
+	color: var(--navy);
+	margin: 56px 0 20px;
+}
+h3 {
+	font-family: var(--serif);
+	font-size: 22px;
+	font-weight: 600;
+	color: var(--navy);
+	margin: 40px 0 16px;
+}
+.article a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+.article a:hover {
+	color: var(--accent-hover);
+}
+
+/* ── LISTS ── */
+.article ul,
+.article ol {
+	margin: 0 0 24px 22px;
+}
+.article li {
+	font-size: 18px;
+	color: var(--text2);
+	margin-bottom: 12px;
+	padding-left: 4px;
+}
+.article li::marker {
+	color: var(--accent-mid);
+}
+
+/* ── CODE ── */
+code {
+	font-family: var(--mono);
+	font-size: 0.88em;
+	background: var(--bg3);
+	padding: 2px 6px;
+	border-radius: 4px;
+	color: var(--navy);
+}
+pre {
+	background: var(--surface);
+	border: 1px solid var(--border-subtle);
+	border-radius: 10px;
+	padding: 20px 22px;
+	margin-bottom: 28px;
+	overflow-x: auto;
+}
+pre code {
+	background: none;
+	padding: 0;
+	border-radius: 0;
+	font-size: 13.5px;
+	line-height: 1.65;
+	color: var(--text);
+}
+
+/* ── PULL QUOTE ── */
+.pull {
+	font-family: var(--serif);
+	font-size: clamp(21px, 3vw, 26px);
+	font-weight: 500;
+	line-height: 1.4;
+	color: var(--navy);
+	text-align: center;
+	margin: 40px auto;
+	max-width: 560px;
+}
+
+/* ── PROGRAM CALLOUT ── */
+.callout {
+	background: var(--accent-dim);
+	border: 1px solid var(--accent-mid);
+	border-radius: 10px;
+	padding: 20px 24px;
+	margin: 32px 0;
+}
+.callout p {
+	font-size: 16px;
+	color: var(--navy);
+	margin: 0;
+}
+
+/* ── END CTA ── */
+.article-cta {
+	margin-top: 64px;
+	padding-top: 44px;
+	border-top: 1px solid var(--border-subtle);
+	text-align: center;
+}
+.article-cta h3 {
+	margin-top: 0;
+}
+.article-cta p {
+	max-width: 520px;
+	margin: 0 auto 28px;
+}
+.cta-btn {
+	display: inline-block;
+	padding: 16px 34px;
+	background: var(--accent);
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.8px;
+	border-radius: 8px;
+	text-decoration: none;
+	box-shadow: 0 2px 8px var(--accent-glow);
+	transition: background 0.2s, box-shadow 0.2s;
+}
+.cta-btn:hover {
+	background: var(--accent-hover);
+	color: #ffffff;
+	box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+@media (max-width: 600px) {
+	.article-head {
+		padding: 48px 0 32px;
+	}
+	.article p,
+	.article li {
+		font-size: 17px;
+	}
+}
