@@ -57,6 +57,8 @@
     font-size:16.5px;line-height:1.66;-webkit-font-smoothing:antialiased;}
   .px{font-family:"Press Start 2P","VT323",monospace;line-height:1.5;text-transform:uppercase;}
   h1,h2,h3,h4{margin:0;text-wrap:balance;}
+  /* Kajabi theme sets its own heading colors; force ours so night mode works */
+  .sec-title,.duo .card h4,.yt-card h4,.final h2,.founder h3,.plan h3{color:inherit !important;}
   a{color:inherit;}
   img{max-width:100%;display:block;}
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
@@ -103,9 +105,9 @@
   .titlecard{display:table;background:var(--panel-green);border:4px solid var(--pine);
     box-shadow:var(--pix);padding:12px 22px 14px;margin:0 auto 22px;}
   .titlecard .logo b{color:var(--on-green);font-size:1.3rem;}
-  h1.hero-h{font-family:"VT323",monospace;color:var(--ink);line-height:1.08;
+  h1.hero-h{font-family:"VT323",monospace;color:var(--ink) !important;line-height:1.08;
     font-size:clamp(2.4rem,6.5vw,4.2rem);text-transform:none;max-width:19ch;margin:.02em auto .34em;letter-spacing:.02em;}
-  h1.hero-h .hl{color:var(--accent);}
+  h1.hero-h .hl{color:var(--accent) !important;}
   .hero p.lede{font-size:1.2rem;line-height:1.55;max-width:56ch;color:var(--ink);margin:0 auto 16px;}
   :root[data-theme="dark"] .hero p.lede,:root:not([data-theme="light"]) .hero p.lede{color:var(--ink);}
   .hero .price-line{font-family:"VT323",monospace;font-size:1.3rem;color:var(--ink-soft);margin-bottom:24px;}
@@ -237,7 +239,7 @@
   /* faq */
   .faq-list{display:grid;gap:14px;}
   .faq-item{background:var(--cream);border:3px solid var(--line);box-shadow:var(--pix-sm);padding:18px 20px;}
-  .faq-item h4{font-family:"VT323",monospace;font-size:1.3rem;text-transform:none;margin-bottom:8px;color:var(--accent);}
+  .faq-item h4{font-family:"VT323",monospace;font-size:1.3rem;text-transform:none;margin-bottom:8px;color:var(--accent) !important;}
   .faq-item p{font-size:.97rem;color:var(--ink-soft);margin:0;}
   .faq-item a{color:var(--accent);}
 
@@ -371,7 +373,7 @@
       <span class="promo-badge">New</span>
       <h2 class="sec-title">AI Engineer in a Weekend</h2>
       <p class="sec-sub" style="margin-left:auto;margin-right:auto;">Can't commit to six weeks? Two days, and you leave with a deployed, production grade AI agent: vector database with agentic retrieval, observability, evals, human-in-the-loop. For software developers only. 12 spots, $497.</p>
-      <div class="cta-row"><a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="btn" id="weekend-cta">Sign up for early access</a></div>
+      <div class="cta-row"><a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="btn weekend-cta">Sign up for early access</a></div>
     </div>
   </section>
   <script>
@@ -382,7 +384,7 @@
         variant = Math.random() < 0.5 ? 'agentic' : 'aiengineer';
         localStorage.setItem('weekendFormVariant', variant);
       }
-      document.getElementById('weekend-cta').href = 'https://form.typeform.com/to/' + forms[variant];
+      document.querySelectorAll('.weekend-cta').forEach(function (a) { a.href = 'https://form.typeform.com/to/' + forms[variant]; });
     })();
   </script>
 
@@ -418,14 +420,7 @@
           <li><span class="b"></span><span>Repo, accounts, starter app and API credits set up in advance</span></li>
           <li><span class="b"></span><span>The deployed app and the repo are yours to keep</span></li>
         </ul>
-        <form data-parsley-validate="true" data-kjb-disable-on-submit="true" action="https://www.parsity.io/forms/2149652300/form_submissions" accept-charset="UTF-8" method="post" novalidate="">
-          <input type="hidden" name="authenticity_token" value="" autocomplete="off">
-          <input type="text" name="website_url" autofill="off" placeholder="Skip this field" style="display:none;">
-          <input type="hidden" name="kjb_fk_checksum" autofill="off" value="">
-          <input type="text" name="form_submission[name]" value="" required="required" placeholder="What's your first name?">
-          <input required="required" placeholder="What is your email?" type="email" name="form_submission[email]">
-          <button type="submit" class="btn block">Tell me when seats open</button>
-        </form>
+        <a href="https://form.typeform.com/to/qyEMw7Ao" target="_blank" rel="noopener" class="btn block weekend-cta">Tell me when seats open</a>
         <p class="form-note">You hear first when dates are set. Nothing else.</p>
       </div>
     </div>
