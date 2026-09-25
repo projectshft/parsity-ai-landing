@@ -57,6 +57,8 @@
     font-size:16.5px;line-height:1.66;-webkit-font-smoothing:antialiased;}
   .px{font-family:"Press Start 2P","VT323",monospace;line-height:1.5;text-transform:uppercase;}
   h1,h2,h3,h4{margin:0;text-wrap:balance;}
+  /* Kajabi theme sets its own heading colors; force ours so night mode works */
+  .sec-title,.duo .card h4,.yt-card h4,.final h2,.founder h3,.plan h3{color:inherit !important;}
   a{color:inherit;}
   img{max-width:100%;display:block;}
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
@@ -103,9 +105,9 @@
   .titlecard{display:table;background:var(--panel-green);border:4px solid var(--pine);
     box-shadow:var(--pix);padding:12px 22px 14px;margin:0 auto 22px;}
   .titlecard .logo b{color:var(--on-green);font-size:1.3rem;}
-  h1.hero-h{font-family:"VT323",monospace;color:var(--ink);line-height:1.08;
+  h1.hero-h{font-family:"VT323",monospace;color:var(--ink) !important;line-height:1.08;
     font-size:clamp(2.4rem,6.5vw,4.2rem);text-transform:none;max-width:19ch;margin:.02em auto .34em;letter-spacing:.02em;}
-  h1.hero-h .hl{color:var(--accent);}
+  h1.hero-h .hl{color:var(--accent) !important;}
   .hero p.lede{font-size:1.2rem;line-height:1.55;max-width:56ch;color:var(--ink);margin:0 auto 16px;}
   :root[data-theme="dark"] .hero p.lede,:root:not([data-theme="light"]) .hero p.lede{color:var(--ink);}
   .hero .price-line{font-family:"VT323",monospace;font-size:1.3rem;color:var(--ink-soft);margin-bottom:24px;}
@@ -237,7 +239,7 @@
   /* faq */
   .faq-list{display:grid;gap:14px;}
   .faq-item{background:var(--cream);border:3px solid var(--line);box-shadow:var(--pix-sm);padding:18px 20px;}
-  .faq-item h4{font-family:"VT323",monospace;font-size:1.3rem;text-transform:none;margin-bottom:8px;color:var(--accent);}
+  .faq-item h4{font-family:"VT323",monospace;font-size:1.3rem;text-transform:none;margin-bottom:8px;color:var(--accent) !important;}
   .faq-item p{font-size:.97rem;color:var(--ink-soft);margin:0;}
   .faq-item a{color:var(--accent);}
 
@@ -274,7 +276,7 @@
       <p class="lede">45 days. You build a production AI system, a mentor reads your code every single week and tells you what's actually broken, and you learn to say all of this out loud to the people who sign the checks.</p>
       <div class="price-line">$1,997. Six live 1:1 sessions with a mentor, scheduled around your life &mdash; not a cohort's.</div>
       <div class="cta-row">
-        <a href="https://calendly.com/brianjenney83/founder-intro-call" target="_blank" rel="noopener" class="btn big">Book a short call</a>
+        <a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="btn big">Book a short call</a>
         <a href="#syllabus" class="btn ghost">Send me the syllabus</a>
       </div>
       <p class="cta-note">Fifteen minutes, no pitch. If it's not the right fit, I'll tell you.</p>
@@ -335,7 +337,7 @@
             <li><span class="b"></span><span>Interview prep, resume help, and a certification</span></li>
             <li><span class="b"></span><span>Lifetime access to the curriculum and every update after</span></li>
           </ul>
-          <a href="https://calendly.com/brianjenney83/founder-intro-call" target="_blank" rel="noopener" class="btn block">Book a short call</a>
+          <a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="btn block">Book a short call</a>
           <div class="fine">We hop on a quick call first, just to make sure this is actually a fit. At this price, that's the honest thing to do for both of us.</div>
         </div>
       </div>
@@ -408,7 +410,7 @@
       </div>
       <p class="sec-sub" style="max-width:70ch;"><strong>The fix:</strong> six 1:1 sessions with a mentor, and real feedback on your actual code, on the exact stack companies are trying to hire for.</p>
       <div class="cta-row" style="justify-content:flex-start;">
-        <a href="https://calendly.com/brianjenney83/founder-intro-call" target="_blank" rel="noopener" class="btn">Book a short call</a>
+        <a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="btn">Book a short call</a>
         <a href="#syllabus" class="btn ghost">Send me the syllabus</a>
       </div>
     </div>
@@ -561,7 +563,7 @@
       <p class="sec-sub" style="color:var(--on-green-soft);max-width:60ch;margin:0 auto 8px;">You already have the hard part. You can build and deploy software. What you're missing is a specific stack companies are hiring for, and six sessions with someone who's actually shipped it.</p>
       <p style="font-family:'VT323',monospace;font-size:1.2rem;color:var(--coin);margin-bottom:22px;">$1,997. Mentor-led. Starts whenever you're paired.</p>
       <div class="cta-row">
-        <a href="https://calendly.com/brianjenney83/founder-intro-call" target="_blank" rel="noopener" class="btn big">Book a short call</a>
+        <a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="btn big">Book a short call</a>
         <a href="#syllabus" class="btn ghost">Send me the syllabus</a>
       </div>
       <p class="note">Money-back guarantee: do your first session, and if it isn't what you wanted, you get a full refund. Questions? <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
