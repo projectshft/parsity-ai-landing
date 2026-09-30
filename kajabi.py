@@ -17,6 +17,7 @@ PAGES = {
     "ai-dev": 2164183145,        # AI for Web Developers: the bootcamp
     "for-business": 2167439690,  # AI For Business: automation
     "how-it-works": 2167535129,  # How to become an AI engineer: VSL
+    "agentic-engineering-101": 2167731896,  # standalone Saturday workshop, $495
 }
 
 BASE = "https://app.kajabi.com/admin/themes/{}/settings"
