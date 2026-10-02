@@ -1,9 +1,9 @@
 # Kajabi API map
 
 Explored 2026-10-02 against site `2148415899` (brian-jenney.mykajabi.com, served
-as parsity.io). Only GET requests were made. "Verified" means a real 200 response;
-"observed" means seen in the admin HTML or JS but not called. Every write below is
-untested.
+as parsity.io). "Verified" means called for real; "observed" means seen in the admin
+HTML or JS but not called. Landing-page writes were verified on 2026-10-02 against a
+throwaway clone, then used on the live page. All other writes are untested.
 
 ## Which API for what
 
@@ -48,12 +48,16 @@ Same headers `kajabi.py` already sends. Undocumented, so they can change without
 - Observed: `POST /admin/themes/{id}/snapshots` with `theme_upload_storage_key` (theme file upload).
 
 ### Landing page settings (Rails forms, form-encoded)
+All of these take `Content-Type: application/x-www-form-urlencoded` plus the usual
+`x-csrf-token` and cookie headers (the form `authenticity_token` is not needed). A
+success is a 302; read the `Location` header rather than following it.
+
 - Verified: `GET /admin/landing_pages/{landing_page_id}/edit` is HTML and shows the current values.
-- Observed: `POST /admin/landing_pages/{id}` with `_method=patch` and any of `landing_page[title]`, `[path]` (URL slug), `[page_title]`, `[page_description]`, `[page_image]`, `[publishing_option]` (current value is `published`), `[hide_from_search_engines]`.
-- Observed: `POST /admin/landing_pages/{id}/clone` (link uses `data-method="post"`). This is how to create a new page.
-- Observed: `POST /admin/sites/{site_id}/landing_pages/import` with `theme[original_zip]`.
-- Observed: `GET /admin/landing_pages/{id}/stats` (HTML).
-- Likely works with the `x-csrf-token` header instead of a form `authenticity_token`, since the theme PUT does. Untested.
+- Verified: `POST /admin/landing_pages/{id}` with `_method=patch` updates only the fields you send. Slug-only (`landing_page[path]=...`) left title, SEO and publish state untouched, and the new slug served publicly at once. The old slug returns 404, with no redirect. Other fields: `landing_page[title]`, `[page_title]`, `[page_description]`, `[page_image]`, `[hide_from_search_engines]`.
+- Verified: `landing_page[publishing_option]` takes `published` or `draft`. `draft` made the public URL 404.
+- Verified: `POST /admin/landing_pages/{id}/clone` returns 302 to `/admin/theme_pending/{new_theme_id}`. The new page is published at once, titled "<old title> 1" with slug "<old slug>-1". Find the new landing page ID by diffing the page list before and after.
+- Verified: `POST /admin/landing_pages/{id}` with `_method=delete` removes a page (302 to the page list).
+- Observed, untested: `POST /admin/sites/{site_id}/landing_pages/import` with `theme[original_zip]`; `GET /admin/landing_pages/{id}/stats` (HTML).
 
 ### Site and media (JSON, verified GET)
 - `/admin/sites/{site_id}`: site settings object (title, support email, home_landing_page_id, SEO defaults, and more).
@@ -72,13 +76,13 @@ affiliates, analytics, automation_rules, blog_posts, communities, contacts (500 
 | Site | 2148415899 |
 | agentic-engineering-101 | theme 2167731896, landing page 2152304400 |
 
-## Current state worth fixing (as of 2026-10-02)
+## Current state (as of 2026-10-02)
 
-The workshop page is published at `https://www.parsity.io/ai-for-web-developers-ai-dev-slug-1` with the new copy. Its Kajabi title is still "AI for Web Developers (ai-dev slug) 1" and its SEO page title is "AI for Web Developers". `/agentic-engineering-101` returns 404. The landing-page PATCH above would fix all three. Not done: it writes to a live page.
+The workshop page is live at `https://www.parsity.io/agentic-engineering-101`. The slug was fixed today; the earlier slug `ai-for-web-developers-ai-dev-slug-1` now returns 404. Still left over from the clone: the Kajabi title is "AI for Web Developers (ai-dev slug) 1" and the SEO page title is "AI for Web Developers". Both are one PATCH away.
 
 ## Suggested next steps
 
-1. Fix the slug, title and SEO fields via the landing-page PATCH, after testing it on a throwaway clone.
+1. Fix the title and SEO page title with the landing-page PATCH.
 2. Confirm API access with Kajabi support. If it is available, move contact, tag and webhook work to the official API.
 3. Test the official Kajabi MCP for page, offer and email drafting, which neither API covers.
-4. Add `kajabi.py pages` (list pages with id, slug, status) and `kajabi.py meta` (slug, title, publish) on top of the endpoints above.
+4. Add `kajabi.py pages` (list pages with id, slug, status) and `kajabi.py meta` (slug, title, publish) on top of the endpoints above, so the verified requests are not rewritten each time.
