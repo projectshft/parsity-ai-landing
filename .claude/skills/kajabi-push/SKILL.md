@@ -18,6 +18,13 @@ IDs live in the `PAGES` dict in `kajabi.py`.
 3. Push: `python3 kajabi.py push <page> <page>.html`
 4. Commit the HTML file.
 
+## Other Kajabi APIs
+
+`API_MAP.md` in this folder lists what else can be done without the UI:
+page slug/title/publish settings, cloning pages, and the official
+`api.kajabi.com` API for contacts, tags and webhooks. Check it before
+telling the user something has to be done in the Kajabi interface.
+
 ## Adding a page
 
 Open it in the Kajabi editor and copy the theme ID from the URL
