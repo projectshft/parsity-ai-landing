@@ -25,7 +25,20 @@ Open it in the Kajabi editor and copy the theme ID from the URL
 
 ## Auth failures
 
-401 means the token in `.kajabi/env` expired (about one day). Ask the user
-for a fresh `authorization`, `x-csrf-token`, and `cookie` header from any
-app.kajabi.com request in devtools, and update the three vars in that file.
-Never commit `.kajabi/env`.
+`kajabi.py` exits with "Kajabi session expired" on a 401/403. The session
+is Kajabi's own browser login and lasts about a day; there is no API key
+for this endpoint, so a fresh login is unavoidable. Make it one paste:
+
+1. Ask the user to open the Kajabi admin, devtools -> Network, pick any
+   request to app.kajabi.com of type **Fetch/XHR** (opening a theme editor
+   page produces one), right-click -> Copy -> Copy as cURL, and paste it.
+2. Save the pasted text to the scratchpad and run
+   `python3 kajabi.py creds <file>`. It pulls out the authorization,
+   x-csrf-token, and cookie values and rewrites `.kajabi/env`.
+3. If it prints "still missing", the paste was a page navigation
+   (Document type, e.g. the `/auth/auth0/callback` redirect), which carries
+   no authorization or x-csrf-token header. Ask for a Fetch/XHR one.
+
+Never print, echo, or commit the pasted values; `.kajabi/env` is
+gitignored. Remind the user the pasted session now sits in chat history
+and is worth logging out of when done.

@@ -4,12 +4,20 @@
   python3 kajabi.py pull for-teams for-teams.html
   python3 kajabi.py push for-teams for-teams.html
 
-Creds live in .kajabi/env (gitignored). Grab them from the browser devtools
-on a request to app.kajabi.com: KAJABI_TOKEN (authorization header),
-KAJABI_CSRF (x-csrf-token header), KAJABI_COOKIE (cookie header). The token
-expires in ~1 day; refresh when you get a 401.
+Creds live in .kajabi/env (gitignored): KAJABI_TOKEN (authorization header),
+KAJABI_CSRF (x-csrf-token header), KAJABI_COOKIE (cookie header). The
+session expires in ~1 day - Kajabi's, not ours, nothing here can extend it.
+
+To refresh: in the Kajabi admin, open devtools Network tab, click any
+request to app.kajabi.com of type Fetch/XHR (not Document - a page
+navigation won't have the headers we need), right-click it -> Copy ->
+Copy as cURL, paste the whole thing into a file, then:
+
+  python3 kajabi.py creds path/to/pasted_curl.txt
+
+or pipe it directly: pbpaste | python3 kajabi.py creds
 """
-import json, os, sys, urllib.request
+import json, os, re, sys, urllib.request
 
 # name -> theme_id, from the editor URL /admin/themes/<theme_id>/settings/edit
 PAGES = {
@@ -42,8 +50,63 @@ def call(method, url, body=None):
         "cookie": e["KAJABI_COOKIE"], "user-agent": UA, "origin": "https://app.kajabi.com",
     }.items():
         req.add_header(k, v)
-    with urllib.request.urlopen(req) as r:
-        return json.load(r)
+    try:
+        with urllib.request.urlopen(req) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as err:
+        if err.code in (401, 403):
+            sys.exit("Kajabi session expired (HTTP %d). Paste a fresh curl from a Fetch/XHR "
+                     "request to app.kajabi.com and run: python3 kajabi.py creds <file>" % err.code)
+        raise
+
+
+def parse_curl(text):
+    headers = {}
+    for pat in (r"-H\s+'([^:]+):\s*([^']*)'", r'-H\s+"([^:]+):\s*([^"]*)"'):
+        for m in re.finditer(pat, text):
+            headers.setdefault(m.group(1).strip().lower(), m.group(2).strip())
+
+    cookie = None
+    for pat in (r"(?:-b|--cookie)\s+'([^']*)'", r'(?:-b|--cookie)\s+"([^"]*)"'):
+        m = re.search(pat, text)
+        if m:
+            cookie = m.group(1)
+            break
+    if not cookie:
+        cookie = headers.get("cookie")
+
+    return headers.get("authorization"), headers.get("x-csrf-token"), cookie
+
+
+def creds_cmd(path):
+    text = open(path).read() if path else sys.stdin.read()
+    token, csrf, cookie = parse_curl(text)
+
+    env_path = os.path.join(os.path.dirname(__file__), ".kajabi", "env")
+    os.makedirs(os.path.dirname(env_path), exist_ok=True)
+    current = env() if os.path.exists(env_path) else {}
+
+    found = {}
+    if token:
+        found["KAJABI_TOKEN"] = token
+    if csrf:
+        found["KAJABI_CSRF"] = csrf
+    if cookie:
+        found["KAJABI_COOKIE"] = cookie
+    current.update(found)
+
+    with open(env_path, "w") as f:
+        for k in ("KAJABI_TOKEN", "KAJABI_CSRF", "KAJABI_COOKIE"):
+            if k in current:
+                f.write(f"{k}={current[k]}\n")
+
+    if found:
+        print(f"updated: {', '.join(found)}")
+    missing = [k for k in ("KAJABI_TOKEN", "KAJABI_CSRF", "KAJABI_COOKIE") if k not in current]
+    if missing:
+        print(f"still missing: {', '.join(missing)}")
+        print("paste a curl from a Fetch/XHR request to app.kajabi.com, not a page navigation "
+              "(e.g. open the theme editor and copy the request that loads the page settings)")
 
 
 def code_block(sections):
@@ -55,6 +118,9 @@ def code_block(sections):
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] == "creds":
+        return creds_cmd(sys.argv[2] if len(sys.argv) > 2 else None)
+
     cmd, page, path = sys.argv[1:4]
     theme_id = PAGES[page]
     resp = call("GET", BASE.format(theme_id))
