@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Agentic Engineering 101 | Parsity</title>
+		<meta name="description" content="One Saturday, $495. Learn how to actually use the AI coding tools you already have, instead of guessing. Certificate, two-week follow-up, no call needed to sign up." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+		<style>
+			#parsity-lp {
+				--sky-top: #B7EFF7; --sky-bot: #8AE3EE;
+				--page: #FBF6E9; --page-2: #F2E9CF;
+				--panel-green: #2F7D46; --panel-green-dk: #215C34; --pine: #14401F;
+				--accent: #E8543A; --accent-dk: #BE3C25;
+				--coin: #F5B93F; --coin-dk: #D8971F;
+				--leaf: #5FB43F; --leaf-dk: #3E8E2C;
+				--cream: #FBF6E9; --cream-2: #F2E9CF;
+				--ink: #16233A; --ink-soft: #43536F;
+				--on-green: #FBF6E9; --on-green-soft: #C7E6CF;
+				--line: #14401F;
+				--hud-bg: #14401F; --hud-line: #0C2A15;
+				--pix: 6px 6px 0 var(--line);
+				--pix-sm: 4px 4px 0 var(--line);
+			}
+			@media (prefers-color-scheme: dark) {
+				#parsity-lp:not([data-theme="light"]) {
+					--sky-top: #122A44; --sky-bot: #1D3E5C;
+					--page: #0E1826; --page-2: #152437;
+					--panel-green: #235233; --panel-green-dk: #173B22; --pine: #0B2814;
+					--accent: #FF6A4D; --accent-dk: #E8543A;
+					--coin: #F5C24F; --coin-dk: #C9971F;
+					--leaf: #57A83A; --leaf-dk: #356E27;
+					--cream: #17212E; --cream-2: #1F2C3C;
+					--ink: #EAF1E8; --ink-soft: #9FB2A8;
+					--on-green: #EAF6EC; --on-green-soft: #A9CFB2;
+					--line: #0B2814; --hud-bg: #0B2814; --hud-line: #061A0C;
+				}
+			}
+			#parsity-lp[data-theme="dark"] {
+				--sky-top: #122A44; --sky-bot: #1D3E5C;
+				--page: #0E1826; --page-2: #152437;
+				--panel-green: #235233; --panel-green-dk: #173B22; --pine: #0B2814;
+				--accent: #FF6A4D; --accent-dk: #E8543A;
+				--coin: #F5C24F; --coin-dk: #C9971F;
+				--leaf: #57A83A; --leaf-dk: #356E27;
+				--cream: #17212E; --cream-2: #1F2C3C;
+				--ink: #EAF1E8; --ink-soft: #9FB2A8;
+				--on-green: #EAF6EC; --on-green-soft: #A9CFB2;
+				--line: #0B2814; --hud-bg: #0B2814; --hud-line: #061A0C;
+			}
+
+			#parsity-lp, #parsity-lp * { box-sizing: border-box; margin: 0; padding: 0; }
+			#parsity-lp {
+				background: var(--page) !important; color: var(--ink) !important;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+				font-size: 16.5px; line-height: 1.66; -webkit-font-smoothing: antialiased;
+			}
+			#parsity-lp .term { font-family: "VT323", monospace; }
+			#parsity-lp h1, #parsity-lp h2, #parsity-lp h3, #parsity-lp h4 { text-wrap: balance; color: inherit !important; }
+			#parsity-lp a { color: inherit !important; text-decoration: none; }
+			#parsity-lp img { max-width: 100%; display: block; }
+			#parsity-lp p { color: inherit !important; }
+			#parsity-lp section { position: relative; }
+			#parsity-lp .wrap { max-width: 1000px; margin: 0 auto; padding: 0 22px; }
+
+			#parsity-lp .btn {
+				display: inline-flex; align-items: center; justify-content: center; gap: .5ch; cursor: pointer;
+				font-family: "VT323", monospace; font-size: 1.45rem; letter-spacing: .02em;
+				text-transform: uppercase; text-decoration: none;
+				padding: .5em 1.05em; border: 3px solid var(--line); border-radius: 0 !important;
+				background: var(--accent); color: #FFF7F2 !important; box-shadow: var(--pix-sm);
+				transition: transform .06s steps(2), box-shadow .06s steps(2);
+			}
+			#parsity-lp .btn:hover { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--line); color: #FFF7F2 !important; }
+			#parsity-lp .btn.ghost { background: var(--cream); color: var(--ink) !important; }
+			#parsity-lp .btn.big { font-size: 1.9rem; padding: .55em 1.3em; box-shadow: var(--pix); }
+			#parsity-lp .btn.big:hover { transform: translate(6px, 6px); box-shadow: 0 0 0 var(--line); }
+			#parsity-lp .btn.full { width: 100%; }
+
+			#parsity-lp .eyebrow {
+				font-family: "VT323", monospace; text-transform: uppercase; letter-spacing: .18em;
+				font-size: 1.15rem; color: var(--accent) !important;
+			}
+
+			/* ── ANNOUNCE BAR ── */
+			#parsity-lp .announce-bar {
+				background: var(--hud-bg) !important; color: var(--coin) !important;
+				border-bottom: 4px solid var(--pine); padding: 10px 20px; text-align: center;
+				font-family: "VT323", monospace; font-size: 1.2rem; letter-spacing: .04em;
+			}
+			#parsity-lp .announce-bar .blink { display: inline-block; width: 10px; height: 10px; background: var(--accent); border: 2px solid var(--coin); margin-right: 8px; animation: blink 1s steps(1) infinite; vertical-align: middle; }
+			@keyframes blink { 50% { opacity: .15; } }
+
+			/* ── HERO ── */
+			#parsity-lp .hero { overflow: hidden; background: linear-gradient(var(--sky-top), var(--sky-bot)); border-bottom: 4px solid var(--pine); }
+			#parsity-lp .hero-inner { position: relative; z-index: 5; padding: 54px 22px 110px; max-width: 1000px; margin: 0 auto; text-align: center; }
+			#parsity-lp .event-meta { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+			#parsity-lp .event-chip {
+				font-family: "VT323", monospace; font-size: 1.2rem; background: var(--cream); color: var(--ink) !important;
+				border: 3px solid var(--line); box-shadow: var(--pix-sm); padding: .1em .7em;
+			}
+			#parsity-lp .event-chip.hot { background: var(--coin); }
+			#parsity-lp h1.hero-h {
+				font-family: "VT323", monospace; color: var(--ink) !important; line-height: 1.08;
+				font-size: clamp(2.3rem, 6vw, 4rem); text-transform: none; max-width: 20ch; margin: 0 auto .34em; letter-spacing: .02em;
+			}
+			#parsity-lp h1.hero-h .hl { color: var(--accent) !important; }
+			#parsity-lp .hero p.lede {
+				font-size: 1.18rem; line-height: 1.55; max-width: 58ch; color: var(--ink) !important; margin: 0 auto 14px;
+			}
+			#parsity-lp .hero-price-big { font-family: "VT323", monospace; font-size: clamp(2.6rem, 6vw, 3.6rem); color: var(--ink) !important; margin: 18px 0 4px; }
+			#parsity-lp .hero-price-big .coin { color: var(--coin-dk) !important; }
+			#parsity-lp .hero-price-sub { font-family: "VT323", monospace; font-size: 1.2rem; color: var(--ink-soft) !important; margin-bottom: 26px; }
+			#parsity-lp .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center; }
+			#parsity-lp .cta-note { margin-top: 16px; font-family: "VT323", monospace; font-size: 1.15rem; color: var(--ink-soft) !important; }
+
+			#parsity-lp .ground { position: absolute; left: 0; right: 0; bottom: 0; height: 46px; z-index: 3;
+				background: repeating-linear-gradient(90deg, var(--panel-green) 0 22px, var(--panel-green-dk) 22px 44px);
+				border-top: 4px solid var(--pine); }
+
+			/* ── generic band ── */
+			#parsity-lp .band { padding: 60px 0; border-bottom: 4px solid var(--line); }
+			#parsity-lp .band.cream { background: var(--page) !important; }
+			#parsity-lp .band.dim { background: var(--page-2) !important; }
+			#parsity-lp .band.green { background: var(--panel-green) !important; color: var(--on-green) !important; }
+			#parsity-lp .band.green p, #parsity-lp .band.green li { color: var(--on-green-soft) !important; }
+			#parsity-lp .sec-title { font-family: "VT323", monospace; font-size: clamp(1.8rem, 3.6vw, 2.7rem); text-transform: none; line-height: 1.15; margin-bottom: 10px; letter-spacing: .02em; color: var(--ink) !important; }
+			#parsity-lp .band.green .sec-title { color: var(--on-green) !important; }
+			#parsity-lp .sec-sub { font-size: 1.12rem; line-height: 1.6; max-width: 66ch; color: var(--ink-soft) !important; margin: 0 auto 34px; }
+			#parsity-lp .center { text-align: center; }
+			#parsity-lp .band.green .sec-sub { color: var(--on-green-soft) !important; }
+			#parsity-lp .lvl-tag { font-family: "VT323", monospace; font-size: 1.1rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent) !important; display: block; margin-bottom: 4px; }
+			#parsity-lp .band.green .lvl-tag { color: var(--coin) !important; }
+
+			/* ── HUD panel (prereq) ── */
+			#parsity-lp .hud { max-width: 760px; margin: 0 auto; background: var(--hud-bg) !important; border: 4px solid var(--hud-line); box-shadow: var(--pix); padding: 30px 34px; }
+			#parsity-lp .hud h3 { font-family: "VT323", monospace; font-size: 1.7rem; color: var(--on-green) !important; margin-bottom: 18px; text-transform: none; }
+			#parsity-lp .hud ul { list-style: none; display: grid; gap: 12px; margin-bottom: 18px; }
+			#parsity-lp .hud li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; font-size: 1.02rem; color: var(--on-green-soft) !important; align-items: start; }
+			#parsity-lp .hud li .b { width: 12px; height: 12px; margin-top: 5px; background: var(--coin); border: 2px solid var(--pine); }
+			#parsity-lp .hud-tail { padding-top: 16px; border-top: 3px solid rgba(255,255,255,.15); font-family: "VT323", monospace; font-size: 1.2rem; color: var(--coin) !important; }
+
+			/* ── cartridge cards (day plan) ── */
+			#parsity-lp .day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 20px; }
+			@media (max-width: 760px) { #parsity-lp .day-grid { grid-template-columns: 1fr; } }
+			#parsity-lp .cart { background: var(--cream) !important; border: 4px solid var(--line); box-shadow: var(--pix); display: flex; flex-direction: column; }
+			#parsity-lp .cart .top { background: var(--panel-green) !important; color: var(--on-green) !important; padding: 16px 22px; border-bottom: 3px solid var(--line); }
+			#parsity-lp .cart .top .eyebrow2 { font-family: "VT323", monospace; font-size: 1.05rem; color: var(--on-green-soft) !important; letter-spacing: .1em; text-transform: uppercase; }
+			#parsity-lp .cart .top h3 { font-family: "VT323", monospace; font-size: 1.7rem; text-transform: none; margin: 2px 0; }
+			#parsity-lp .cart .top .time { font-family: "VT323", monospace; font-size: 1.05rem; color: var(--on-green-soft) !important; }
+			#parsity-lp .cart .body { padding: 22px; flex: 1; }
+			#parsity-lp .cart .body ul { list-style: none; display: grid; gap: 12px; margin-bottom: 6px; }
+			#parsity-lp .cart .body li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; align-items: start; font-size: .98rem; color: var(--ink-soft) !important; }
+			#parsity-lp .cart .body li b { color: var(--ink) !important; }
+			#parsity-lp .cart .body li .b { width: 10px; height: 10px; margin-top: 5px; background: var(--leaf); border: 2px solid var(--line); }
+			#parsity-lp .cart .out { margin: 16px 22px 20px; padding: 10px 14px; background: var(--coin); border: 3px solid var(--line); box-shadow: var(--pix-sm); font-family: "VT323", monospace; font-size: 1.15rem; color: var(--ink) !important; }
+
+			/* ── info cards ── */
+			#parsity-lp .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px; }
+			@media (max-width: 860px) { #parsity-lp .card-grid { grid-template-columns: 1fr; } }
+			#parsity-lp .info-card { background: var(--cream) !important; border: 4px solid var(--line); box-shadow: var(--pix-sm); padding: 22px; }
+			#parsity-lp .info-card h4 { font-family: "VT323", monospace; font-size: 1.35rem; text-transform: none; color: var(--ink) !important; margin-bottom: 10px; }
+			#parsity-lp .info-card p { font-size: .98rem; color: var(--ink-soft) !important; }
+			#parsity-lp .info-card p b, #parsity-lp .info-card p strong { color: var(--ink) !important; }
+			#parsity-lp .callout { max-width: 720px; margin: 32px auto 0; background: var(--coin); border: 4px solid var(--line); box-shadow: var(--pix); padding: 20px 26px; color: var(--ink) !important; font-family: "VT323", monospace; font-size: 1.15rem; text-align: center; }
+
+			/* ── buy box / plan ── */
+			#parsity-lp .plan { max-width: 480px; margin: 24px auto 0; background: var(--cream) !important; border: 4px solid var(--accent); box-shadow: var(--pix); padding: 30px 30px 26px; text-align: center; }
+			#parsity-lp .plan .price { font-family: "VT323", monospace; font-size: 3.4rem; color: var(--ink) !important; line-height: 1; }
+			#parsity-lp .plan .once { font-family: "VT323", monospace; font-size: 1.1rem; color: var(--ink-soft) !important; margin: 6px 0 20px; }
+			#parsity-lp .plan ul { list-style: none; text-align: left; display: grid; gap: 10px; margin-bottom: 22px; }
+			#parsity-lp .plan li { display: grid; grid-template-columns: 16px 1fr; gap: 10px; font-size: .98rem; color: var(--ink-soft) !important; }
+			#parsity-lp .plan li .b { width: 12px; height: 12px; margin-top: 5px; background: var(--leaf); border: 2px solid var(--line); }
+			#parsity-lp .plan .fine { font-family: "VT323", monospace; font-size: 1rem; color: var(--ink-soft) !important; margin-top: 14px; line-height: 1.5; }
+
+			/* ── founder / stat band ── */
+			#parsity-lp .founder { display: grid; grid-template-columns: 130px 1fr; gap: 24px; align-items: center; background: var(--cream) !important; border: 4px solid var(--line); box-shadow: var(--pix); padding: 26px; max-width: 780px; margin: 24px auto 0; }
+			@media (max-width: 600px) { #parsity-lp .founder { grid-template-columns: 1fr; text-align: center; justify-items: center; } }
+			#parsity-lp .avatar-frame { width: 130px; height: 130px; border: 4px solid var(--line); box-shadow: var(--pix-sm); overflow: hidden; }
+			#parsity-lp .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+			#parsity-lp .founder h3 { font-family: "VT323", monospace; font-size: 1.7rem; text-transform: none; color: var(--ink) !important; margin-bottom: 2px; }
+			#parsity-lp .founder .role { font-family: "VT323", monospace; font-size: 1.1rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent) !important; margin-bottom: 10px; }
+			#parsity-lp .founder p { color: var(--ink-soft) !important; margin-bottom: 8px; font-size: .98rem; }
+			#parsity-lp .founder p b, #parsity-lp .founder p strong { color: var(--ink) !important; }
+
+			/* ── FAQ ── */
+			#parsity-lp .faq-list { max-width: 780px; margin: 24px auto 0; }
+			#parsity-lp .faq-item { border-bottom: 3px solid var(--line); padding: 20px 4px; }
+			#parsity-lp .faq-item:last-child { border-bottom: none; }
+			#parsity-lp .faq-item h4 { font-family: "VT323", monospace; font-size: 1.3rem; text-transform: none; color: var(--ink) !important; margin-bottom: 8px; }
+			#parsity-lp .faq-item p { font-size: .98rem; color: var(--ink-soft) !important; }
+
+			#parsity-lp .badge-box { max-width: 300px; margin: 40px auto 0; text-align: center; }
+			#parsity-lp .badge-box .lbl { font-family: "VT323", monospace; font-size: 1.1rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft) !important; margin-bottom: 10px; display: block; }
+			#parsity-lp .badge-box img { margin: 0 auto; border: 3px solid var(--line); box-shadow: var(--pix-sm); }
+
+			/* ── final ── */
+			#parsity-lp .final { text-align: center; }
+			#parsity-lp .final h2 { font-family: "VT323", monospace; font-size: clamp(1.9rem, 4.4vw, 2.9rem); text-transform: none; line-height: 1.1; margin-bottom: 14px; color: var(--on-green) !important; }
+			#parsity-lp .final p { max-width: 60ch; margin: 0 auto 10px; color: var(--on-green-soft) !important; }
+			#parsity-lp .final .press { font-family: "VT323", monospace; font-size: 1.3rem; color: var(--coin) !important; margin: 20px 0; letter-spacing: .08em; }
+			#parsity-lp .final .note { margin-top: 18px; font-family: "VT323", monospace; font-size: 1.05rem; color: var(--on-green-soft) !important; }
+
+			#parsity-lp footer.site-footer { background: var(--hud-bg) !important; color: var(--on-green) !important; padding: 30px 0; text-align: center; }
+			#parsity-lp footer.site-footer .frow { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+			#parsity-lp footer.site-footer a { font-family: "VT323", monospace; font-size: 1.1rem; color: var(--on-green) !important; }
+			#parsity-lp footer.site-footer a:hover { color: var(--coin) !important; }
+			#parsity-lp footer.site-footer p { color: var(--on-green-soft) !important; font-family: "VT323", monospace; font-size: 1rem; }
+
+			#parsity-lp .tt { background: transparent; border: 2px solid currentColor; color: inherit !important; cursor: pointer; font-family: "VT323", monospace; font-size: 1.05rem; padding: .15em .6em; }
+			#parsity-lp .tt:hover { border-color: var(--coin); color: var(--coin) !important; }
+			#parsity-lp .tt-row { text-align: center; padding: 10px 0; background: var(--page-2) !important; }
+		</style>
+	</head>
+	<body>
+		<div id="parsity-lp">
+
+			<!-- ─────────── ANNOUNCE BAR ─────────── -->
+			<div class="announce-bar"><span class="blink"></span>Saturday, December 12 &middot; 10am until the questions run out &middot; $495, no call needed</div>
+			<div class="tt-row"><button class="tt" id="tt" type="button" aria-label="Toggle day / night">NIGHT MODE</button></div>
+
+			<!-- ─────────── HERO ─────────── -->
+			<section class="hero">
+				<div class="hero-inner">
+					<div class="event-meta">
+						<span class="event-chip">Sat, Dec 12</span>
+						<span class="event-chip">10am&ndash;ish to 4pm&ndash;ish</span>
+						<span class="event-chip hot">$495</span>
+						<span class="event-chip">For coders, any language</span>
+					</div>
+					<h1 class="hero-h">Learn to actually use these tools <span class="hl">in one Saturday</span>.</h1>
+					<p class="lede">Pre-AI, you learned a new skill from Udemy, Stack Overflow, and the docs. Now your company handed you a Claude subscription, one YouTuber is yelling that this changes everything, and another is yelling that you can't trust any of it. Hyperbole is great for engagement and terrible for your career.</p>
+					<p class="lede">The truth is boring: things have changed less than you think, and more than you think, at the same time. The engineering judgment you always needed still applies. You just need a different way of using the tools than whatever's going viral this week.</p>
+					<div class="hero-price-big"><span class="coin">$495</span></div>
+					<p class="hero-price-sub">One Saturday &middot; no call, no six-week commitment &middot; sign up and you're in</p>
+					<div class="cta-row">
+						<a href="https://form.typeform.com/to/EDuBEz4U" target="_blank" rel="noopener" class="btn big">&#9654; Save My Seat</a>
+						<a href="#plan" class="btn ghost">See the day plan</a>
+					</div>
+					<p class="cta-note">December 12 only, for now. No pitch call &mdash; it's too cheap to bother either of us with one.</p>
+				</div>
+				<div class="ground"></div>
+			</section>
+
+			<!-- ─────────── PREREQUISITE ─────────── -->
+			<section class="band cream">
+				<div class="wrap">
+					<div class="hud">
+						<h3>This is not a beginner class, and it's not a 10x miracle either.</h3>
+						<ul>
+							<li><span class="b"></span><span>You already write and ship software for a living, or close enough that nobody would question it</span></li>
+							<li><span class="b"></span><span>You've used Claude, Cursor, Copilot, or Codex enough to have opinions about them</span></li>
+							<li><span class="b"></span><span>You have a laptop and an active AI coding tool subscription. Free tiers are fine</span></li>
+							<li><span class="b"></span><span>You want to get measurably better with these tools, not just faster for one afternoon</span></li>
+						</ul>
+						<div class="hud-tail">If you're already cracked with these tools: seriously, save your $495. This class will bore you.</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── BASELINE ─────────── -->
+			<section class="band dim">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Set your baseline</span>
+					<h2 class="sec-title center">We're not promising you'll 10x by Monday.</h2>
+					<p class="sec-sub center">We start by looking honestly at where you actually are with these tools today. Most people leave at least 30% more effective, not because we handed you a magic prompt, but because you stop doing the things quietly wasting your time.</p>
+					<div class="card-grid">
+						<div class="info-card">
+							<h4>You don't trust the output</h4>
+							<p>So you re-read every line like it's a stranger's PR. We'll show you when that instinct is right, and when it's costing you nothing but time.</p>
+						</div>
+						<div class="info-card">
+							<h4>You don't have a system</h4>
+							<p>Just vibes and whatever prompt worked last time. We'll give you an actual repeatable workflow, and the guardrails to keep it from turning into chaos.</p>
+						</div>
+						<div class="info-card">
+							<h4>Your team can't agree</h4>
+							<p>What "good" looks like when a model writes the first draft is still a live argument at most companies. You'll leave with a workflow you can actually explain and defend.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── DAY PLAN ─────────── -->
+			<section class="band cream" id="plan">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">The one day</span>
+					<h2 class="sec-title center">One Saturday. One real workflow.</h2>
+					<p class="sec-sub center">No toy examples. You're working on something real the whole day.</p>
+					<div class="day-grid">
+						<article class="cart">
+							<div class="top">
+								<span class="eyebrow2">Morning</span>
+								<h3>The mental model</h3>
+								<span class="time">Starting at 10am</span>
+							</div>
+							<div class="body">
+								<ul>
+									<li><span class="b"></span><span><b>Your actual baseline.</b> A quick, honest look at how you're using these tools today, no judgment.</span></li>
+									<li><span class="b"></span><span><b>Why "10x" is mostly marketing.</b> And what a real, durable gain actually looks like.</span></li>
+									<li><span class="b"></span><span><b>Agent vs. autocomplete vs. chat.</b> The mental model for picking the right one, and when all three are wrong.</span></li>
+									<li><span class="b"></span><span><b>Guardrails.</b> How to keep an agent from quietly ballooning the scope of what you asked for.</span></li>
+								</ul>
+							</div>
+							<div class="out">By lunch you have language for what you're actually doing right and wrong.</div>
+						</article>
+						<article class="cart">
+							<div class="top">
+								<span class="eyebrow2">Afternoon</span>
+								<h3>The workflow</h3>
+								<span class="time">Until the questions run out</span>
+							</div>
+							<div class="body">
+								<ul>
+									<li><span class="b"></span><span><b>One end-to-end workflow.</b> Built on a real piece of work, not a demo.</span></li>
+									<li><span class="b"></span><span><b>Reviewing output like an engineer.</b> Not rubber-stamping it because it compiled.</span></li>
+									<li><span class="b"></span><span><b>Avoiding slop</b> while still actually moving faster, not slower.</span></li>
+									<li><span class="b"></span><span><b>Bringing it back to your team.</b> How to show this on Monday without becoming the office's cautionary tale.</span></li>
+								</ul>
+							</div>
+							<div class="out">You leave with a workflow, a certificate, and a two-week follow-up to make sure it stuck.</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── WHY THIS ─────────── -->
+			<section class="band dim">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Why this, not another tutorial</span>
+					<h2 class="sec-title center">This isn't a tools tutorial, and it isn't hype or fear either.</h2>
+					<div class="card-grid">
+						<div class="info-card">
+							<h4>It's judgment, not buttons</h4>
+							<p>You already know where the buttons are. This is what to trust, what to check, and what you never let an agent touch unsupervised.</p>
+						</div>
+						<div class="info-card">
+							<h4>Neither extreme is right</h4>
+							<p>Half the internet says AI writes all your code now. The other half says never trust it. Both make for good engagement and bad career advice.</p>
+						</div>
+						<div class="info-card">
+							<h4>It's the React moment, again</h4>
+							<p>When React showed up, courses were everywhere, plenty of them good, and a whole generation of developers leveled up together in public. This is that, for agentic engineering.</p>
+						</div>
+					</div>
+					<div class="callout">Your company probably bought you the tools and forgot to explain how to actually use them. That's the gap this Saturday closes.</div>
+				</div>
+			</section>
+
+			<!-- ─────────── BUY ─────────── -->
+			<section class="band cream" id="seat">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Sign up and you're in</span>
+					<h2 class="sec-title center">One Saturday, $495.</h2>
+					<p class="sec-sub center">Cheap enough that we skip the sales call. You know if this is for you from the page above.</p>
+					<div class="plan">
+						<div class="price">$495</div>
+						<div class="once">Saturday, December 12 &middot; 10am until the questions run out</div>
+						<ul>
+							<li><span class="b"></span><span>A full day building one real, end-to-end agentic workflow</span></li>
+							<li><span class="b"></span><span>A repeatable process and guardrails, not just a prompt</span></li>
+							<li><span class="b"></span><span>A certificate when you're done</span></li>
+							<li><span class="b"></span><span>A two-week follow-up to make sure you actually implemented it</span></li>
+							<li><span class="b"></span><span>Small room, real Q&amp;A, not a webinar</span></li>
+						</ul>
+						<a href="https://form.typeform.com/to/EDuBEz4U" target="_blank" rel="noopener" class="btn big full">Save My Seat, $495</a>
+						<div class="fine">Sign up, pay, you're in. No call needed. Your employer can probably expense this &mdash; ask for an invoice at <a href="mailto:assistant@parsity.io" style="color:var(--accent) !important;">assistant@parsity.io</a>.</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── WHO RUNS IT ─────────── -->
+			<section class="band dim">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Who runs it</span>
+					<h2 class="sec-title center">Meet your instructor.</h2>
+					<div class="founder">
+						<div class="avatar-frame"><img src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian Jenney" width="130" height="130" loading="lazy" /></div>
+						<div>
+							<h3>Brian Jenney</h3>
+							<span class="role">Founder, Parsity</span>
+							<p>Brian has built and led production AI systems, including complex RAG pipelines and production agents, at two companies with very different products. He also runs Parsity's mentor-led AI Engineering Program.</p>
+							<p><strong>Light on theory, heavy on practical judgment.</strong> The mistakes you'll avoid on Saturday are ones he's already made in production, on someone's payroll.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── FAQ ─────────── -->
+			<section class="band cream">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Continue?</span>
+					<h2 class="sec-title center">Questions we get.</h2>
+					<div class="faq-list">
+						<div class="faq-item"><h4>What do I need to bring?</h4><p>A laptop, and an active subscription to Claude Code, Codex, or even GitHub Copilot if you're still holding onto 2023. Free tiers are fine.</p></div>
+						<div class="faq-item"><h4>I'm already really good with these tools. Should I come?</h4><p>Honestly, probably not. If you're not copying and pasting between chats, you don't double-guess every line, and your team already agrees on what good looks like, skip this one.</p></div>
+						<div class="faq-item"><h4>Is this going to teach me to replace my team with agents?</h4><p>No. If you're looking to build a software factory, automate yourself out of a job, or become a full-time meat proxy just forwarding tickets to a model, look elsewhere. This is for engineers who want to get better, not disappear.</p></div>
+						<div class="faq-item"><h4>Do I need a specific language?</h4><p>No. This is for coders. The language you use doesn't matter, the judgment does.</p></div>
+						<div class="faq-item"><h4>Do I need to book a call first?</h4><p>No. It's $495 for one Saturday, a call would cost more than it's worth to either of us. Sign up, pay, show up.</p></div>
+						<div class="faq-item"><h4>What if I can't make December 12?</h4><p>Email <a href="mailto:assistant@parsity.io" style="color:var(--accent) !important;">assistant@parsity.io</a> and we'll let you know when the next one's scheduled.</p></div>
+						<div class="faq-item"><h4>Is this the same as the mentor-led program?</h4><p>No, different thing. That's six weeks of 1:1 mentorship for $1,997 if you want to actually become an AI engineer. This is one Saturday to get dramatically better at using the tools you already have. Check out the <a href="/ai-dev" style="color:var(--accent) !important;">mentor-led program here</a>.</p></div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─────────── BOTTOM CTA ─────────── -->
+			<section class="band green final" id="apply">
+				<div class="wrap">
+					<span class="lvl-tag center" style="display:block;">Ready player one</span>
+					<h2>Your company bought you the tools and forgot to explain how to use them.</h2>
+					<p>You may be too young to remember, but when React came out, courses were everywhere. A lot of them were actually good. A whole generation of developers leveled up together, in public, in real time. This is that, for agentic engineering.</p>
+					<div class="press">&#9654; &#9654; &#9654; PRESS START &#9664; &#9664; &#9664;</div>
+					<div class="cta-row">
+						<a href="https://form.typeform.com/to/EDuBEz4U" target="_blank" rel="noopener" class="btn big">Save My Seat, $495</a>
+					</div>
+					<div class="note">Saturday, December 12. No call needed. Questions? <a href="mailto:assistant@parsity.io" style="color:var(--on-green) !important;">assistant@parsity.io</a></div>
+				</div>
+			</section>
+
+			<!-- ─────────── FOOTER ─────────── -->
+			<footer class="site-footer">
+				<div class="frow">
+					<a href="/ai-dev">Mentor-led AI Engineering Program</a>
+					<a href="/for-teams">For engineering teams</a>
+					<a href="/for-business">For business owners</a>
+				</div>
+				<p>Parsity &middot; Practical AI engineering training &middot; <a href="mailto:assistant@parsity.io" style="color:var(--coin) !important;">assistant@parsity.io</a></p>
+			</footer>
+		</div>
+
+		<script>
+		(function () {
+			var root = document.getElementById('parsity-lp'), btn = document.getElementById('tt');
+			function current() {
+				var a = root.getAttribute('data-theme');
+				if (a) return a;
+				return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			}
+			function apply() { btn.textContent = current() === 'dark' ? 'DAY MODE' : 'NIGHT MODE'; }
+			try { var s = localStorage.getItem('parsity-theme'); if (s) root.setAttribute('data-theme', s); } catch (e) {}
+			apply();
+			btn.addEventListener('click', function () {
+				var next = current() === 'dark' ? 'light' : 'dark';
+				root.setAttribute('data-theme', next);
+				try { localStorage.setItem('parsity-theme', next); } catch (e) {}
+				apply();
+			});
+		})();
+		</script>
+	</body>
+</html>
