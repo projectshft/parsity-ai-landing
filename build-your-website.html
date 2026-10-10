@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Build Your Business Website | Parsity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" />
+<style>
+  :root{
+    --sky-top:#B7EFF7; --sky-bot:#8AE3EE;
+    --page:#FBF6E9; --page-2:#F2E9CF;
+    --panel-green:#2F7D46; --panel-green-dk:#215C34; --pine:#14401F;
+    --accent:#E8543A; --accent-dk:#BE3C25;
+    --coin:#F5B93F; --coin-dk:#D8971F;
+    --leaf:#5FB43F; --leaf-dk:#3E8E2C;
+    --cream:#FBF6E9; --cream-2:#F2E9CF;
+    --ink:#16233A; --ink-soft:#43536F;
+    --on-green:#FBF6E9; --on-green-soft:#C7E6CF;
+    --line:#14401F;
+    --hud-bg:#14401F; --hud-line:#0C2A15;
+    --pix:6px 6px 0 var(--line);
+    --pix-sm:4px 4px 0 var(--line);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --sky-top:#122A44; --sky-bot:#1D3E5C;
+      --page:#0E1826; --page-2:#152437;
+      --panel-green:#235233; --panel-green-dk:#173B22; --pine:#0B2814;
+      --accent:#FF6A4D; --accent-dk:#E8543A;
+      --coin:#F5C24F; --coin-dk:#C9971F;
+      --leaf:#57A83A; --leaf-dk:#356E27;
+      --cream:#17212E; --cream-2:#1F2C3C;
+      --ink:#EAF1E8; --ink-soft:#9FB2A8;
+      --on-green:#EAF6EC; --on-green-soft:#A9CFB2;
+      --line:#0B2814; --hud-bg:#0B2814; --hud-line:#061A0C;
+    }
+  }
+  :root[data-theme="dark"]{
+    --sky-top:#122A44; --sky-bot:#1D3E5C;
+    --page:#0E1826; --page-2:#152437;
+    --panel-green:#235233; --panel-green-dk:#173B22; --pine:#0B2814;
+    --accent:#FF6A4D; --accent-dk:#E8543A;
+    --coin:#F5C24F; --coin-dk:#C9971F;
+    --leaf:#57A83A; --leaf-dk:#356E27;
+    --cream:#17212E; --cream-2:#1F2C3C;
+    --ink:#EAF1E8; --ink-soft:#9FB2A8;
+    --on-green:#EAF6EC; --on-green-soft:#A9CFB2;
+    --line:#0B2814; --hud-bg:#0B2814; --hud-line:#061A0C;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16.5px;line-height:1.66;-webkit-font-smoothing:antialiased;}
+  .px{font-family:"Press Start 2P","VT323",monospace;line-height:1.5;text-transform:uppercase;}
+  h1,h2,h3,h4{margin:0;text-wrap:balance;}
+  /* Kajabi theme sets its own heading colors; force ours so night mode works */
+  .sec-title,.duo .card h4,.yt-card h4,.final h2,.founder h3,.plan h3{color:inherit !important;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px;}
+  section{position:relative;}
+  strong{color:var(--ink);}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5ch;cursor:pointer;
+    font-family:"VT323",monospace;font-size:1.45rem;letter-spacing:.02em;
+    text-transform:uppercase;text-decoration:none;
+    padding:.5em 1.05em;border:3px solid var(--line);border-radius:0 !important;
+    background:var(--accent);color:#FFF7F2;box-shadow:var(--pix-sm);
+    transition:transform .06s steps(2),box-shadow .06s steps(2);}
+  .btn:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--line);color:#FFF7F2 !important;}
+  .btn.ghost{background:var(--cream);color:var(--ink);}
+  .btn.ghost:hover{color:var(--ink) !important;}
+  .btn.big{font-size:1.9rem;padding:.55em 1.3em;box-shadow:var(--pix);}
+  .btn.big:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--line);}
+  .btn.block{width:100%;}
+
+  .eyebrow{font-family:"VT323",monospace;text-transform:uppercase;letter-spacing:.18em;
+    font-size:1.15rem;color:var(--accent);}
+
+  /* announce strip (no nav — this is a single-focus funnel page by design) */
+  .announce{background:var(--hud-bg);color:var(--on-green);border-bottom:4px solid var(--line);
+    padding:10px 22px;text-align:center;position:sticky;top:0;z-index:40;}
+  .announce .wrap{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;}
+  .announce .msg{font-family:"VT323",monospace;font-size:1.2rem;letter-spacing:.03em;}
+  .announce .blink{width:10px;height:10px;background:var(--coin);border:2px solid var(--line);display:inline-block;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:.15}}
+  .tt{background:transparent;border:2px solid var(--on-green);color:var(--on-green);cursor:pointer;
+    font-family:"VT323",monospace;font-size:1.05rem;padding:.1em .6em;line-height:1;}
+  .tt:hover{border-color:var(--coin);color:var(--coin);}
+  @media(prefers-reduced-motion:reduce){.announce .blink{animation:none;}}
+
+  .logo{display:inline-flex;align-items:center;gap:10px;}
+  .shield{width:34px;height:38px;background:var(--accent);border:3px solid var(--pine);
+    border-radius:4px 4px 10px 10px;display:grid;place-items:center;
+    color:#FFF7F2;font-family:"Press Start 2P",monospace;font-size:.62rem;box-shadow:2px 2px 0 var(--pine);}
+  .logo b{font-family:"Press Start 2P",monospace;font-size:.95rem;color:var(--ink);letter-spacing:.02em;}
+
+  /* hero */
+  .hero{overflow:hidden;background:linear-gradient(var(--sky-top),var(--sky-bot));border-bottom:4px solid var(--pine);}
+  .hero-inner{position:relative;z-index:5;padding:54px 22px 220px;max-width:1080px;margin:0 auto;text-align:center;}
+  .titlecard{display:table;background:var(--panel-green);border:4px solid var(--pine);
+    box-shadow:var(--pix);padding:12px 22px 14px;margin:0 auto 22px;}
+  .titlecard .logo b{color:var(--on-green);font-size:1.3rem;}
+  h1.hero-h{font-family:"VT323",monospace;color:var(--ink) !important;line-height:1.08;
+    font-size:clamp(2.4rem,6.5vw,4.2rem);text-transform:none;max-width:19ch;margin:.02em auto .34em;letter-spacing:.02em;}
+  h1.hero-h .hl{color:var(--accent) !important;}
+  .hero p.lede{font-size:1.2rem;line-height:1.55;max-width:56ch;color:var(--ink);margin:0 auto 16px;}
+  :root[data-theme="dark"] .hero p.lede,:root:not([data-theme="light"]) .hero p.lede{color:var(--ink);}
+  .hero .price-line{font-family:"VT323",monospace;font-size:1.3rem;color:var(--ink-soft);margin-bottom:24px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;}
+  .cta-note{font-family:"VT323",monospace;font-size:1.15rem;color:var(--ink-soft);margin-top:14px;}
+
+  .hills{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:1;}
+  .layer{position:absolute;left:-2%;right:-2%;bottom:0;}
+  .layer.back{height:150px;background:var(--leaf);clip-path:polygon(0 100%,0 60%,10% 40%,18% 55%,30% 30%,42% 52%,55% 34%,68% 55%,80% 38%,92% 56%,100% 42%,100% 100%);opacity:.65;}
+  .layer.mid{height:120px;background:var(--leaf-dk);clip-path:polygon(0 100%,0 70%,12% 52%,24% 68%,38% 44%,52% 66%,64% 48%,78% 68%,90% 50%,100% 66%,100% 100%);}
+  .ground{position:absolute;left:0;right:0;bottom:0;height:56px;z-index:3;
+    background:repeating-linear-gradient(90deg,var(--panel-green) 0 22px,var(--panel-green-dk) 22px 44px);
+    border-top:4px solid var(--pine);}
+  .tree{position:absolute;bottom:52px;z-index:3;width:0;height:0;}
+  .tree i{position:absolute;left:-22px;bottom:0;width:44px;height:52px;background:var(--pine);clip-path:polygon(50% 0,100% 100%,0 100%);}
+
+  .band{padding:60px 0;border-bottom:4px solid var(--line);}
+  .band.cream{background:var(--page);}
+  .band.dim{background:var(--page-2);}
+  .band.green{background:var(--panel-green);color:var(--on-green);}
+  .sec-title{font-family:"VT323",monospace;font-size:clamp(1.9rem,4vw,2.7rem);
+    text-transform:none;line-height:1.16;margin-bottom:14px;letter-spacing:.02em;}
+  .band.green .sec-title{color:var(--on-green);}
+  .sec-sub{font-size:1.1rem;line-height:1.6;max-width:64ch;color:var(--ink-soft);margin-bottom:24px;}
+  .band.green .sec-sub{color:var(--on-green-soft);}
+  .lvl-tag{font-family:"VT323",monospace;font-size:1.05rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);display:block;margin-bottom:6px;}
+  .band.green .lvl-tag{color:var(--coin);}
+  .center{text-align:center;}
+  .center .sec-sub{margin-left:auto;margin-right:auto;}
+
+  /* cartridge frame for embeds / screenshots */
+  .cart-frame{background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix);padding:10px;max-width:760px;margin:0 auto;}
+  .cart-frame .bar{background:var(--panel-green);color:var(--on-green);font-family:"VT323",monospace;
+    font-size:1.05rem;padding:6px 10px;margin:-10px -10px 10px;border-bottom:3px solid var(--line);}
+  .video-embed{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;}
+  .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  /* founder */
+  .founder{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:center;
+    background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix);padding:24px;}
+  @media(max-width:600px){.founder{grid-template-columns:1fr;text-align:center;justify-items:center;}}
+  .founder img.avatar-photo{width:140px;height:140px;object-fit:cover;border:4px solid var(--line);box-shadow:var(--pix-sm);}
+  .founder .sig{font-family:"VT323",monospace;font-size:1.25rem;color:var(--ink);margin-top:8px;display:block;}
+  .founder p{color:var(--ink-soft);margin:0 0 10px;}
+  .founder .q{font-family:"VT323",monospace;font-size:1.3rem;color:var(--accent);margin:10px 0;}
+
+  /* pricing plans */
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;}
+  @media(max-width:760px){.plans{grid-template-columns:1fr;}}
+  .plan{background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix);padding:26px;color:var(--ink);position:relative;}
+  .plan.pop{border-color:var(--accent);}
+  .plan .flag{position:absolute;top:-16px;right:16px;background:var(--accent);color:#FFF7F2;
+    font-family:"VT323",monospace;font-size:1.05rem;padding:.1em .7em;border:3px solid var(--line);box-shadow:var(--pix-sm);text-transform:uppercase;}
+  .plan .kind{font-family:"VT323",monospace;font-size:1.3rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);}
+  .plan .price{font-family:"VT323",monospace;font-size:2.8rem;line-height:1;margin:6px 0 2px;}
+  .plan .once{font-family:"VT323",monospace;font-size:1.1rem;color:var(--ink-soft);margin-bottom:16px;}
+  .plan .lead{font-size:.95rem;font-weight:700;margin-bottom:8px;}
+  .plan ul{list-style:none;padding:0;margin:0 0 20px;display:grid;gap:9px;}
+  .plan li{display:grid;grid-template-columns:18px 1fr;gap:9px;font-size:.98rem;}
+  .plan li .b{width:12px;height:12px;margin-top:5px;background:var(--leaf);border:2px solid var(--line);}
+  .plan .fine{font-family:"VT323",monospace;font-size:1.05rem;color:var(--ink-soft);margin-top:10px;}
+  .plan .alt{display:block;margin-top:6px;font-family:"VT323",monospace;font-size:1.1rem;color:var(--accent);text-decoration:underline;}
+  .notes{margin-top:30px;display:grid;gap:12px;max-width:74ch;}
+  .notes p{font-size:.98rem;color:var(--ink-soft);}
+  .notes strong{color:var(--ink);}
+
+  /* generic content card */
+  .card{background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix);padding:26px;}
+  .promo-badge{display:inline-block;background:var(--coin);color:var(--ink);font-family:"VT323",monospace;
+    font-size:1.05rem;text-transform:uppercase;letter-spacing:.08em;padding:.15em .7em;border:3px solid var(--line);
+    box-shadow:var(--pix-sm);margin-bottom:10px;}
+
+  /* price table */
+  .ptable{width:100%;border-collapse:collapse;font-size:.98rem;background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix);}
+  .ptable th,.ptable td{border:2px solid var(--line);padding:12px 14px;text-align:left;}
+  .ptable thead th{background:var(--hud-bg);color:var(--on-green);font-family:"VT323",monospace;font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;}
+  .ptable tbody tr.us{background:var(--coin);}
+  .ptable tbody tr.us td{color:var(--ink);font-weight:700;}
+  .tscroll{overflow-x:auto;}
+
+  /* syllabus / interest forms */
+  .form-box input[type=text],.form-box input[type=email]{
+    width:100%;font-family:"VT323",monospace;font-size:1.2rem;padding:.5em .7em;
+    border:3px solid var(--line);background:var(--page);color:var(--ink);margin-bottom:12px;}
+  .form-box{max-width:420px;margin:0 auto;text-align:center;}
+  .form-note{font-family:"VT323",monospace;font-size:1.05rem;color:var(--ink-soft);margin-top:10px;}
+
+  /* fit / tier grids (reuses the "class select" two-card pattern) */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  @media(max-width:760px){.duo{grid-template-columns:1fr;}}
+  .duo .card h4{font-family:"VT323",monospace;font-size:1.5rem;text-transform:none;margin-bottom:12px;}
+  .duo .card.yes{border-color:var(--leaf-dk);}
+  .duo .card.no{border-color:var(--accent);}
+  .glist{list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  .glist li{display:grid;grid-template-columns:20px 1fr;gap:9px;font-size:.98rem;}
+  .glist li .b{width:12px;height:12px;margin-top:5px;background:var(--leaf);border:2px solid var(--line);}
+  .duo .card.no .glist li .b{background:var(--accent);}
+
+  .proof-shots{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:18px;margin-top:24px;}
+  @media(max-width:640px){.proof-shots{grid-template-columns:1fr;}}
+  .proof-shot{border:4px solid var(--line);box-shadow:var(--pix-sm);background:var(--cream);padding:6px;}
+
+  /* real YouTube proof grid */
+  .yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+  @media(max-width:900px){.yt-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.yt-grid{grid-template-columns:1fr;}}
+  .yt-card{display:block;background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix-sm);
+    text-decoration:none;color:var(--ink);transition:transform .06s steps(2), box-shadow .06s steps(2);}
+  .yt-card:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--line);}
+  .yt-thumb{position:relative;border-bottom:4px solid var(--line);aspect-ratio:16/9;overflow:hidden;background:#000;}
+  .yt-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .yt-thumb .play{position:absolute;inset:0;display:grid;place-items:center;font-size:2rem;color:#FFF7F2;
+    text-shadow:2px 2px 0 rgba(0,0,0,.5);}
+  .yt-card .body{padding:12px 14px;}
+  .yt-card h4{font-family:"VT323",monospace;font-size:1.25rem;line-height:1.2;margin:0 0 6px;text-transform:none;}
+  .yt-card .meta{font-family:"VT323",monospace;font-size:1.02rem;color:var(--ink-soft);}
+
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  @media(max-width:900px){.quotes{grid-template-columns:1fr 1fr;}}
+  @media(max-width:640px){.quotes{grid-template-columns:1fr;}}
+  .quote{background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix-sm);padding:20px;color:var(--ink);}
+  .quote p{font-size:.96rem;margin:0 0 14px;}
+  .quote .who{font-family:"VT323",monospace;font-size:1.2rem;color:var(--ink);}
+  .quote .who span{display:block;font-size:.95rem;color:var(--ink-soft);}
+  .stars{color:var(--coin);font-family:"VT323",monospace;letter-spacing:2px;margin-bottom:10px;}
+
+  /* faq */
+  .faq-list{display:grid;gap:14px;}
+  .faq-item{background:var(--cream);border:3px solid var(--line);box-shadow:var(--pix-sm);padding:18px 20px;}
+  .faq-item h4{font-family:"VT323",monospace;font-size:1.3rem;text-transform:none;margin-bottom:8px;color:var(--accent) !important;}
+  .faq-item p{font-size:.97rem;color:var(--ink-soft);margin:0;}
+  .faq-item a{color:var(--accent);}
+
+  .partner-badge{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:36px;}
+  .partner-badge-label{font-family:"VT323",monospace;font-size:1.1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* final */
+  .final{text-align:center;}
+  .final h2{font-family:"VT323",monospace;font-size:clamp(2rem,5vw,3.2rem);text-transform:none;line-height:1.08;margin-bottom:10px;}
+  .final .press{font-family:"VT323",monospace;font-size:1.3rem;color:var(--coin);margin-bottom:22px;letter-spacing:.06em;}
+  .final .note{font-family:"VT323",monospace;font-size:1.05rem;color:var(--on-green-soft);margin-top:18px;max-width:60ch;margin-left:auto;margin-right:auto;}
+  .final .note a{color:var(--coin);}
+
+  footer{background:var(--hud-bg);color:var(--on-green-soft);padding:26px 0;text-align:center;font-family:"VT323",monospace;font-size:1.05rem;}
+
+  /* numbered build steps */
+  .steps{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:18px;counter-reset:step;text-align:left;}
+  .steps li{counter-increment:step;display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:start;
+    background:var(--cream);border:4px solid var(--line);box-shadow:var(--pix-sm);padding:20px;}
+  .steps li::before{content:counter(step);font-family:"Press Start 2P",monospace;font-size:1rem;
+    width:44px;height:44px;display:grid;place-items:center;background:var(--coin);color:var(--ink);
+    border:3px solid var(--line);box-shadow:2px 2px 0 var(--line);}
+  @media(max-width:560px){.steps li{grid-template-columns:1fr;}}
+  .steps h4{font-family:"VT323",monospace;font-size:1.5rem;text-transform:none;margin-bottom:6px;color:var(--ink) !important;}
+  .steps p{font-size:.98rem;color:var(--ink-soft);margin:0 0 8px;}
+  .steps p:last-child{margin-bottom:0;}
+  .steps a{color:var(--accent);}
+  .prompt{background:var(--hud-bg);color:var(--on-green);border:4px solid var(--line);box-shadow:var(--pix-sm);
+    font-family:"VT323",monospace;font-size:1.15rem;line-height:1.35;padding:14px 16px;margin:10px 0 0;text-align:left;}
+</style>
+</head>
+<body>
+
+  <div class="announce">
+    <div class="wrap">
+      <span class="blink" aria-hidden="true"></span>
+      <span class="msg">Free guide &middot; Build and publish your business website today, no coding</span>
+      <button class="tt" id="tt" type="button" aria-label="Toggle day / night">NIGHT MODE</button>
+    </div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="titlecard"><span class="logo"><span class="shield">&gt;_</span><b>PARSITY.IO</b></span></div>
+      <span class="eyebrow">Small business // Press Start</span>
+      <h1 class="hero-h">No website in 2026? Build one <span class="hl">today.</span> Free.</h1>
+      <p class="lede">Your website is the front door to your business. Without one, people can't find you on Google, and the ones who do find you wonder if you're legit. You don't have to learn to code or pay someone $500 to $1,000 to fix that.</p>
+      <p class="lede">Follow the steps below and you'll have a good-looking site with a contact form, live on the web, in about an hour. It costs nothing, and I walk you through every step.</p>
+      <div class="cta-row">
+        <a href="#steps" class="btn big">Show me the steps</a>
+      </div>
+      <p class="cta-note">No AI experience needed. If you can type a paragraph, you can do this.</p>
+    </div>
+    <div class="hills">
+      <div class="layer back"></div>
+      <div class="layer mid"></div>
+      <div class="tree" style="left:10%;"><i></i></div>
+      <div class="tree" style="left:88%;transform:scale(1.2);"><i></i></div>
+      <div class="ground"></div>
+    </div>
+  </section>
+
+  <!-- ================= THE PROBLEM ================= -->
+  <section class="band cream">
+    <div class="wrap">
+      <span class="lvl-tag">Level 1 &mdash; The problem</span>
+      <h2 class="sec-title">Word of mouth is not a plan.</h2>
+      <p class="sec-sub" style="max-width:70ch;">I've talked to a lot of mobile mechanics who don't have a website. Most of them aren't findable on Google at all. They live on referrals and luck.</p>
+      <div class="duo">
+        <div class="card no">
+          <h4>Without a website</h4>
+          <ul class="glist">
+            <li><span class="b"></span><span>Customers searching Google never see you</span></li>
+            <li><span class="b"></span><span>New customers feel uneasy about hiring you</span></li>
+            <li><span class="b"></span><span>You have no place to collect names and numbers</span></li>
+          </ul>
+        </div>
+        <div class="card yes">
+          <h4>With one</h4>
+          <ul class="glist">
+            <li><span class="b"></span><span>Look more professional than the shop down the road</span></li>
+            <li><span class="b"></span><span>Tap-to-call button, right on their phone</span></li>
+            <li><span class="b"></span><span>A form that captures leads while you're under a car</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STEPS ================= -->
+  <section class="band dim" id="steps">
+    <div class="wrap">
+      <span class="lvl-tag">Level 2 &mdash; The build</span>
+      <h2 class="sec-title">Seven steps, zero code</h2>
+      <p class="sec-sub" style="max-width:70ch;">I built one live, from scratch, for a pretend Oakland mobile mechanic called Brian's Rides. Swap in your own business and the steps are the same.</p>
+      <ol class="steps">
+        <li><div>
+          <h4>Make a free v0 account</h4>
+          <p>Go to <a href="https://v0.app" target="_blank" rel="noopener">v0.app</a> and sign up. It's an AI tool that builds websites from a description.</p>
+        </div></li>
+        <li><div>
+          <h4>Make your contact form</h4>
+          <p>Use Typeform or Google Forms. Ask for the basics: name, phone number, and what they need help with. Publish it and copy the link. You can change the questions later.</p>
+        </div></li>
+        <li><div>
+          <h4>Pick a look and borrow good copy</h4>
+          <p>Search your trade and city and see what other shops did. If they all look bad, don't fight it. Tell v0 the style you want. I said "old school Mario."</p>
+          <p>Then search for examples of good copywriting for your kind of business, and paste the tips into your prompt so the words don't read like generic AI filler.</p>
+        </div></li>
+        <li><div>
+          <h4>Tell v0 about your business</h4>
+          <p>Give it everything a stranger would need: the business name, your city, your phone number, your three services, and the style. Paste in the form link and ask it to embed the form on the page. Here's roughly what I wrote:</p>
+          <div class="prompt">I run a mobile mechanic shop called Brian's Rides in Oakland, CA. Build a one-page website. Services: oil changes, brakes, battery replacement. Phone: [your number]. Style: old school Mario, playful but easy to read. Add a big tap-to-call button. Embed this form: [your form link]. Copywriting tips: conversational tone, expert quality, [paste your tips].</div>
+        </div></li>
+        <li><div>
+          <h4>Add photos and hit go</h4>
+          <p>Upload a few pictures of you, your van and your work. Then click go and watch it build. My photos were fake stand-ins for the demo. Use real ones, since real photos are what make it look like your business.</p>
+        </div></li>
+        <li><div>
+          <h4>Check it, then publish</h4>
+          <p>Click through the whole thing. If the preview says "content blocked," hit the refresh button on the preview. Test the call button and the form. Then publish it as public, and open it on your phone, because that's where most of your customers will see it.</p>
+        </div></li>
+        <li><div>
+          <h4>Fix things with follow-ups</h4>
+          <p>Type your changes in plain English. "My number is actually 510-444-5555." "We only service within 25 miles of Oakland." If you edit the form itself, the change goes live on the site right away. You don't need to republish.</p>
+        </div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= HONEST NOTES ================= -->
+  <section class="band cream">
+    <div class="wrap">
+      <span class="lvl-tag">Level 3 &mdash; Read before you start</span>
+      <h2 class="sec-title">What to expect</h2>
+      <div class="faq-list">
+        <div class="faq-item"><h4>It's free, with limits</h4><p>The free plan runs out eventually. If you keep making changes you may hit a limit and need to pay around $20 to continue. Get your info right the first time (photos, phone number, services, form) and you'll use less of it.</p></div>
+        <div class="faq-item"><h4>Something will look off</h4><p>Some links or buttons won't work exactly right the first time. That's normal for a free tool. Tell v0 what's wrong and it will usually fix it.</p></div>
+        <div class="faq-item"><h4>Get a real domain</h4><p>The free address works, but I'd get a .com. For a mobile mechanic it matters less than for a law or dental office, but a .com adds authority and helps people trust you.</p></div>
+        <div class="faq-item"><h4>Spend time on the words</h4><p>The copy is what gets people to scroll and act. Don't publish the first draft AI gives you. Read it out loud and rewrite anything that doesn't sound like you.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT'S NEXT ================= -->
+  <section class="band dim">
+    <div class="wrap">
+      <span class="lvl-tag">Level 4 &mdash; Bonus stage</span>
+      <h2 class="sec-title">Once the site is live, put it to work</h2>
+      <p class="sec-sub" style="max-width:70ch;">A website is the first piece. The form can do a lot more than sit in an inbox:</p>
+      <div class="card" style="max-width:70ch;">
+        <ul class="glist">
+          <li><span class="b"></span><span>Send every form submission to your phone the moment it comes in</span></li>
+          <li><span class="b"></span><span>Have an AI assistant answer the phone in the middle of the night</span></li>
+          <li><span class="b"></span><span>Connect the form to the systems you already use in your shop</span></li>
+          <li><span class="b"></span><span>Follow up with old leads and past customers</span></li>
+        </ul>
+      </div>
+      <p class="sec-sub" style="max-width:70ch;margin-top:20px;">Want help setting any of that up, or something more complex? Book a call at the bottom of the page.</p>
+    </div>
+  </section>
+
+  <!-- ================= FOUNDER ================= -->
+  <section class="band cream">
+    <div class="wrap">
+      <div class="founder">
+        <img class="avatar-photo" src="https://d3v0px0pttie1i.cloudfront.net/uploads/user/avatar/3014860/240ea650.jpg" alt="Brian, founder of Parsity" />
+        <div>
+          <p>I'm Brian. I've been a software engineer for over a decade, and I've helped a lot of businesses with landing pages, websites, automated systems and chatbots that bring in more money.</p>
+          <p>You don't need AI or code to get a site up. But if you want help building this, or something bigger, I'll walk you through what it could look like, or at least tell you what I'd do in your shoes.</p>
+          <span class="sig">&mdash; Brian, founder of Parsity</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="band dim">
+    <div class="wrap">
+      <span class="lvl-tag">Questions</span>
+      <h2 class="sec-title" style="margin-bottom:24px;">Quick answers</h2>
+      <div class="faq-list">
+        <div class="faq-item"><h4>Do I need to know anything about AI?</h4><p>No. You describe your business in plain English and the tool builds the site. If you hate AI, that's fine. It's just a tool that saves you a thousand dollars.</p></div>
+        <div class="faq-item"><h4>Does this only work for mechanics?</h4><p>No. I used a mobile mechanic because that's who I've been talking to. It works for any local service business: cleaners, landscapers, plumbers, detailers, and so on.</p></div>
+        <div class="faq-item"><h4>Will it show up on Google?</h4><p>Publishing gets you a live site. Add the link to your Google Business Profile so people searching for you can click through and find your form and phone number.</p></div>
+        <div class="faq-item"><h4>What does the call cost?</h4><p>Nothing. Like the guide, it's free. Tell me about your business and I'll help with your site or point you in the right direction. Totally optional.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="band green final" id="apply">
+    <div class="wrap">
+      <span class="lvl-tag" style="text-align:center;display:block;">Ready player one</span>
+      <h2>Stop being invisible on Google.</h2>
+      <div class="press">▶ ▶ ▶ PRESS START ◀ ◀ ◀</div>
+      <p class="sec-sub" style="color:var(--on-green-soft);max-width:60ch;margin:0 auto 22px;">Everything above is free. Want to talk it through or get help with the next step? Grab a time with me.</p>
+      <div class="cta-row">
+        <a href="https://calendly.com/brianjenney83/15-minute-meeting-your-web-dev-roadmap-clone" target="_blank" rel="noopener" class="btn big">Book a call with Brian</a>
+        <a href="#steps" class="btn ghost">Back to the steps</a>
+      </div>
+      <p class="note">Questions? <a href="mailto:assistant@parsity.io">assistant@parsity.io</a></p>
+    </div>
+  </section>
+
+  <footer><span class="logo"><span class="shield">&gt;_</span><b style="color:var(--on-green);">PARSITY.IO</b></span><div style="margin-top:10px;">&copy; 2026 Parsity</div></footer>
+
+  <script>
+  (function(){
+    var root=document.documentElement, btn=document.getElementById('tt');
+    function apply(){ btn.textContent = current()==='dark' ? 'DAY MODE' : 'NIGHT MODE'; }
+    function current(){
+      var a=root.getAttribute('data-theme');
+      if(a) return a;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light';
+    }
+    try{ var s=localStorage.getItem('parsity-theme'); if(s) root.setAttribute('data-theme',s); }catch(e){}
+    apply();
+    btn.addEventListener('click',function(){
+      var next = current()==='dark' ? 'light':'dark';
+      root.setAttribute('data-theme',next);
+      try{ localStorage.setItem('parsity-theme',next); }catch(e){}
+      apply();
+    });
+  })();
+  </script>
+</body>
+</html>
